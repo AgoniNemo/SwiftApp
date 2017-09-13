@@ -41,7 +41,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         btn.frame = XCGRect(x: CGFloat(x), y: passTF.frame.maxY+20, width: passTF.frame.width, height: 40);
         btn.setTitle("登录", for: UIControlState.normal);
         btn.setTitleColor(UIColor.white, for: UIControlState.normal);
-        btn.backgroundColor = HOMECOLOR;
+        btn.backgroundColor = RGBA(r: 201, g: 39, b: 143, a: 1);
         btn.alpha = 0.8;
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);//#selector(btnClick(_:))
         self.view.addSubview(btn);

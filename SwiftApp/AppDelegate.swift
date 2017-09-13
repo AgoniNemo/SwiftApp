@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let b = UserDefaults.standard.bool(forKey: "")
         
-        if b == true {
+        if b == false {
             let vc = LoginViewController();
             let nav = UINavigationController(rootViewController:vc);
             self.window!.rootViewController = nav;
