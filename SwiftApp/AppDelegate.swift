@@ -15,7 +15,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let b = UserDefaults.standard.bool(forKey: "")
+        
+        if b == true {
+            let vc = LoginViewController();
+            let nav = UINavigationController(rootViewController:vc);
+            self.window!.rootViewController = nav;
+            
+        }else{
+            self.window!.rootViewController = self.homeTabbarController;
+        }
+        
+        UITabBar.appearance().tintColor = HOMECOLOR;
+        UINavigationBar.appearance().barTintColor = HOMECOLOR;
+        
+        UINavigationBar.appearance().tintColor = HOMECOLOR;
+        
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 15),
+            NSForegroundColorAttributeName: UIColor.white
+        ]
+        
+        /**
+         if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+         
+         [[UINavigationBar appearance] setTitleTextAttributes:
+         [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17], NSFontAttributeName, nil]];
+         [[UINavigationBar appearance] setOpaque:YES];
+         [[UINavigationBar appearance] setTranslucent: NO];
+         
+         }
+ 
+        */
         return true
     }
 
@@ -41,6 +73,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    lazy var homeTabbarController: UITabBarController = {
+        
+        let tab = UITabBarController.init();
+        
+        let homeVc = HomeViewController();
+        homeVc.title = "首页";
+        homeVc.tabBarItem = UITabBarItem.init(title: "首页", image:#imageLiteral(resourceName: "home_icon"), selectedImage: #imageLiteral(resourceName: "home_icon"));
+        
+        let categoriesVc = CategoriesViewController();
+        categoriesVc.title = "分类";
+        categoriesVc.tabBarItem = UITabBarItem.init(title: "分类", image: #imageLiteral(resourceName: "categories_icon"), selectedImage: #imageLiteral(resourceName: "categories_icon"));
+        
+        let myVc = MyViewController();
+        myVc.title = "我";
+        myVc.tabBarItem = UITabBarItem.init(title: "我", image: #imageLiteral(resourceName: "me_icon"), selectedImage: #imageLiteral(resourceName: "me_icon"));
+        
+        let navH = UINavigationController.init(rootViewController: homeVc);
+        let navC = UINavigationController.init(rootViewController: categoriesVc);
+        let navM = UINavigationController.init(rootViewController: myVc);
+        
+        tab.viewControllers = [navH,navC,navM];
+        
+        return tab;
+    }()
 
 }
 
