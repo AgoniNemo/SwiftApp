@@ -34,10 +34,8 @@ class AnimatedImagesView: UIView {
     
     open func startAnimating(){
     
-        print(animating ?? Bool());
         if (animating == nil || animating == false) {
             animating = true;
-            print(self.imageSwappingTimer);
             self.imageSwappingTimer.fire();
         }
     }
