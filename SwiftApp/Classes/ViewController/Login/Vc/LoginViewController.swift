@@ -22,8 +22,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         self.view.addSubview(self.animatedImagesView);
     
         
-        let x = 50;
-        userTF = LineTextField.init(frame: XCGRect(x: CGFloat(x), y: SCREEN_HEIGH/2+50, width: SCREEN_WIDTH-CGFloat(x)*2, height: 20));
+        let x:CGFloat = 50;
+        userTF = LineTextField.init(frame: XCGRect(x, SCREEN_HEIGH/2+50, SCREEN_WIDTH-x*2, 20));
         userTF?.placeholder(color:UIColor.white,string:"账号");
         
         userTF?.leftView = UIImageView.init(image: #imageLiteral(resourceName: "email"))
@@ -31,14 +31,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         userTF?.delegate = self;
         self.view.addSubview(userTF!);
         
-        let passTF = LineTextField.init(frame: XCGRect(x: CGFloat(x), y: (userTF?.frame.maxY)!+20, width: SCREEN_WIDTH-CGFloat(x)*2, height: 20));
+        let passTF = LineTextField.init(frame: XCGRect(x, (userTF?.frame.maxY)!+20, SCREEN_WIDTH-x*2, 20));
         passTF.placeholder(color:UIColor.white,string:"密码");
         passTF.leftView = UIImageView.init(image: #imageLiteral(resourceName: "password"))
         passTF.leftViewMode = UITextFieldViewMode.always;
         self.view.addSubview(passTF);
         
         let btn = UIButton.init(type: UIButtonType.system);
-        btn.frame = XCGRect(x: CGFloat(x), y: passTF.frame.maxY+20, width: passTF.frame.width, height: 40);
+        btn.frame = XCGRect(CGFloat(x), passTF.frame.maxY+20, passTF.frame.width, 40);
         btn.setTitle("登录", for: UIControlState.normal);
         btn.setTitleColor(UIColor.white, for: UIControlState.normal);
         btn.backgroundColor = RGBA(r: 201, g: 39, b: 143, a: 1);
@@ -108,7 +108,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     lazy var animatedImagesView:AnimatedImagesView = {
     
-        let animatedView = AnimatedImagesView.init(frame: XCGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGH));
+        let animatedView = AnimatedImagesView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH));
         animatedView.delegate = self;
         animatedView.startAnimating();
 

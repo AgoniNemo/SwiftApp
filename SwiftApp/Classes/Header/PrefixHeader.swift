@@ -38,7 +38,7 @@ func XLogLine<T>(message : T, file : String = #file, lineNumber : Int = #line) {
     #endif
 }
 
-func XCGRect(x:CGFloat,y:CGFloat,width:CGFloat,height:CGFloat) -> CGRect {
+func XCGRect(_ x:CGFloat,_ y:CGFloat,_ width:CGFloat,_ height:CGFloat) -> CGRect {
     
     return CGRect(x:x,y :y,width: width,height: height);
 }

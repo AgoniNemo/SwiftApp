@@ -22,7 +22,7 @@ class LineTextField: UITextField {
     
     fileprivate func addBottonLine() {
         
-        let view = UIView.init(frame: XCGRect(x: 0, y: self.frame.height+3, width: self.frame.width, height: 1));
+        let view = UIView.init(frame: XCGRect(0, self.frame.height+3, self.frame.width, 1));
         view.backgroundColor = LIGHTCOLOR;
         self.addSubview(view);
     }
@@ -34,14 +34,14 @@ class LineTextField: UITextField {
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         
-        let inset = XCGRect(x: bounds.origin.x+30, y: bounds.origin.y, width: bounds.size.width+25, height: bounds.size.height);
+        let inset = XCGRect(bounds.origin.x+30, bounds.origin.y, bounds.size.width+25, bounds.size.height);
         
         return inset;
         
     }
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        let inset = XCGRect(x: bounds.origin.x+30, y: bounds.origin.y, width: bounds.size.width+25, height: bounds.size.height);
+        let inset = XCGRect(bounds.origin.x+30, bounds.origin.y, bounds.size.width+25, bounds.size.height);
         
         return inset;
     }
