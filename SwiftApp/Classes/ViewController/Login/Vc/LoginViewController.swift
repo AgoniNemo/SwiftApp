@@ -10,7 +10,6 @@ import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesViewDelegate{
 
-    var  userTF:LineTextField?;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +19,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         self.view.backgroundColor = UIColor.white;
         
         self.view.addSubview(self.animatedImagesView);
-    
+        
+        self.view.addSubview(self.bgView);
         
         let x:CGFloat = 50;
-        userTF = LineTextField.init(frame: XCGRect(x, SCREEN_HEIGH/2+50, SCREEN_WIDTH-x*2, 20));
-        userTF?.placeholder(color:UIColor.white,string:"账号");
+        let userTF = LineTextField.init(frame: XCGRect(x, SCREEN_HEIGH/2+50, SCREEN_WIDTH-x*2, 20));
+        userTF.placeholder(color:UIColor.white,string:"账号");
         
-        userTF?.leftView = UIImageView.init(image: #imageLiteral(resourceName: "email"))
-        userTF?.leftViewMode = UITextFieldViewMode.always;
-        userTF?.delegate = self;
-        self.view.addSubview(userTF!);
+        userTF.leftView = UIImageView.init(image: #imageLiteral(resourceName: "email"))
+        userTF.leftViewMode = UITextFieldViewMode.always;
+        userTF.delegate = self;
+        self.bgView.addSubview(userTF);
         
-        let passTF = LineTextField.init(frame: XCGRect(x, (userTF?.frame.maxY)!+20, SCREEN_WIDTH-x*2, 20));
+        let passTF = LineTextField.init(frame: XCGRect(x, (userTF.frame.maxY)+20, SCREEN_WIDTH-x*2, 20));
         passTF.placeholder(color:UIColor.white,string:"密码");
         passTF.leftView = UIImageView.init(image: #imageLiteral(resourceName: "password"))
         passTF.leftViewMode = UITextFieldViewMode.always;
-        self.view.addSubview(passTF);
+        passTF.delegate = self;
+        self.bgView.addSubview(passTF);
         
         let btn = UIButton.init(type: UIButtonType.system);
         btn.frame = XCGRect(CGFloat(x), passTF.frame.maxY+20, passTF.frame.width, 40);
@@ -44,7 +45,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         btn.backgroundColor = RGBA(r: 201, g: 39, b: 143, a: 1);
         btn.alpha = 0.8;
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);//#selector(btnClick(_:))
-        self.view.addSubview(btn);
+        self.bgView.addSubview(btn);
 
     }
     /**
@@ -68,9 +69,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == userTF {
-            UIView.animate(withDuration: 0.25, animations: { 
-                
+        
+        if self.bgView.y == 0 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.bgView.y = -100;
             })
         }
     }
@@ -78,6 +80,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true);
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bgView.y = 00;
+        })
     }
     
     
@@ -114,6 +119,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
 
         return animatedView;
     }()
+    
+    lazy var bgView:UIView = {
+    
+        let v = UIView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH))
+        
+        return v;
+    }()
+    
     
     
 

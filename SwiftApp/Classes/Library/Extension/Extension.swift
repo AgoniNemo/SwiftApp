@@ -18,7 +18,7 @@ extension UIView{
 
     var x :CGFloat?{
     
-        set{
+        set(x){
             var frame = self.frame;
             frame.origin.x = x!;
             self.frame = frame;
@@ -32,7 +32,7 @@ extension UIView{
     
     var y :CGFloat?{
         
-        set{
+        set(y){
             var frame = self.frame;
             frame.origin.y = y!;
             self.frame = frame;
@@ -45,7 +45,7 @@ extension UIView{
     }
     var width :CGFloat?{
         
-        set{
+        set(width){
             var frame = self.frame;
             frame.size.width = width!;
             self.frame = frame;
@@ -58,7 +58,7 @@ extension UIView{
     }
     var height :CGFloat?{
         
-        set{
+        set(height){
             var frame = self.frame;
             frame.size.height = height!;
             self.frame = frame;
