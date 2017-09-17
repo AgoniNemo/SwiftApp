@@ -46,7 +46,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         btn.alpha = 0.8;
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);//#selector(btnClick(_:))
         self.bgView.addSubview(btn);
-
+        
     }
     /**
      func btnClick(_ button:UIButton){

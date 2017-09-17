@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA1226CE1F695D3900E097DF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */; };
+		BA17978D1F6E9B54005F645C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17978C1F6E9B54005F645C /* UserModel.swift */; };
 		BA70833B1F68D705009C97B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70833A1F68D705009C97B6 /* AppDelegate.swift */; };
 		BA7083401F68D705009C97B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA70833E1F68D705009C97B6 /* Main.storyboard */; };
 		BA7083421F68D705009C97B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7083411F68D705009C97B6 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		8AC3BD026D47223AA5311820 /* Pods_SwiftApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2901BAC3FB9DAB81D95128 /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BA17978C1F6E9B54005F645C /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BA7083371F68D705009C97B6 /* SwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA70833A1F68D705009C97B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA70833F1F68D705009C97B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +120,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA17978A1F6E9B30005F645C /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				BA17978E1F6E9C21005F645C /* Other */,
+				BA17978B1F6E9B30005F645C /* Model */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		BA17978B1F6E9B30005F645C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA17978C1F6E9B54005F645C /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BA17978E1F6E9C21005F645C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		BA17978F1F6E9C38005F645C /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		BA70832E1F68D704009C97B6 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +207,8 @@
 		BA7083681F68D900009C97B6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BA17978F1F6E9C38005F645C /* Tool */,
+				BA17978A1F6E9B30005F645C /* Public */,
 				BAF71C2F1F6912AA00D3A265 /* Library */,
 				BAF71C121F69085A00D3A265 /* ViewController */,
 				BAF71C0F1F69084800D3A265 /* Header */,
@@ -527,6 +562,7 @@
 				BAF71C621F6913FF00D3A265 /* HomeViewController.swift in Sources */,
 				BAF71C511F6912AA00D3A265 /* LineTextField.swift in Sources */,
 				BA70833B1F68D705009C97B6 /* AppDelegate.swift in Sources */,
+				BA17978D1F6E9B54005F645C /* UserModel.swift in Sources */,
 				BAF71C2C1F69085A00D3A265 /* MyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
