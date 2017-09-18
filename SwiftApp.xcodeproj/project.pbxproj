@@ -14,6 +14,9 @@
 		BA7083421F68D705009C97B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA7083411F68D705009C97B6 /* Assets.xcassets */; };
 		BA7083501F68D705009C97B6 /* SwiftAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70834F1F68D705009C97B6 /* SwiftAppTests.swift */; };
 		BA70835B1F68D705009C97B6 /* SwiftAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA70835A1F68D705009C97B6 /* SwiftAppUITests.swift */; };
+		BA8502C11F6F9FEB00769782 /* BaseNetWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8502C01F6F9FEB00769782 /* BaseNetWorking.swift */; };
+		BA8502C51F6FAB8700769782 /* LoginNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8502C41F6FAB8700769782 /* LoginNetManager.swift */; };
+		BA8502C81F6FB13200769782 /* UIViewCotroller+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */; };
 		BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C101F69084800D3A265 /* PrefixHeader.swift */; };
 		BAF71C2B1F69085A00D3A265 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C1E1F69085A00D3A265 /* LoginViewController.swift */; };
 		BAF71C2C1F69085A00D3A265 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C211F69085A00D3A265 /* MyViewController.swift */; };
@@ -61,6 +64,9 @@
 		BA7083561F68D705009C97B6 /* SwiftAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA70835A1F68D705009C97B6 /* SwiftAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAppUITests.swift; sourceTree = "<group>"; };
 		BA70835C1F68D705009C97B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA8502C01F6F9FEB00769782 /* BaseNetWorking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNetWorking.swift; sourceTree = "<group>"; };
+		BA8502C41F6FAB8700769782 /* LoginNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetManager.swift; sourceTree = "<group>"; };
+		BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewCotroller+Alert.swift"; sourceTree = "<group>"; };
 		BAF71C101F69084800D3A265 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixHeader.swift; sourceTree = "<group>"; };
 		BAF71C1E1F69085A00D3A265 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BAF71C211F69085A00D3A265 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		BA17978A1F6E9B30005F645C /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				BA8502BF1F6F788900769782 /* Networking */,
 				BA17978E1F6E9C21005F645C /* Other */,
 				BA17978B1F6E9B30005F645C /* Model */,
 			);
@@ -142,13 +149,6 @@
 			children = (
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		BA17978F1F6E9C38005F645C /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tool;
 			sourceTree = "<group>";
 		};
 		BA70832E1F68D704009C97B6 = {
@@ -207,13 +207,30 @@
 		BA7083681F68D900009C97B6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BA17978F1F6E9C38005F645C /* Tool */,
+				BA8502C61F6FB12700769782 /* Tool */,
 				BA17978A1F6E9B30005F645C /* Public */,
 				BAF71C2F1F6912AA00D3A265 /* Library */,
 				BAF71C121F69085A00D3A265 /* ViewController */,
 				BAF71C0F1F69084800D3A265 /* Header */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		BA8502BF1F6F788900769782 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BA8502C01F6F9FEB00769782 /* BaseNetWorking.swift */,
+				BA8502C41F6FAB8700769782 /* LoginNetManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BA8502C61F6FB12700769782 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		BAF71C0F1F69084800D3A265 /* Header */ = {
@@ -555,11 +572,14 @@
 				BAF71C2E1F69085A00D3A265 /* ViewController.swift in Sources */,
 				BAF71C5E1F6913BA00D3A265 /* CategoriesViewController.swift in Sources */,
 				BAF71C2B1F69085A00D3A265 /* LoginViewController.swift in Sources */,
+				BA8502C51F6FAB8700769782 /* LoginNetManager.swift in Sources */,
 				BAF71C2D1F69085A00D3A265 /* RootViewController.swift in Sources */,
+				BA8502C11F6F9FEB00769782 /* BaseNetWorking.swift in Sources */,
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
 				BAF71C481F6912AA00D3A265 /* AnimatedImagesView.swift in Sources */,
 				BAF71C501F6912AA00D3A265 /* Extension.swift in Sources */,
 				BAF71C621F6913FF00D3A265 /* HomeViewController.swift in Sources */,
+				BA8502C81F6FB13200769782 /* UIViewCotroller+Alert.swift in Sources */,
 				BAF71C511F6912AA00D3A265 /* LineTextField.swift in Sources */,
 				BA70833B1F68D705009C97B6 /* AppDelegate.swift in Sources */,
 				BA17978D1F6E9B54005F645C /* UserModel.swift in Sources */,

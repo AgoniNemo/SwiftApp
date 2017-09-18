@@ -64,6 +64,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         return #imageLiteral(resourceName: "login_back");
     }
     func btnClick(){
+        self.show(text: "登录了");
+    }
+    func skipNext() -> Void {
         self.animatedImagesView.stopAnimating();
         self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
     }
