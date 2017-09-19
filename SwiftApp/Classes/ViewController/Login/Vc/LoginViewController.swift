@@ -8,8 +8,9 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesViewDelegate{
-
+class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesViewDelegate,LoginVModelDelegate{
+    
+    var vModle = LoginVModel();
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +48,31 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);//#selector(btnClick(_:))
         self.bgView.addSubview(btn);
         
+        vModle.delegate = self;
+        userTF.addTarget(self, action: #selector(userNameChanged), for: .editingChanged)
+        passTF.addTarget(self, action: #selector(passwordChanged), for: .editingChanged)
+        
     }
-    /**
-     func btnClick(_ button:UIButton){
-     
-     }
-     */
+    
+    func alertInfo(text:String) {
+        debugPrint(text)
+        self.show(text: text)
+    }
+    
+    func loginSuccess() {
+        self.animatedImagesView.stopAnimating();
+        self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
+    }
+    
+    
+    dynamic func userNameChanged(field: LineTextField) {
+        vModle.userNameDidChange(text: field.text)
+    }
+    
+    dynamic func passwordChanged(field: LineTextField) {
+        vModle.passwordDidChange(text: field.text)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         self.animatedImagesView.startAnimating();
@@ -63,12 +83,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     func animatedImagesView(animatedImagesView: AnimatedImagesView, index: NSInteger) -> UIImage {
         return #imageLiteral(resourceName: "login_back");
     }
+    
     func btnClick(){
-        self.show(text: "登录了");
-    }
-    func skipNext() -> Void {
-        self.animatedImagesView.stopAnimating();
-        self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
+        vModle.login()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

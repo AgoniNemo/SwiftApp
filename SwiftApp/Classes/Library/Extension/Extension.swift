@@ -69,5 +69,15 @@ extension UIView{
         }
         
     }
+    /**
+    @IBInspectable var normalColor: UIColor {
+        get {
+            return objc_getAssociatedObject(self, "x_normalColor") as! UIColor
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, "x_normalColor", newValue, .OBJC_ASSOCIATION_ASSIGN)
+        }
+    }*/
+    
 
 }

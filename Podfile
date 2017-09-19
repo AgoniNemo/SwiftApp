@@ -8,5 +8,7 @@ target 'SwiftApp' do
   pod 'Alamofire', '~> 4.5'
   pod 'Kingfisher', '~> 3.0'
   pod 'SCLAlertView'
+  pod 'SnapKit', '~> 3.0.0'
+  pod 'FMDB'
 
 end

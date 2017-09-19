@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class UserModel {
     
@@ -18,7 +19,5 @@ class UserModel {
     var authority:String = "";
     
     var token:String = "";
-    
-    
     
 }

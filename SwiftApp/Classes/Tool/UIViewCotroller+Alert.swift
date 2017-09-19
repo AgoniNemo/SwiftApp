@@ -18,24 +18,68 @@ enum AlertType: Int {
 
 class Alert {
     
+    static let shareInstance = Alert()
     
+    /**
+    var alert = { (showCloseButton:Bool?
+                        ) -> SCLAlertView in
+        debugPrint(showCloseButton!)
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        
+        return alert
+    }*/
+    
+    var result:SCLAlertViewResponder?;
+    
+    
+    func alert(showCloseButton:Bool? = false,showCircularIcon:Bool? = true) -> SCLAlertView {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: showCloseButton!,
+            showCircularIcon: showCircularIcon!
+        )
+        let alert = SCLAlertView(appearance: appearance)
+        
+        return alert
+    }
+    
+    func show(text:String,duration:TimeInterval? = 1.5) -> Void {
+        
+        self.result = self.alert(showCircularIcon:false).showTitle(
+            "",
+            subTitle: text,
+            style: .info,
+            duration: duration!
+        )
+    }
+    
+    func load(text:String) -> Void {
+        self.result = self.alert().showWait("", subTitle: text)
+    }
+    
+    func hidden() -> Void {
+        self.result?.close();
+    }
 }
 
 extension UIViewController{
 
     func show(text:String) -> Void {
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
         
-        let alert = SCLAlertView(appearance: appearance)
-        
-        alert.showTitle(
-            "",
-            subTitle: text, 
-            style: .wait,
-            duration: 1.5
-        )
+        Alert.shareInstance.show(text: text)
+    
+    }
+    
+    func load(text:String) -> Void {
+        Alert.shareInstance.load(text: text)
+    }
+    
+    func hidden() -> Void {
+        Alert.shareInstance.hidden()
     }
 
 }
