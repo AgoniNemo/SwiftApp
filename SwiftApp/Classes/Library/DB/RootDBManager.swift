@@ -115,8 +115,13 @@ class RootDBManager: NSObject {
     // TODO: 插入数据（单个数据）
     func insertData(ForDict dict:Dictionary<String,String>, tableName:String) -> Bool {
         
-        let sql = self.insertSQLForDict(dict: dict, tableName: tableName);
         var b = false;
+        if dict.count == 0 {
+            return b
+        }
+        
+        let sql = self.insertSQLForDict(dict: dict, tableName: tableName);
+        
         self.queue?.inDatabase({ (db:FMDatabase) in
             db.open();
             
@@ -331,9 +336,9 @@ class RootDBManager: NSObject {
                     string.append("\(k) = '\(v)'");
                 }
             }else{
-                if value is Dictionary<String,String> {
-                    
-                    let dic = value as! Dictionary<String,String>;
+                if value is [[String:String]] {
+                    let array = value as! [[String:String]]
+                    let dic = array.first!;
                     let k = dic.first?.key ?? String();
                     let v = dic.first?.value ?? String();
                     string.append("\(k) = '\(v)'");
@@ -355,26 +360,39 @@ class RootDBManager: NSObject {
     /// 查询数据
     /// parameter array:需要查询的多个条件 格式为[["key":"value"],"or",["key":"value"],"and",["key":"value"]]
     /// parameter tableName：表名字
-    func inquireData(WithArray array:Array<Any>,tableName:String) -> Array<Dictionary<String,Any>> {
+    func inquireData(WithArray array:Array<Any>,tableName:String) -> Array<Dictionary<String,String>> {
         
         let  condition = self.getCondition(array: array,dict:[:]);
         
         let sql = "select * from \(tableName) where \(condition)"
         
-        var dataArray = Array<Dictionary<String,Any>>.init();
+        var dataArray:[[String:String]] = Array.init();
         
         self.queue?.inDatabase({ (db:FMDatabase) in
             db.open();
             let result = db.executeQuery(sql, withArgumentsIn: []);
             
             while (result?.next())! {
-                let dict:Dictionary = result!.resultDictionary!;
-                dataArray.append(dict as! [String : Any]);
+                let dict:[String:Any] = result!.resultDictionary! as! [String : Any];
+                
+                dataArray.append(self.chengeDict(dict: dict));
             }
         })
         
         return dataArray;
         
+    }
+    
+    private func chengeDict(dict:[String:Any]) -> [String:String]{
+        
+        var d:[String:String] = Dictionary();
+        
+        for (_,v) in dict.enumerated() {
+            debugPrint(v)
+            d[v.key] = v.value as? String
+        }
+        
+        return d
     }
     
     // TODO: 检查数据库字段是否存在，不存在就添加

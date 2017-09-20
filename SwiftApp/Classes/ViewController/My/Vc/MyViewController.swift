@@ -13,7 +13,7 @@ class MyViewController: RootViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        debugPrint(UserModel.shareInstance.token)
         
         // Do any additional setup after loading the view.
     }

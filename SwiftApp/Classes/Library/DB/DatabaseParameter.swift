@@ -12,12 +12,15 @@ import Foundation
  ** 用户数据表字段
  * user 账号
  * sex 用户性别
+ * age 年龄
+ * name 名字
  * phoneNumber 用户手机号
  * headPath 头像路径
  * authority 权限
  * token 
+ * status 用户的登录状态
  */
-let userMagerArray = ["user","sex","phoneNumber","headPath","authority","token"]
+let userMagerArray = ["user","name","age","sex","phoneNumber","headPath","authority","token","status"]
 
 
 

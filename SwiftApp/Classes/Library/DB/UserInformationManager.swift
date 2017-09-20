@@ -19,15 +19,33 @@ class UserInformationManager: RootDBManager {
         
         conver.queue = queue;
         
+        let b = conver.creatTabelWithKeys(keys: userMagerArray, tableName: conver.tableName)
+        
+        if b == false {
+            debugPrint("创建数据表失败!");
+        }
+        
         return conver;
     }
+    
     
     func insertData(dict:[String:String]) -> Bool {
         
         return self.insertData(ForDict: dict, tableName: tableName);
     }
     
-    func getAllData() -> Array<Dictionary<String,Any>> {
+    func getData() -> [String:String] {
+
+        let array = self.inquireData(ForDict: ["status":"1"])
+        guard array.count > 0 else {
+            
+            return [:]
+        }
+        
+        return array.first!
+    }
+    
+    func getAllData() -> [[String:Any]] {
         
         return self.getAllDataTableName(order: "order by id", tableName: tableName);
     }
@@ -52,11 +70,11 @@ class UserInformationManager: RootDBManager {
         return self.updateDataWithArray(array: array, condition: ["key"], overlook: ["user"], tableName: tableName);
     }
     
-    func inquireData(ForDict dict:[String:String]) -> Array<Dictionary<String,Any>> {
+    func inquireData(ForDict dict:[String:String]) -> [[String:String]] {
         
         return self.inquireData(WithArray: [[dict]], tableName: tableName);
     }
-    
+    @discardableResult
     func deleteAll() -> Bool {
         return self.delete(ForTableName: tableName);
     }

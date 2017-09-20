@@ -49,7 +49,7 @@ class Alert {
     
     func show(text:String,duration:TimeInterval? = 1.5) -> Void {
         
-        self.result = self.alert(showCircularIcon:false).showTitle(
+        self.alert(showCircularIcon:false).showTitle(
             "",
             subTitle: text,
             style: .info,

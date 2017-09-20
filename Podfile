@@ -10,5 +10,6 @@ target 'SwiftApp' do
   pod 'SCLAlertView'
   pod 'SnapKit', '~> 3.0.0'
   pod 'FMDB'
+  pod 'DGElasticPullToRefresh'
 
 end

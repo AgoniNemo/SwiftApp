@@ -11,13 +11,69 @@ import UIKit
 
 class UserModel {
     
+    static let shareInstance = UserModel()
+    
+    private var dic:[String:String]?;
+    
     var user:String = "";
     var sex:String = "";
+    var age:String = "";
+    var name:String = "";
+    
     var phoneNumber:String = "";
     var headPath:String = "";
     /// 权限
     var authority:String = "";
     
     var token:String = "";
+    var stutas:Bool = false
+    
+    
+    
+    @discardableResult
+    func model(dict:[String:String]) -> UserModel {
+        
+        guard dict.count > 0 else {
+            return UserModel.shareInstance
+        }
+        self.dic = dict;
+        
+        setProperties(dict: dict)
+        return UserModel.shareInstance
+    }
+    
+    private init() {
+        debugPrint(self)
+        let d = DatabaseHelper.sharedInstance.userMager.getData()
+        
+        guard d.count > 0 else {
+            return
+        }
+        
+        setProperties(dict: d)
+        self.stutas = true;
+    }
+    
+    private func setProperties(dict:[String:String]) -> Void{
+        
+        self.user = dict["user"]!
+        self.sex = dict["sex"]!
+        self.age = dict["age"]!
+        self.name = dict["name"]!
+        
+        self.phoneNumber = dict["phoneNumber"]!
+        self.headPath = dict["headPath"]!
+        self.authority = dict["authority"]!
+        self.token = dict["token"]!
+    }
+    
+    public func save() -> Bool {
+        guard var d = self.dic else {
+            return false
+        }
+        d["status"] = "1";
+        self.stutas = true;
+        return DatabaseHelper.sharedInstance.userMager.insertData(dict: d)
+    }
     
 }

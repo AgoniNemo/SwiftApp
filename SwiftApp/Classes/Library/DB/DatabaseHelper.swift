@@ -33,7 +33,7 @@ final class DatabaseHelper: NSObject{
         return path;
     }
     
-    lazy var chatUserMager:UserInformationManager = {
+    lazy var userMager:UserInformationManager = {
     
         let user:UserInformationManager = UserInformationManager.userInformationManagerForQueue(queue: self.queue!);
         

@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-var x : CGFloat?
-var y : CGFloat?
-var width : CGFloat?
-var height : CGFloat?
-
 extension UIView{
 
     var x :CGFloat?{

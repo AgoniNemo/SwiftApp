@@ -56,10 +56,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     func alertInfo(text:String) {
         debugPrint(text)
+        self.hidden()
         self.show(text: text)
     }
     
     func loginSuccess() {
+        self.hidden()
         self.animatedImagesView.stopAnimating();
         self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
     }
@@ -85,6 +87,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     }
     
     func btnClick(){
+        self.load(text: "load...")
         vModle.login()
     }
     

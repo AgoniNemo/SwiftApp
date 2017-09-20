@@ -36,14 +36,10 @@ public class LoginVModel:ViewModelInterface{
     
     func userNameDidChange(text: String? = "") {
         userName = text!
-        debugPrint(userName)
     }
     
     func passwordDidChange(text: String? = "") {
-
         password = text!
-        debugPrint(password)
-        
     }
     
     func login() {
@@ -52,12 +48,21 @@ public class LoginVModel:ViewModelInterface{
             "user":userName,
             "password":password
         ]
-        
+        debugPrint(para)
         LoginNetManager.loginRequest(params: para) {[weak self] (dict, err) in
             if err != nil{
                 self?.delegate?.alertInfo(text: "登录失败!")
             }else{
-                self?.delegate?.loginSuccess()
+                debugPrint(dict as Any)
+                let d:[String:String] = dict?["data"] as! Dictionary
+                
+                let b = UserModel.shareInstance.model(dict: d).save()
+                if b == true{
+                    self?.delegate?.loginSuccess()
+                }else{
+                    self?.delegate?.alertInfo(text: "保存用户消息失败!")
+                }
+                
             }
         }
     }

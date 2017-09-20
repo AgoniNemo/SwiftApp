@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let b = UserDefaults.standard.bool(forKey: "")
+        let b = UserModel.shareInstance.stutas
         
         if b == false {
             let vc = LoginViewController();
