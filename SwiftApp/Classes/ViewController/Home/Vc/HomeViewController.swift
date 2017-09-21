@@ -66,6 +66,15 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let p = PlayViewController()
+        p.model = vModle.rowModel(row: indexPath.row)
+        self.navigationController?.pushViewController(p, animated: true)
+        
+        
+    }
+    
     
     lazy var tabView:UITableView = {
     
