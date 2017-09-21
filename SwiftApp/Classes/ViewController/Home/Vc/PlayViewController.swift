@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import AVFoundation
 
-class PlayViewController: UIViewController {
+class PlayViewController: RootViewController {
 
     var model:VideoModel?
     
@@ -17,7 +16,7 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.view.backgroundColor = UIColor.white
 
     }
 

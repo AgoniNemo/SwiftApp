@@ -25,6 +25,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         refresh()
         
     }
+    
     func alertload() {
         self.load(text: "数据加载中...")
     }
@@ -68,10 +69,12 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let p = PlayViewController()
         p.model = vModle.rowModel(row: indexPath.row)
-        self.navigationController?.pushViewController(p, animated: true)
         
+        self.navigationController?.pushViewController(p, animated: true)
         
     }
     
@@ -84,6 +87,8 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         t.dataSource = self;
         t.rowHeight = 92
         t.showsVerticalScrollIndicator = false
+        
+        
         return t
         
     }()
