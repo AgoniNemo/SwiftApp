@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeCell: UITableViewCell {
 
@@ -20,6 +21,15 @@ class HomeCell: UITableViewCell {
         
         self.contentView.addSubview(self.iconView)
         self.contentView.addSubview(self.titleLabel)
+        self.contentView.addSubview(self.timeLable)
+        self.contentView.addSubview(self.ratingLable)
+        self.contentView.addSubview(self.viewsLable)
+        
+        self.iconView.kf.setImage(with: URL(string: model.icon))
+        self.titleLabel.text = model.title
+        self.timeLable.text = "时间:\(model.duration)"
+        self.ratingLable.text = "评分:\(model.rating)"
+        self.viewsLable.text = "观看人数:\(model.views)"
     }
     
     class func cell(WithTableView tabView:UITableView) -> HomeCell{
@@ -35,18 +45,50 @@ class HomeCell: UITableViewCell {
         
     }
     
-    let titleLabel:UILabel = {
+    /// MARK:观看人数
+    lazy var viewsLable:UILabel = {
         
-        let l = UILabel.init(frame: XCGRect(70, 10, SCREEN_WIDTH-70, 30))
-        l.text = "title"
-        
+        let x = self.ratingLable.maxX!
+        let v:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, SCREEN_WIDTH-x-10, 20))
+
+        v.font = UIFont.systemFont(ofSize: 14)
+        return v
+    }()
+    
+    /// MARK:评分
+    lazy var ratingLable:UILabel = {
+    
+        let x = self.titleLabel.minX!
+        let r:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, 80, 20))
+        r.textAlignment = .left
+
+        r.font = UIFont.systemFont(ofSize: 14)
+        return r
+    }()
+    
+    /// MARK:时间
+    lazy var timeLable:UILabel = {
+        let x = self.titleLabel.minX!
+        let t:UILabel = UILabel.init(frame: XCGRect(x, self.titleLabel.maxY!, SCREEN_WIDTH-x-10, 20))
+        t.font = UIFont.systemFont(ofSize: 14)
+
+        return t
+    }()
+    
+    
+    lazy var titleLabel:UILabel = {
+        let x:CGFloat = self.iconView.maxX!+5;
+        let l:UILabel = UILabel.init(frame: XCGRect(x, 7, SCREEN_WIDTH-x-10, 40))
+        l.numberOfLines = 0
+        l.font = UIFont.boldSystemFont(ofSize: 15)
+
         return l
     }()
     
     
     lazy var iconView:UIImageView = {
     
-        let icon = UIImageView.init(frame: XCGRect(10, 10, 50, 50))
+        let icon = UIImageView.init(frame: XCGRect(10, 10, 96, 72))
         icon.backgroundColor = HOMECOLOR;
         
         

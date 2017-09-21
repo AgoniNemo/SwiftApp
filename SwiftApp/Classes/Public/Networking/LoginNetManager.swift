@@ -12,7 +12,7 @@ class LoginNetManager: BaseNetWorking {
     
     class func loginRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         
-        self.post(url: "\(NET_URI_ROOT)/user/login", params: params) { (dict, error) in
+        self.post(url: "\(URI_ROOT)/user/login", params: params) { (dict, error) in
             completionHandler(dict,error)
         }
     }

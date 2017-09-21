@@ -16,12 +16,17 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         vModle.delegate = self;
+        vModle.loadingMore()
         
         self.view.addSubview(self.tabView)
 
         refresh()
         
+    }
+    func alertload() {
+        self.load(text: "数据加载中...")
     }
     
     func alertInfo(text: String) {
@@ -31,12 +36,17 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor.white
         self.tabView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            debugPrint("-------")
+            self?.vModle.loadLate()
             self?.tabView.dg_stopLoading()
         }, loadingView: loadingView)
         
         self.tabView.dg_setPullToRefreshFillColor(HOMECOLOR)
         self.tabView.dg_setPullToRefreshBackgroundColor(UIColor.white)
+    }
+    
+    func reloadData() {
+        self.hidden()
+        self.tabView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -63,7 +73,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
         t.delegate = self;
         t.dataSource = self;
-        t.rowHeight = 70
+        t.rowHeight = 92
         t.showsVerticalScrollIndicator = false
         return t
         

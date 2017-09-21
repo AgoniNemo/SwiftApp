@@ -12,13 +12,16 @@ import Foundation
 @objc protocol HomeVModelDelegate {
     
     func alertInfo(text:String)
+    func reloadData()
+    func alertload()
 }
 
 protocol HomeVModelInterface {
     weak var delegate: HomeVModelDelegate? { get set }
     func numberOfRowsInSection() -> Int
-    func loading()
+    func loadingMore()
     func rowModel(row:Int) -> VideoModel
+    func loadLate()
 }
 
 
@@ -26,11 +29,59 @@ class HomeVModel:HomeVModelInterface {
     
     weak var delegate: HomeVModelDelegate?
     
+    private var page:Int = 0
+    
     var dataSource:[VideoModel] = Array.init();
     
     
-    func loading() {
+    func loadingMore() {
+        page += 1
+        self.delegate?.alertload()
+        self.request()
+    }
+    
+    func loadLate() {
+        page = 0
+        self.request()
+    }
+    
+    private func request() -> Void{
         
+        let token = UserModel.shareInstance.token
+        let user = UserModel.shareInstance.user
+        let params = [
+            "user":user,
+            "token":token,
+            "count":"40",
+            "page":"\(page)"
+        ]
+        
+        VideoNetManager.loadVideoRequest(params: params) { [weak self](dict, err) in
+            
+            guard let d = dict else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+                return
+            }
+            debugPrint(dict as Any)
+            
+            if err == nil{
+                let datas = d["data"] as! [[String:Any]]
+                if datas.count > 0,self?.page == 0{
+                    self?.dataSource.removeAll()
+                }
+                for (_,dic) in datas.enumerated(){
+                    
+                    let model = VideoModel.init(dict: dic)
+                    self?.dataSource.append(model)
+                }
+            }else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+            }
+            
+            self?.delegate?.reloadData()
+            
+        }
+    
     }
     
     func rowModel(row: Int) -> VideoModel {

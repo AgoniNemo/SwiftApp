@@ -10,6 +10,10 @@ import Foundation
 
 let DEV_STATE_ONLINE = 1  // 控制台输出开关 1：打开   0：关闭
 
-
-let LOCAL_URI_ROOT  = "http://0.0.0.0:8083";
-let NET_URI_ROOT  = "https://xxxserver.herokuapp.com";
+let URI_ROOT:String = {
+    
+    if DEV_STATE_ONLINE == 1{
+        return "https://xxxserver.herokuapp.com"
+    }
+    return "http://0.0.0.0:8083"
+}()

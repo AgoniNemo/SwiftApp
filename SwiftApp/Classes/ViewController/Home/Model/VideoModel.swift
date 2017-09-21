@@ -23,21 +23,21 @@ class VideoModel {
     var hls:Bool = false;
 
     
-    init(dict:[String:String]) {
+    init(dict:[String:Any]) {
         
         guard dict.count > 0 else {
             return
         }
         
-        self.title = dict["title"]!
-        self.views = dict["views"]!
-        self.duration = dict["duration"]!
-        self.playPath = dict["playPath"]!
-        self.symbol = dict["symbol"]!
-        self.hls = Bool(dict["hls"]!)!
-        self.icon = dict["icon"]!
-        self.category = dict["category"]!
-        self.rating = dict["rating"]!
+        self.title = dict["title"]! as! String
+        self.views = dict["views"]! as! String
+        self.duration = dict["duration"]! as! String
+        self.playPath = dict["playPath"]! as! String
+        self.symbol = dict["symbol"]! as! String
+        self.hls = dict["hls"]! as! Bool
+        self.icon = dict["icon"]! as! String
+        self.category = dict["category"]! as! String
+        self.rating = (dict["rating"] as? String)!
     }
     
     

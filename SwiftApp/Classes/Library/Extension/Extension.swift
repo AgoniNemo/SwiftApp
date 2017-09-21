@@ -64,6 +64,66 @@ extension UIView{
         }
         
     }
+    
+    var maxX:CGFloat?{
+        
+        set{
+            
+        }
+        
+        get{
+           return self.frame.maxX
+        }
+        
+    }
+    
+    var minX:CGFloat?{
+        set{
+            
+        }
+        get{
+            return self.frame.minX
+        }
+        
+    }
+    
+    var maxY:CGFloat?{
+        set{
+            
+        }
+        get{
+            return self.frame.maxY
+        }
+        
+    }
+    
+    var minY:CGFloat?{
+        set{
+            
+        }
+        get{
+            return self.frame.minY
+        }
+        
+    }
+    var midY:CGFloat?{
+        set{
+            
+        }
+        get{
+            return self.frame.midY
+        }
+        
+    }
+    var midX:CGFloat?{
+        set{
+            
+        }
+        get{
+            return self.frame.midX
+        }
+        
+    }
     /**
     @IBInspectable var normalColor: UIColor {
         get {

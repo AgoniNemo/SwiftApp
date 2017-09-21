@@ -12,7 +12,7 @@ import Alamofire
 class BaseNetWorking {
     
     static let shareInstance = BaseNetWorking()
-    
+    private init() {}
 }
 
 extension BaseNetWorking {
