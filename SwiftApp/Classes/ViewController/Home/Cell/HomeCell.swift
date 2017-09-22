@@ -25,11 +25,11 @@ class HomeCell: UITableViewCell {
         self.contentView.addSubview(self.ratingLable)
         self.contentView.addSubview(self.viewsLable)
         
-//        self.iconView.kf.setImage(with: URL(string: model.icon))
-//        self.titleLabel.text = model.title
-//        self.timeLable.text = "时间:\(model.duration)"
-//        self.ratingLable.text = "评分:\(model.rating)"
-//        self.viewsLable.text = "观看人数:\(model.views)"
+        self.iconView.kf.setImage(with: URL(string: model.icon))
+        self.titleLabel.text = model.title
+        self.timeLable.text = "时间:\(model.duration)"
+        self.ratingLable.text = "评分:\(model.rating)"
+        self.viewsLable.text = "观看人数:\(model.views)"
     }
     
     class func cell(WithTableView tabView:UITableView) -> HomeCell{
@@ -50,8 +50,8 @@ class HomeCell: UITableViewCell {
         
         let x = self.ratingLable.maxX!
         let v:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, SCREEN_WIDTH-x-10, 20))
-        v.text = "viewsLable"
-        v.backgroundColor = UIColor.brown
+//        v.text = "viewsLable"
+//        v.backgroundColor = UIColor.brown
         
         v.font = UIFont.systemFont(ofSize: 14)
         return v
@@ -61,9 +61,9 @@ class HomeCell: UITableViewCell {
     lazy var ratingLable:UILabel = {
     
         let x = self.titleLabel.minX!
-        let r:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, 60, 20))
-        r.text = "ratingLable"
-        r.backgroundColor = UIColor.orange
+        let r:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, 80, 20))
+//        r.text = "ratingLable"
+//        r.backgroundColor = UIColor.orange
         r.font = UIFont.systemFont(ofSize: 14)
         return r
     }()
@@ -73,8 +73,8 @@ class HomeCell: UITableViewCell {
         let x = self.titleLabel.minX!
         let t:UILabel = UILabel.init(frame: XCGRect(x, self.titleLabel.maxY!, SCREEN_WIDTH-x-10, 20))
         t.font = UIFont.systemFont(ofSize: 14)
-        t.text = "timeLable"
-        t.backgroundColor = UIColor.red
+//        t.text = "timeLable"
+//        t.backgroundColor = UIColor.red
         return t
     }()
     
@@ -84,8 +84,8 @@ class HomeCell: UITableViewCell {
         let l:UILabel = UILabel.init(frame: XCGRect(x, 7, SCREEN_WIDTH-x-10, 40))
         l.numberOfLines = 0
         l.font = UIFont.boldSystemFont(ofSize: 15)
-        l.backgroundColor = UIColor.blue
-        l.text = "title"
+//        l.backgroundColor = UIColor.blue
+//        l.text = "title"
         return l
     }()
     

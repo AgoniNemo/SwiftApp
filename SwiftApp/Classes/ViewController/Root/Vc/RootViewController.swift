@@ -8,22 +8,32 @@
 
 import UIKit
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController,UIGestureRecognizerDelegate{
 
     
-    var hideNavigationBar:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white;
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(self.hideNavigationBar, animated: true)
     }
     
+    func setBackButton() -> Void {
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+        let btn = UIButton.init(type: .custom)
+        btn.frame = XCGRect(0, 0, 20, 20)
+        btn.setImage(#imageLiteral(resourceName: "towards_white_left"), for: .normal)
+        
+        btn.addTarget(self, action: #selector(backAction), for: UIControlEvents.touchUpInside);
+        
+        let item = UIBarButtonItem.init(customView: btn)
+        self.navigationItem.leftBarButtonItem = item;
+        
+    }
+    
+    @objc private func backAction()->Void{
+        self.navigationController?.popViewController(animated: true)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

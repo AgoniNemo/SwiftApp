@@ -7,19 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PlayViewController: RootViewController {
 
     var model:VideoModel?
     
+    var bgview:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
+        
+        self.setBackButton()
 
+        bgview = UIView.init(frame: XCGRect(0, 20, SCREEN_WIDTH, 100))
+        self.view.addSubview(bgview!)
+        bgview?.backgroundColor = UIColor.blue;
+        
     }
 
+
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

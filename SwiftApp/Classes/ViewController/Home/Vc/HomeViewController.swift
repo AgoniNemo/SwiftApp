@@ -73,7 +73,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
         let p = PlayViewController()
         p.model = vModle.rowModel(row: indexPath.row)
-        
+        p.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(p, animated: true)
         
     }
