@@ -13,7 +13,6 @@ class PlayViewController: RootViewController {
 
     var model:VideoModel?
     
-    var bgview:UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +20,13 @@ class PlayViewController: RootViewController {
         self.view.backgroundColor = UIColor.white
         
         self.setBackButton()
-
-        bgview = UIView.init(frame: XCGRect(0, 20, SCREEN_WIDTH, 100))
-        self.view.addSubview(bgview!)
-        bgview?.backgroundColor = UIColor.blue;
         
     }
 
 
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
