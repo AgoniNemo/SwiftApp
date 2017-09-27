@@ -8,6 +8,7 @@
 
 import UIKit
 import DGElasticPullToRefresh
+import ESPullToRefresh
 
 class HomeViewController: RootViewController,UITableViewDelegate,UITableViewDataSource,HomeVModelDelegate{
 
@@ -18,6 +19,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
         
         vModle.delegate = self;
+        self.alertload()
         vModle.loadingMore()
         
         self.view.addSubview(self.tabView)
@@ -31,22 +33,29 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
     }
     
     func alertInfo(text: String) {
+        self.hidden()
         self.show(text: text)
     }
     func refresh() -> Void {
-        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
-        loadingView.tintColor = UIColor.white
-        self.tabView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
-            self?.vModle.loadLate()
-            self?.tabView.dg_stopLoading()
-        }, loadingView: loadingView)
         
-        self.tabView.dg_setPullToRefreshFillColor(HOMECOLOR)
-        self.tabView.dg_setPullToRefreshBackgroundColor(UIColor.white)
+        self.tabView.es_addPullToRefresh {
+            [unowned self] in
+            self.vModle.loadLate()
+            self.tabView.es_stopPullToRefresh(ignoreDate: true)
+            /// Set ignore footer or not
+//            self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+        }
+        
+        self.tabView.es_addInfiniteScrolling {
+            [unowned self] in
+            debugPrint("es_addInfiniteScrolling")
+            self.vModle.loadingMore()
+        }
     }
     
     func reloadData() {
         self.hidden()
+        self.tabView.es_stopLoadingMore()
         self.tabView.reloadData()
     }
     
@@ -95,7 +104,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
 
     
     deinit {
-        self.tabView.dg_removePullToRefresh()
+
     }
     
     override func didReceiveMemoryWarning() {

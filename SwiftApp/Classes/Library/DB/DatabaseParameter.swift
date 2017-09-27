@@ -19,8 +19,9 @@ import Foundation
  * authority 权限
  * token 
  * status 用户的登录状态
+ * loginTime 最近的登录时间
  */
-let userMagerArray = ["user","name","age","sex","phoneNumber","headPath","authority","token","status"]
+let userMagerArray = ["user","name","age","sex","phoneNumber","headPath","authority","token","status","loginTime"]
 
 
 

@@ -16,13 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let b = UserModel.shareInstance.stutas
+        let model = UserModel.shareInstance
         
-        if b == false {
+        if model.stutas == false || model.isTokenExpire == true {
             let vc = LoginViewController();
             let nav = UINavigationController(rootViewController:vc);
             self.window!.rootViewController = nav;
-            
         }else{
             self.window!.rootViewController = self.homeTabbarController;
         }

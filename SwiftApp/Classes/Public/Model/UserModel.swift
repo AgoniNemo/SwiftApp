@@ -14,6 +14,7 @@ class UserModel {
     static let shareInstance = UserModel()
     
     private var dic:[String:String]?;
+    var isTokenExpire:Bool = false
     
     var user:String = "";
     var sex:String = "";
@@ -52,6 +53,11 @@ class UserModel {
         
         setProperties(dict: d)
         self.stutas = true;
+        
+        let logTime = d["loginTime"]
+        
+        self.isTokenExpire = Date.contrastDate(time: logTime!)
+        
     }
     
     private func setProperties(dict:[String:String]) -> Void{
@@ -65,6 +71,7 @@ class UserModel {
         self.headPath = dict["headPath"]!
         self.authority = dict["authority"]!
         self.token = dict["token"]!
+        
     }
     
     public func save() -> Bool {
@@ -72,7 +79,10 @@ class UserModel {
             return false
         }
         d["status"] = "1";
+        d["loginTime"] = Date.stringTimestamp();
+        self.isTokenExpire = false
         self.stutas = true;
+        
         return DatabaseHelper.sharedInstance.userMager.insertData(dict: d)
     }
     

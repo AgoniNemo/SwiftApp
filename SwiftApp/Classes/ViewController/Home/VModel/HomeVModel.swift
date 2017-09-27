@@ -36,7 +36,6 @@ class HomeVModel:HomeVModelInterface {
     
     func loadingMore() {
         page += 1
-        self.delegate?.alertload()
         self.request()
     }
     
@@ -52,20 +51,24 @@ class HomeVModel:HomeVModelInterface {
         let params = [
             "user":user,
             "token":token,
-            "count":"40",
+            "count":"20",
             "page":"\(page)"
         ]
         
         VideoNetManager.loadVideoRequest(params: params) { [weak self](dict, err) in
             
-            guard let d = dict else{
+            guard let d:[String:Any] = dict else{
                 self?.delegate?.alertInfo(text: "数据加载失败!")
                 return
             }
             debugPrint(dict as Any)
             
             if err == nil{
-                let datas = d["data"] as! [[String:Any]]
+                guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
+                    let mesg = d["message"] as! String
+                    self?.delegate?.alertInfo(text: mesg)
+                    return
+                }
                 if datas.count > 0,self?.page == 0{
                     self?.dataSource.removeAll()
                 }

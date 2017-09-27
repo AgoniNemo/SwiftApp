@@ -11,5 +11,6 @@ target 'SwiftApp' do
   pod 'SnapKit', '~> 3.0.0'
   pod 'FMDB'
   pod 'DGElasticPullToRefresh'
+  pod 'ESPullToRefresh'
 
 end
