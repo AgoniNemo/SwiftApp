@@ -10,8 +10,13 @@ import UIKit
 
 class HLSViewController: RootViewController {
 
+    var model:VideoModel?
+    var vModel = PlayVModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor.white
 
         // Do any additional setup after loading the view.
     }

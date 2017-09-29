@@ -27,7 +27,9 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         refresh()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
     func alertload() {
         self.load(text: "数据加载中...")
     }
@@ -80,11 +82,27 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let model = vModle.rowModel(row: indexPath.row)
+        
+        if model.hls == false {
+            skipViewCotroller(model)
+        }else{
+            skipHLSViewCotroller(model)
+        }
+    }
+    
+    func skipHLSViewCotroller(_ model:VideoModel) -> Void {
+        let h = HLSViewController()
+        h.model = model
+//        h.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(h, animated: true)
+    }
+    
+    func skipViewCotroller(_ model:VideoModel) -> Void {
         let p = PlayViewController()
-        p.model = vModle.rowModel(row: indexPath.row)
+        p.model = model
         p.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(p, animated: true)
-        
     }
     
     
@@ -96,7 +114,6 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         t.dataSource = self;
         t.rowHeight = 92
         t.showsVerticalScrollIndicator = false
-        
         
         return t
         

@@ -13,7 +13,6 @@ class HomeCell: UITableViewCell {
 
     let isTest = true
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

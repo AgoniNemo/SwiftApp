@@ -54,9 +54,11 @@ class UserModel {
         setProperties(dict: d)
         self.stutas = true;
         
-        let logTime = d["loginTime"]
+        guard let logTime = d["loginTime"] else {
+            return
+        }
         
-        self.isTokenExpire = Date.contrastDate(time: logTime!)
+        self.isTokenExpire = Date.contrastDate(time: logTime)
         
     }
     
