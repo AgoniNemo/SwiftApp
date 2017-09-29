@@ -21,6 +21,8 @@ class PlayViewController: RootViewController {
         
         self.setBackButton()
         
+        debugPrint(model?.playPath as Any)
+        
     }
 
 

@@ -43,7 +43,7 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
             self.vModle.loadLate()
             self.tabView.es_stopPullToRefresh(ignoreDate: true)
             /// Set ignore footer or not
-//            self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
         }
         
         self.tabView.es_addInfiniteScrolling {
