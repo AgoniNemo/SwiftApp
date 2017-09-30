@@ -54,7 +54,23 @@ public class LoginVModel:ViewModelInterface{
                 self?.delegate?.alertInfo(text: "注册失败!")
             }else{
                 debugPrint(dict as Any)
-                let d:[String:String] = dict?["data"] as! Dictionary
+                
+                guard let dic:[String:Any] = dict else{
+                    debugPrint("---出错---")
+                    self?.delegate?.alertInfo(text: "数据为空!")
+                    return
+                }
+                
+                if dic["code"] as! String != "0" {
+                    self?.delegate?.alertInfo(text: dic["message"] as! String)
+                    return
+                }
+                
+                guard let d:[String:String] = dic["data"] as? Dictionary else{
+                    debugPrint("---出错---")
+                    self?.delegate?.alertInfo(text: "注册失败!")
+                    return
+                }
                 
                 let b = UserModel.shareInstance.model(dict: d).save()
                 if b == true{
