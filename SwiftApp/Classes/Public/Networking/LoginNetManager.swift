@@ -17,4 +17,11 @@ class LoginNetManager: BaseNetWorking {
         }
     }
     
+    class func registerRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+        
+        self.post(url: "\(URI_ROOT)/user/register", params: params) { (dict, error) in
+            completionHandler(dict,error)
+        }
+    }
+    
 }

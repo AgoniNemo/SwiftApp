@@ -37,21 +37,38 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         passTF.leftView = UIImageView.init(image: #imageLiteral(resourceName: "password"))
         passTF.leftViewMode = UITextFieldViewMode.always;
         passTF.delegate = self;
+        passTF.isSecureTextEntry = true
         self.bgView.addSubview(passTF);
         
         let btn = UIButton.init(type: UIButtonType.system);
-        btn.frame = XCGRect(CGFloat(x), passTF.frame.maxY+20, passTF.frame.width, 40);
+        btn.frame = XCGRect(x, passTF.frame.maxY+20, passTF.frame.width, 40);
         btn.setTitle("登录", for: UIControlState.normal);
         btn.setTitleColor(UIColor.white, for: UIControlState.normal);
         btn.backgroundColor = RGBA(r: 201, g: 39, b: 143, a: 1);
         btn.alpha = 0.8;
-        btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);//#selector(btnClick(_:))
+        btn.addTarget(self, action: #selector(btnClick), for: UIControlEvents.touchUpInside);
         self.bgView.addSubview(btn);
         
         vModle.delegate = self;
         userTF.addTarget(self, action: #selector(userNameChanged), for: .editingChanged)
         passTF.addTarget(self, action: #selector(passwordChanged), for: .editingChanged)
         
+        let w:CGFloat = 100.0
+        let registerBtn = UIButton.init(type: .system)
+        registerBtn.frame = XCGRect((SCREEN_WIDTH-w)/2, SCREEN_HEIGH-40, w, 30)
+        registerBtn.addTarget(self, action: #selector(registerClick), for: UIControlEvents.touchUpInside);
+        registerBtn.setTitle("注册", for: .normal)
+        registerBtn.setTitleColor(UIColor.white, for: .normal)
+        registerBtn.setTitleColor(UIColor.white, for: .highlighted)
+        self.bgView.addSubview(registerBtn)
+        
+    }
+    
+    func registerClick() -> Void {
+        
+        self.showTextField { [weak self](user, pwd) in
+            self?.vModle.register(user: user,pwd: pwd)
+        }
     }
     
     func alertInfo(text:String) {

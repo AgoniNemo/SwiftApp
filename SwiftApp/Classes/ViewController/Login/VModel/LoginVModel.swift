@@ -22,6 +22,7 @@ protocol ViewModelInterface {
     func userNameDidChange(text:String?)
     func passwordDidChange(text:String?)
     func login()
+    func register(user:String,pwd:String)
 }
 
 
@@ -42,6 +43,29 @@ public class LoginVModel:ViewModelInterface{
         password = text!
     }
     
+    func register(user:String,pwd:String) {
+        let para = [
+            "user":user,
+            "password":pwd,
+            "invitationCode":"TVRnM013UVdkdmJtbE9aVzF2TVRVd05qYzRNakF3Tnc9PQ=="
+        ]
+        LoginNetManager.registerRequest(params: para) { [weak self](dict, err) in
+            if err != nil{
+                self?.delegate?.alertInfo(text: "注册失败!")
+            }else{
+                debugPrint(dict as Any)
+                let d:[String:String] = dict?["data"] as! Dictionary
+                
+                let b = UserModel.shareInstance.model(dict: d).save()
+                if b == true{
+                    self?.delegate?.loginSuccess()
+                }else{
+                    self?.delegate?.alertInfo(text: "保存用户消息失败!")
+                }
+            }
+        }
+    }
+    
     func login() {
         
         let para = [
@@ -54,7 +78,23 @@ public class LoginVModel:ViewModelInterface{
                 self?.delegate?.alertInfo(text: "登录失败!")
             }else{
                 debugPrint(dict as Any)
-                let d:[String:String] = dict?["data"] as! Dictionary
+                
+                guard let dic:[String:Any] = dict else{
+                    debugPrint("---出错---")
+                    self?.delegate?.alertInfo(text: "数据为空!")
+                    return
+                }
+                
+                if dic["code"] as! String != "0" {
+                    self?.delegate?.alertInfo(text: dic["message"] as! String)
+                    return
+                }
+                
+                guard let d:[String:String] = dic["data"] as? Dictionary else{
+                    debugPrint("---出错---")
+                    self?.delegate?.alertInfo(text: "登录失败!")
+                    return
+                }
                 
                 let b = UserModel.shareInstance.model(dict: d).save()
                 if b == true{
@@ -62,7 +102,6 @@ public class LoginVModel:ViewModelInterface{
                 }else{
                     self?.delegate?.alertInfo(text: "保存用户消息失败!")
                 }
-                
             }
         }
     }

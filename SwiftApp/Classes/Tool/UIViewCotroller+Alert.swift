@@ -57,6 +57,29 @@ class Alert {
         )
     }
     
+    
+    
+    func textField(registerClosure:@escaping ((_ user:String,_ pwd:String)->())) -> Void {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        
+        let txt = alert.addTextField("请输入用户名")
+        let pwd = alert.addTextField("请输入密码")
+        
+        alert.addButton("注册") {
+            registerClosure(txt.text!,pwd.text!)
+        }
+        
+        alert.addButton("取消") {
+            debugPrint("---取消---")
+        }
+        alert.showEdit("注 册", subTitle: "请填写申请信息！")
+    }
+    
     func load(text:String) -> Void {
         self.result = self.alert().showWait("", subTitle: text)
     }
@@ -72,6 +95,14 @@ extension UIViewController{
         
         Alert.shareInstance.show(text: text)
     
+    }
+    
+    func showTextField(registerClosure:@escaping ((_ user:String,_ pwd:String)->())) -> Void {
+        
+        Alert.shareInstance.textField(registerClosure: { (user, pwd) in
+            registerClosure(user,pwd)
+        })
+        
     }
     
     func load(text:String) -> Void {
