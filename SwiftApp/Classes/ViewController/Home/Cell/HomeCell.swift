@@ -11,7 +11,7 @@ import Kingfisher
 
 class HomeCell: UITableViewCell {
 
-    let isTest = true
+    let isTest = false
     
     override func awakeFromNib() {
         super.awakeFromNib()

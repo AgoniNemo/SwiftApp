@@ -245,7 +245,6 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
     /// MARK:拖动中
     func sliderValueChange(_ slider:Slider) -> Void {
         _sliderIsTouching = true
-        debugPrint("\(slider.value,self.totalTime)")
         self.currentLabel.text = self.timeFormatted(totalSeconds: Int(slider.value! * self.totalTime!))
     }
     /// MARK:拖动结束

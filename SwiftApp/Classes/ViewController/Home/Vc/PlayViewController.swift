@@ -27,6 +27,8 @@ class PlayViewController: RootViewController,UITableViewDelegate,UITableViewData
         self.view.addSubview(self.tabView)
         let url:String = (model?.playPath)!
         
+        debugPrint(url)
+        
         self.videoPlayer.playConfig(url, view: self.videoPlayBGView)
     }
     
