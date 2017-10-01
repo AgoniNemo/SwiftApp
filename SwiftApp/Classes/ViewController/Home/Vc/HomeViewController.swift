@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DGElasticPullToRefresh
 import ESPullToRefresh
 
 class HomeViewController: RootViewController,UITableViewDelegate,UITableViewDataSource,HomeVModelDelegate{
