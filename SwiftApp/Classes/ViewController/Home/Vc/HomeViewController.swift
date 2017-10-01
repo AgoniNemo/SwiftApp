@@ -111,8 +111,9 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         
         t.delegate = self;
         t.dataSource = self;
-        t.rowHeight = 92
+        t.rowHeight = 270
         t.showsVerticalScrollIndicator = false
+        t.separatorStyle = .none
         
         return t
         

@@ -21,16 +21,17 @@ class HomeCell: UITableViewCell {
     
     func setModel(model:VideoModel) -> Void {
         
-        self.contentView.addSubview(self.iconView)
-        self.contentView.addSubview(self.titleLabel)
-        self.contentView.addSubview(self.timeLable)
-        self.contentView.addSubview(self.ratingLable)
-        self.contentView.addSubview(self.viewsLable)
+//        self.contentView.addSubview(self.iconView)
+//        self.contentView.addSubview(self.titleLabel)
+//        self.contentView.addSubview(self.timeLable)
+//        self.contentView.addSubview(self.ratingLable)
+//        self.contentView.addSubview(self.viewsLable)
+        self.bgView.backgroundColor = RGBA(r: 250, g: 250, b: 250, a: 0.9)
         
         if isTest == false {
             self.iconView.kf.setImage(with: URL(string: model.icon))
             self.titleLabel.text = model.title
-            self.timeLable.text = "时间:\(model.duration)"
+            self.timeLable.text = model.duration
             self.ratingLable.text = "评分:\(model.rating)"
             self.viewsLable.text = "观看人数:\(model.views)"
         }
@@ -52,9 +53,11 @@ class HomeCell: UITableViewCell {
     /// MARK:观看人数
     lazy var viewsLable:UILabel = {
         
-        let x = self.ratingLable.maxX!
-        let v:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, SCREEN_WIDTH-x-10, 20))
-        v.font = UIFont.systemFont(ofSize: 14)
+        let y = self.iconView.maxY!-20
+        let v:UILabel = UILabel.init(frame: XCGRect(5, y, 180, 20))
+        v.font = UIFont.boldSystemFont(ofSize: 15)
+        v.textColor = UIColor.white
+        self.bgView.addSubview(v)
         
         if self.isTest == true {
             v.text = "viewsLable"
@@ -67,9 +70,11 @@ class HomeCell: UITableViewCell {
     /// MARK:评分
     lazy var ratingLable:UILabel = {
     
-        let x = self.titleLabel.minX!
-        let r:UILabel = UILabel.init(frame: XCGRect(x, self.timeLable.maxY!, 80, 20))
-        r.font = UIFont.systemFont(ofSize: 14)
+        let y = self.titleLabel.maxY!+5
+        let r:UILabel = UILabel.init(frame: XCGRect(5, y, 80, 20))
+        r.font = UIFont.boldSystemFont(ofSize: 15)
+        
+        self.bgView.addSubview(r)
         
         if self.isTest == true {
             r.text = "ratingLable"
@@ -81,10 +86,14 @@ class HomeCell: UITableViewCell {
     
     /// MARK:时间
     lazy var timeLable:UILabel = {
-        let x = self.titleLabel.minX!
-        let t:UILabel = UILabel.init(frame: XCGRect(x, self.titleLabel.maxY!, SCREEN_WIDTH-x-10, 20))
-        t.font = UIFont.systemFont(ofSize: 14)
+        let y:CGFloat = self.iconView.maxY!-20
+        let x = self.iconView.width!-155
+        let t:UILabel = UILabel.init(frame: XCGRect(x,y, 150, 20))
+        t.font = UIFont.boldSystemFont(ofSize: 15)
+        t.textAlignment = .right
+        t.textColor = UIColor.white
         
+        self.bgView.addSubview(t)
         if self.isTest == true {
             t.text = "timeLable"
             t.backgroundColor = UIColor.red
@@ -94,10 +103,12 @@ class HomeCell: UITableViewCell {
     
     /// MARK:标题
     lazy var titleLabel:UILabel = {
-        let x:CGFloat = self.iconView.maxX!+5;
-        let l:UILabel = UILabel.init(frame: XCGRect(x, 7, SCREEN_WIDTH-x-10, 40))
+        let y:CGFloat = self.iconView.maxY!;
+        let w:CGFloat = self.iconView.width!-10
+        let l:UILabel = UILabel.init(frame: XCGRect(5, y, w, 40))
         l.numberOfLines = 0
-        l.font = UIFont.boldSystemFont(ofSize: 15)
+        l.font = UIFont.systemFont(ofSize: 16)
+        self.bgView.addSubview(l)
         
         if self.isTest == true {
             l.backgroundColor = UIColor.blue
@@ -107,12 +118,40 @@ class HomeCell: UITableViewCell {
     }()
     
     lazy var iconView:UIImageView = {
-    
-        let icon = UIImageView.init(frame: XCGRect(10, 10, 96, 72))
+        let w:CGFloat = self.bgView.width!
+        let h:CGFloat = 72.0/96.0*w
+        let icon = UIImageView.init(frame: XCGRect(0, 0, w, 180))
         icon.backgroundColor = HOMECOLOR;
+        icon.contentMode = .scaleAspectFill
         
+        let maskPath = UIBezierPath.init(roundedRect: icon.bounds, byRoundingCorners:[ UIRectCorner.topLeft , UIRectCorner.topRight], cornerRadii: CGSize.init(width: 5, height: 5))
+        let maskLayer = CAShapeLayer.init()
+        maskLayer.frame = icon.bounds
+        maskLayer.path = maskPath.cgPath
+        icon.layer.mask = maskLayer
+        
+        self.bgView.addSubview(icon)
         
         return icon
+    }()
+    
+    lazy var bgView: UIView = {
+        let x:CGFloat = 15.0
+        let w:CGFloat = SCREEN_WIDTH-2*x
+        let h:CGFloat = 240.0 / 180.0 * w
+        let v  = UIView.init(frame: XCGRect(x, 10, w, 250))
+        
+//        v.clipsToBounds = true
+        v.layer.cornerRadius = 5
+        v.layer.borderWidth = 0.3
+        v.layer.borderColor = UIColor.clear.cgColor
+        
+        v.layer.shadowColor = UIColor.black.cgColor
+        v.layer.shadowOpacity = 0.5
+        v.layer.shadowOffset = CGSize.init(width: 1, height: 1)
+        
+        self.contentView.addSubview(v)
+        return v
     }()
 
     override func setSelected(_ selected: Bool, animated: Bool) {
