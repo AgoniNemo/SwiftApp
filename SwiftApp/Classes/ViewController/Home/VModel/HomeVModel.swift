@@ -29,12 +29,13 @@ protocol HomeVModelDelegate:BaseVModelDelegate {
 
 protocol HomeVModelInterface:BaseVModelInterface {
 
+
 }
 
 class HomeVModel:HomeVModelInterface {
     
     weak var delegate: BaseVModelDelegate?
-    
+
     private var page:Int = 0
     
     var dataSource:[VideoModel] = Array.init();

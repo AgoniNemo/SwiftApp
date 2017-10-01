@@ -21,11 +21,7 @@ class HomeCell: UITableViewCell {
     
     func setModel(model:VideoModel) -> Void {
         
-//        self.contentView.addSubview(self.iconView)
-//        self.contentView.addSubview(self.titleLabel)
-//        self.contentView.addSubview(self.timeLable)
-//        self.contentView.addSubview(self.ratingLable)
-//        self.contentView.addSubview(self.viewsLable)
+
         self.bgView.backgroundColor = RGBA(r: 250, g: 250, b: 250, a: 0.9)
         
         if isTest == false {
