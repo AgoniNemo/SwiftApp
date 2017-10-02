@@ -10,28 +10,89 @@ import UIKit
 
 class MyViewController: RootViewController {
 
+    let vModel = MyVModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        debugPrint(UserModel.shareInstance.token)
         
-        // Do any additional setup after loading the view.
+        self.view.addSubview(self.tabView)
+
+        setSettingButton()
     }
+    
+    func setSettingButton() -> Void {
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
+        let btn = UIButton.init(type: .custom)
+        btn.frame = XCGRect(0, 0, 20, 20)
+        
+        btn.setImage(#imageLiteral(resourceName: "setting"), for: .normal)
+        
+        btn.addTarget(self, action: #selector(settingAction), for: UIControlEvents.touchUpInside);
+        
+        let item = UIBarButtonItem.init(customView: btn)
+        self.navigationItem.rightBarButtonItem = item;
+        
+    }
+    
+    func settingAction()->Void{
+        let vc = SettingViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    lazy var tabView: UITableView = {
+        let t = UITableView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH), style: .grouped)
+        t.delegate = self
+        t.dataSource = self
+        t.tableFooterView = UIView()
+        return t
+    }()
+    
+    lazy var headerView: GlassEffectView = {
+        
+        let h = GlassEffectView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 180))
+        h.backgroundColor = UIColor.red
+        
+        return h
+    }()
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
+extension MyViewController: UITableViewDelegate,UITableViewDataSource{
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return vModel.numberOfRowsInSection()
     }
-    */
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = MyCell.cell(WithTableView: tabView)
+        
+        cell.setModel(dict: vModel.rowModel(row: indexPath.row))
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return self.headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return self.headerView.frame.width
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
 }

@@ -13,6 +13,8 @@ class CategoriesModel {
     
     var icon:String = ""
     var title:String = ""
+    var key:String = ""
+    
     
     
     init(dict:[String:String]) {
@@ -23,6 +25,7 @@ class CategoriesModel {
         
         self.title = dict["title"]!
         self.icon = dict["icon"]!
+        self.key = dict["key"]!
     }
 
     

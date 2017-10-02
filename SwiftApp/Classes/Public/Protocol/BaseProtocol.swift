@@ -18,7 +18,6 @@ import Foundation
 
 protocol BaseVModelInterface {
     associatedtype ModelType
-    weak var delegate: BaseVModelDelegate? { get set }
     func numberOfRowsInSection() -> Int
     func loadingMore()
     func rowModel(row:Int) -> ModelType

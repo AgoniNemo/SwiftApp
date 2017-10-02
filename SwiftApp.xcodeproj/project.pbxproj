@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		BA1226CE1F695D3900E097DF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */; };
+		BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */; };
+		BA14DE421F82865F00E0337F /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE411F82865F00E0337F /* MyCell.swift */; };
+		BA14DE441F8286A500E0337F /* MyVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE431F8286A500E0337F /* MyVModel.swift */; };
+		BA14DE461F82881300E0337F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE451F82881300E0337F /* SettingViewController.swift */; };
+		BA14DE481F828D3000E0337F /* GlassEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE471F828D3000E0337F /* GlassEffectView.swift */; };
 		BA17978D1F6E9B54005F645C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17978C1F6E9B54005F645C /* UserModel.swift */; };
 		BA17F3331F807CB00020D5A5 /* CategoriesNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F3321F807CB00020D5A5 /* CategoriesNetManager.swift */; };
 		BA17F3391F8081090020D5A5 /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F3381F8081090020D5A5 /* BaseProtocol.swift */; };
@@ -84,6 +89,11 @@
 		8AC3BD026D47223AA5311820 /* Pods_SwiftApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2901BAC3FB9DAB81D95128 /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListViewController.swift; sourceTree = "<group>"; };
+		BA14DE411F82865F00E0337F /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
+		BA14DE431F8286A500E0337F /* MyVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVModel.swift; sourceTree = "<group>"; };
+		BA14DE451F82881300E0337F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BA14DE471F828D3000E0337F /* GlassEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlassEffectView.swift; sourceTree = "<group>"; };
 		BA17978C1F6E9B54005F645C /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BA17F3321F807CB00020D5A5 /* CategoriesNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesNetManager.swift; sourceTree = "<group>"; };
 		BA17F3381F8081090020D5A5 /* BaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
@@ -188,6 +198,23 @@
 				89252DD8A1878B64256287B2 /* Pods_SwiftAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA14DE3F1F82864600E0337F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BA14DE411F82865F00E0337F /* MyCell.swift */,
+				BA14DE471F828D3000E0337F /* GlassEffectView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BA14DE401F82864600E0337F /* VModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA14DE431F8286A500E0337F /* MyVModel.swift */,
+			);
+			path = VModel;
 			sourceTree = "<group>";
 		};
 		BA17978A1F6E9B30005F645C /* Public */ = {
@@ -471,6 +498,8 @@
 		BAF71C1F1F69085A00D3A265 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				BA14DE3F1F82864600E0337F /* Cell */,
+				BA14DE401F82864600E0337F /* VModel */,
 				BAF71C201F69085A00D3A265 /* Vc */,
 			);
 			path = My;
@@ -480,6 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				BAF71C211F69085A00D3A265 /* MyViewController.swift */,
+				BA14DE451F82881300E0337F /* SettingViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -567,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				BAF71C5D1F6913BA00D3A265 /* CategoriesViewController.swift */,
+				BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -786,7 +817,9 @@
 				BA7E9EA71F711F5B005831CA /* UserInformationManager.swift in Sources */,
 				BA846F731F7E9BFC003DA1E4 /* HLSViewController.swift in Sources */,
 				BA853CFF1F73CB1200E37FFD /* PlayViewController.swift in Sources */,
+				BA14DE441F8286A500E0337F /* MyVModel.swift in Sources */,
 				BA5E8B041F7FD01B00182291 /* VideoPlayer.swift in Sources */,
+				BA14DE421F82865F00E0337F /* MyCell.swift in Sources */,
 				BA846F6D1F7E87D8003DA1E4 /* PlayVModel.swift in Sources */,
 				BA17F3391F8081090020D5A5 /* BaseProtocol.swift in Sources */,
 				BA846F6F1F7E8A9A003DA1E4 /* ReplyCell.swift in Sources */,
@@ -795,6 +828,7 @@
 				BA5E8AFA1F7FD01B00182291 /* FileHandlePath.swift in Sources */,
 				BA8502C51F6FAB8700769782 /* LoginNetManager.swift in Sources */,
 				BAF71C2D1F69085A00D3A265 /* RootViewController.swift in Sources */,
+				BA14DE481F828D3000E0337F /* GlassEffectView.swift in Sources */,
 				BA8502C11F6F9FEB00769782 /* BaseNetWorking.swift in Sources */,
 				BA683D8F1F7B7D450027B227 /* Date+Extension.swift in Sources */,
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
@@ -819,7 +853,9 @@
 				BA7E9EA41F711F5B005831CA /* DatabaseHelper.swift in Sources */,
 				BA5E8AFE1F7FD01B00182291 /* VideoPlayerController.swift in Sources */,
 				BA7E9E961F711224005831CA /* API.swift in Sources */,
+				BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */,
 				BA846F711F7E8BF0003DA1E4 /* ReplyModel.swift in Sources */,
+				BA14DE461F82881300E0337F /* SettingViewController.swift in Sources */,
 				BA853CFB1F735BD200E37FFD /* VideoNetManager.swift in Sources */,
 				BA17F3401F80D4C30020D5A5 /* CategoriesModel.swift in Sources */,
 				BAF71C2C1F69085A00D3A265 /* MyViewController.swift in Sources */,

@@ -76,5 +76,14 @@ extension CategoriesViewController:UICollectionViewDataSource,UICollectionViewDe
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let model = vModel.rowModel(row: indexPath.row)
+        let vc = CategoriesListViewController()
+        vc.searchKey = model.key
+        vc.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
 }

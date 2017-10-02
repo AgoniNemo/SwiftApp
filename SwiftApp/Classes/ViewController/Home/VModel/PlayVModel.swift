@@ -8,19 +8,14 @@
 
 import Foundation
 
-@objc protocol PlayVModelDelegate {
+protocol PlayVModelDelegate:BaseVModelDelegate {
     
-    func alertInfo(text:String)
-    func reloadData()
-    func alertload()
 }
 
-protocol PlayVModelInterface {
+protocol PlayVModelInterface:BaseVModelInterface {
+    
     weak var delegate: PlayVModelDelegate? { get set }
-    func numberOfRowsInSection() -> Int
-    func loadingMore()
-    func rowModel(row:Int) -> ReplyModel
-    func loadLate()
+    
 }
 
 class PlayVModel: PlayVModelInterface {

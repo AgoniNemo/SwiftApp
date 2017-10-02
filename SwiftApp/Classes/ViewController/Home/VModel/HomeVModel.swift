@@ -7,21 +7,7 @@
 //
 
 import Foundation
-/**
-@objc protocol HomeVModelDelegate {
-    
-    func alertInfo(text:String)
-    func reloadData()
-    func alertload()
-}
 
-protocol HomeVModelInterface {
-    weak var delegate: HomeVModelDelegate? { get set }
-    func numberOfRowsInSection() -> Int
-    func loadingMore()
-    func rowModel(row:Int) -> VideoModel
-    func loadLate()
-}*/
 
 protocol HomeVModelDelegate:BaseVModelDelegate {
     
@@ -29,12 +15,13 @@ protocol HomeVModelDelegate:BaseVModelDelegate {
 
 protocol HomeVModelInterface:BaseVModelInterface {
 
+    weak var delegate: HomeVModelDelegate? { get set }
 
 }
 
 class HomeVModel:HomeVModelInterface {
     
-    weak var delegate: BaseVModelDelegate?
+    weak var delegate: HomeVModelDelegate?
 
     private var page:Int = 0
     
