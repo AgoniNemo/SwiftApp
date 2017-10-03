@@ -66,7 +66,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     func registerClick() -> Void {
         
-        self.showTextField { [weak self](user, pwd) in
+        self.showTextField { [weak self](user, pwd,code) in
             self?.vModle.register(user: user,pwd: pwd)
         }
     }

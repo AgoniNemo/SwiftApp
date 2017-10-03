@@ -26,9 +26,9 @@ class ReplyModel {
             return
         }
         
-        self.username = dict["username"]! as! String
-        self.duration = dict["duration"]! as! String
-        self.icon = dict["icon"]! as! String
+        self.username = dict["name"]! as! String
+        self.duration = Date.timeStampToString(timeStamp: dict["time"]! as! String)
+        self.icon = dict["headPath"]! as! String
         self.content = (dict["content"] as? String)!
     }
     

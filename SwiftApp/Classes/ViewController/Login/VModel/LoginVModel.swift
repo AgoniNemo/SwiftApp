@@ -22,7 +22,7 @@ protocol ViewModelInterface {
     func userNameDidChange(text:String?)
     func passwordDidChange(text:String?)
     func login()
-    func register(user:String,pwd:String)
+    func register(user:String,pwd:String,invitationCode:String?)
 }
 
 
@@ -43,17 +43,20 @@ public class LoginVModel:ViewModelInterface{
         password = text!
     }
     
-    func register(user:String,pwd:String) {
-        let para = [
+    func register(user:String,pwd:String,
+                  invitationCode:String? = "TVRnM013UVdkdmJtbE9aVzF2TVRVd056QXlNak0zTWc9PQ==") {
+        
+        let para:[String:Any] = [
             "user":user,
             "password":pwd,
-            "invitationCode":"TVRnM013UVdkdmJtbE9aVzF2TVRVd05qYzRNakF3Tnc9PQ=="
+            "invitationCode":invitationCode!
         ]
+        
         LoginNetManager.registerRequest(params: para) { [weak self](dict, err) in
             if err != nil{
                 self?.delegate?.alertInfo(text: "注册失败!")
             }else{
-                debugPrint(dict as Any)
+//                debugPrint(dict as Any)
                 
                 guard let dic:[String:Any] = dict else{
                     debugPrint("---出错---")
@@ -66,11 +69,12 @@ public class LoginVModel:ViewModelInterface{
                     return
                 }
                 
-                guard let d:[String:String] = dic["data"] as? Dictionary else{
+                guard let d:[String:String] = dic["data"] as? [String : String] else{
                     debugPrint("---出错---")
                     self?.delegate?.alertInfo(text: "注册失败!")
                     return
                 }
+                
                 
                 let b = UserModel.shareInstance.model(dict: d).save()
                 if b == true{

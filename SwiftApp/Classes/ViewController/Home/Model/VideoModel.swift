@@ -21,7 +21,7 @@ class VideoModel {
     var playPath:String = "";
     var symbol:String = "";
     var hls:Bool = false;
-
+    var id:String = ""
     
     init(dict:[String:Any]) {
         
@@ -38,6 +38,7 @@ class VideoModel {
         self.icon = dict["icon"]! as! String
         self.category = dict["category"]! as! String
         self.rating = (dict["rating"] as? String)!
+        self.id = dict["id"]! as! String
     }
     
     

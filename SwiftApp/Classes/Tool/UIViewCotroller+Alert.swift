@@ -59,7 +59,7 @@ class Alert {
     
     
     
-    func textField(registerClosure:@escaping ((_ user:String,_ pwd:String)->())) -> Void {
+    func textField(registerClosure:@escaping ((_ user:String,_ pwd:String,_ code:String)->())) -> Void {
         
         let appearance = SCLAlertView.SCLAppearance(
             showCloseButton: false
@@ -69,9 +69,10 @@ class Alert {
         
         let txt = alert.addTextField("请输入用户名")
         let pwd = alert.addTextField("请输入密码")
+        let cde = alert.addTextField("请输入邀请码")
         
         alert.addButton("注册") {
-            registerClosure(txt.text!,pwd.text!)
+            registerClosure(txt.text!,pwd.text!,cde.text!)
         }
         
         alert.addButton("取消") {
@@ -117,10 +118,10 @@ extension UIViewController{
     
     }
     
-    func showTextField(registerClosure:@escaping ((_ user:String,_ pwd:String)->())) -> Void {
+    func showTextField(registerClosure:@escaping ((_ user:String,_ pwd:String,_ code:String)->())) -> Void {
         
-        Alert.shareInstance.textField(registerClosure: { (user, pwd) in
-            registerClosure(user,pwd)
+        Alert.shareInstance.textField(registerClosure: { (user, pwd,code) in
+            registerClosure(user,pwd,code)
         })
         
     }

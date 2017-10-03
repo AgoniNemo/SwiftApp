@@ -37,6 +37,7 @@ class UserModel {
         guard dict.count > 0 else {
             return UserModel.shareInstance
         }
+        
         self.dic = dict;
         
         setProperties(dict: dict)

@@ -19,6 +19,7 @@
 		BA17F33B1F80C1470020D5A5 /* CategoriesVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F33A1F80C1470020D5A5 /* CategoriesVModel.swift */; };
 		BA17F33E1F80C2CD0020D5A5 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F33D1F80C2CD0020D5A5 /* CategoriesCell.swift */; };
 		BA17F3401F80D4C30020D5A5 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F33F1F80D4C30020D5A5 /* CategoriesModel.swift */; };
+		BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD8191F83791600A22DDF /* CommentNetManager.swift */; };
 		BA5E8AFA1F7FD01B00182291 /* FileHandlePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */; };
 		BA5E8AFB1F7FD01B00182291 /* UIImage + ComPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AEE1F7FD01B00182291 /* UIImage + ComPress.swift */; };
 		BA5E8AFC1F7FD01B00182291 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AEF1F7FD01B00182291 /* DownloadManager.swift */; };
@@ -100,6 +101,7 @@
 		BA17F33A1F80C1470020D5A5 /* CategoriesVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesVModel.swift; sourceTree = "<group>"; };
 		BA17F33D1F80C2CD0020D5A5 /* CategoriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		BA17F33F1F80D4C30020D5A5 /* CategoriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
+		BA1BD8191F83791600A22DDF /* CommentNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNetManager.swift; sourceTree = "<group>"; };
 		BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandlePath.swift; sourceTree = "<group>"; };
 		BA5E8AEE1F7FD01B00182291 /* UIImage + ComPress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage + ComPress.swift"; sourceTree = "<group>"; };
 		BA5E8AEF1F7FD01B00182291 /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				BA8502C41F6FAB8700769782 /* LoginNetManager.swift */,
 				BA853CFA1F735BD200E37FFD /* VideoNetManager.swift */,
 				BA17F3321F807CB00020D5A5 /* CategoriesNetManager.swift */,
+				BA1BD8191F83791600A22DDF /* CommentNetManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				BA7E9EA61F711F5B005831CA /* RootDBManager.swift in Sources */,
 				BA7E9EA41F711F5B005831CA /* DatabaseHelper.swift in Sources */,
 				BA5E8AFE1F7FD01B00182291 /* VideoPlayerController.swift in Sources */,
+				BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */,
 				BA7E9E961F711224005831CA /* API.swift in Sources */,
 				BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */,
 				BA846F711F7E8BF0003DA1E4 /* ReplyModel.swift in Sources */,

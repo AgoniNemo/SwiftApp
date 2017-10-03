@@ -24,6 +24,9 @@ class PlayVModel: PlayVModelInterface {
     
     weak var delegate: PlayVModelDelegate?
     
+    var id:String = ""
+    
+    
     private var dataSorce:[ReplyModel] = []
     
     func loadLate() {
@@ -40,26 +43,82 @@ class PlayVModel: PlayVModelInterface {
     }
     
     func commit(text: String) {
-        let model =  ReplyModel.init()
-        model.duration = Date.timeStampToString(timeStamp: "\(Date.intTimestamp())")
-        model.content = "\(text)"
-        model.username = "昵称"
-        self.dataSorce.append(model)
         
-        self.delegate?.reloadData()
+        let token = UserModel.shareInstance.token
+        let user = UserModel.shareInstance.user
+        let headPath = UserModel.shareInstance.headPath
+        let time = Date.intTimestamp()
+        let params = [
+            "id":id,
+            "user":user,
+            "token":token,
+            "content":"\(text)",
+            "time":"\(time)"
+        ]
+        
+        CommentNetManager.commitRequest(params: params) {[weak self] (dict, err) in
+            guard let d:[String:Any] = dict else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+                return
+            }
+            
+            debugPrint(d as Any)
+            
+            if err == nil{
+                let dict = ["time":Date.timeStampToString(timeStamp: "\(time)"),"name":"\(UserModel.shareInstance.name)","content":"\(text)","headPath":headPath]
+                let model = ReplyModel.init(dict: dict)
+                self?.dataSorce.append(model)
+                self?.delegate?.reloadData()
+            
+            }else{
+                self?.delegate?.alertInfo(text: "评论提交失败!")
+            }
+            
+        }
+        
+        
     }
     
     func loadingMore() {
         
-        for i in 0...10 {
-            let model =  ReplyModel.init()
-            model.duration = "2017年10月19日"
-            model.content = "这是回复内容\(i)"
-            model.username = "昵称"
-            self.dataSorce.append(model)
+        let token = UserModel.shareInstance.token
+        let user = UserModel.shareInstance.user
+        
+        let params = [
+            "id":id,
+            "user":user,
+            "token":token
+        ]
+        
+        CommentNetManager.commitListRequest(params: params) { [weak self](dict, err) in
+            
+            
+            debugPrint(dict as Any)
+            
+            guard let d:[String:Any] = dict else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+                return
+            }
+            
+            if err == nil{
+                
+                guard let arry:[[String:String]] = d["data"] as? [[String : String]]  else{
+                    self?.delegate?.alertInfo(text: "数据加载失败!")
+                    return
+                }
+                for dic in arry.enumerated(){
+                
+                    let model = ReplyModel.init(dict: dic.element)
+                    self?.dataSorce.append(model)
+                }
+                self?.delegate?.reloadData()
+                
+            }else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+            }
+
         }
         
-        self.delegate?.reloadData()
     }
 
 }

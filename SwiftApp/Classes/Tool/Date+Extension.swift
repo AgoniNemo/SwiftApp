@@ -47,6 +47,7 @@ extension Date{
         return String.init(format: "%.f", string)
     }
     
+    // MARK: 时间戳转时间
     static func timeStampToString(timeStamp:String)->String {
         
         let string = NSString(string: timeStamp)
@@ -61,5 +62,16 @@ extension Date{
         return dfmatter.string(from: date)
     }
     
+    // MARK: 时间转时间戳
+    static func stringToTimeStamp(stringTime:String)->String {
+        
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy年MM月dd日"
+        let date = dfmatter.date(from: stringTime)
+        let dateStamp:TimeInterval = date!.timeIntervalSince1970
+        
+        return "\(dateStamp)"
     
+    }
 }
+
