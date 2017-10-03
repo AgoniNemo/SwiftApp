@@ -13,7 +13,7 @@ class ReplyCell: UITableViewCell {
     
     
     func setModel(model:ReplyModel) -> Void {
-        
+
         self.nameLable.text = model.username
         self.contentLable.text = model.content
         self.timeLable.text = model.duration

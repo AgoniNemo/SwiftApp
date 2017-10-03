@@ -47,5 +47,19 @@ extension Date{
         return String.init(format: "%.f", string)
     }
     
+    static func timeStampToString(timeStamp:String)->String {
+        
+        let string = NSString(string: timeStamp)
+        let timeSta:TimeInterval = string.doubleValue
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy年MM月dd日"
+        
+        let date = Date.init(timeIntervalSince1970: timeSta)
+        
+        print(dfmatter.string(from: date))
+        
+        return dfmatter.string(from: date)
+    }
+    
     
 }

@@ -27,9 +27,9 @@ class HomeCell: UITableViewCell {
         if isTest == false {
             self.iconView.kf.setImage(with: URL(string: model.icon))
             self.titleLabel.text = model.title
-            self.timeLable.text = model.duration
+            self.timeLable.text = "\(model.duration)\t"
             self.ratingLable.text = "评分:\(model.rating)"
-            self.viewsLable.text = "观看人数:\(model.views)"
+            self.viewsLable.text = "  观看人数:\(model.views)"
         }
     }
     
@@ -41,6 +41,7 @@ class HomeCell: UITableViewCell {
         if cell == nil {
             
             cell = HomeCell.init(style: .default, reuseIdentifier: Id)
+            cell?.selectionStyle = .none
         }
         return cell!
         
@@ -49,10 +50,12 @@ class HomeCell: UITableViewCell {
     /// MARK:观看人数
     lazy var viewsLable:UILabel = {
         
-        let y = self.iconView.maxY!-20
-        let v:UILabel = UILabel.init(frame: XCGRect(5, y, 180, 20))
+        let y = self.iconView.maxY!-30
+        let w = self.iconView.width! -  self.timeLable.width!
+        let v:UILabel = UILabel.init(frame: XCGRect(0, y, w, 30))
         v.font = UIFont.boldSystemFont(ofSize: 15)
         v.textColor = UIColor.white
+        v.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(v)
         
         if self.isTest == true {
@@ -82,13 +85,13 @@ class HomeCell: UITableViewCell {
     
     /// MARK:时间
     lazy var timeLable:UILabel = {
-        let y:CGFloat = self.iconView.maxY!-20
-        let x = self.iconView.width!-155
-        let t:UILabel = UILabel.init(frame: XCGRect(x,y, 150, 20))
+        let y:CGFloat = self.iconView.maxY!-30
+        let x = self.iconView.width!-150
+        let t:UILabel = UILabel.init(frame: XCGRect(x,y, 150, 30))
         t.font = UIFont.boldSystemFont(ofSize: 15)
         t.textAlignment = .right
         t.textColor = UIColor.white
-        
+        t.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(t)
         if self.isTest == true {
             t.text = "timeLable"

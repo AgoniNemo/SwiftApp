@@ -9,7 +9,7 @@
 import UIKit
 import ESPullToRefresh
 
-class HomeViewController: RootViewController,UITableViewDelegate,UITableViewDataSource,HomeVModelDelegate{
+class HomeViewController: RootViewController,HomeVModelDelegate{
 
     var vModle = HomeVModel()
     
@@ -34,7 +34,6 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
     }
     
     func alertInfo(text: String) {
-        self.hidden()
         self.show(text: text)
     }
     func refresh() -> Void {
@@ -59,50 +58,9 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         self.tabView.es_stopLoadingMore()
         self.tabView.reloadData()
     }
+
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vModle.numberOfRowsInSection()
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = HomeCell.cell(WithTableView: tableView)
-        
-        cell.setModel(model: vModle.rowModel(row: indexPath.row))
-        
-        return cell
-        
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let model = vModle.rowModel(row: indexPath.row)
-        
-        if model.hls == false {
-            skipViewCotroller(model)
-        }else{
-            skipHLSViewCotroller(model)
-        }
-    }
-    
-    func skipHLSViewCotroller(_ model:VideoModel) -> Void {
-        let h = HLSViewController()
-        h.model = model
-//        h.hidesBottomBarWhenPushed = true;
-        self.navigationController?.pushViewController(h, animated: true)
-    }
-    
-    func skipViewCotroller(_ model:VideoModel) -> Void {
-        let p = PlayViewController()
-        p.model = model
-        p.hidesBottomBarWhenPushed = true;
-        self.navigationController?.pushViewController(p, animated: true)
-    }
+
     
     
     lazy var tabView:UITableView = {
@@ -128,16 +86,52 @@ class HomeViewController: RootViewController,UITableViewDelegate,UITableViewData
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+}
+
+extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
+
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vModle.numberOfRowsInSection()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = HomeCell.cell(WithTableView: tableView)
+        
+        cell.setModel(model: vModle.rowModel(row: indexPath.row))
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let model = vModle.rowModel(row: indexPath.row)
+        
+        if model.hls == false {
+            skipViewCotroller(model)
+        }else{
+            skipHLSViewCotroller(model)
+        }
+    }
+    
+    func skipHLSViewCotroller(_ model:VideoModel) -> Void {
+        let h = HLSViewController()
+        h.model = model
+        //        h.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(h, animated: true)
+    }
+    
+    func skipViewCotroller(_ model:VideoModel) -> Void {
+        let p = PlayViewController()
+        p.model = model
+        p.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(p, animated: true)
+    }
 
 }

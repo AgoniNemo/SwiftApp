@@ -48,7 +48,7 @@ class Alert {
     }
     
     func show(text:String,duration:TimeInterval? = 1.5) -> Void {
-        
+        self.hidden()
         self.alert(showCircularIcon:false).showTitle(
             "",
             subTitle: text,
@@ -80,6 +80,26 @@ class Alert {
         alert.showEdit("注 册", subTitle: "请填写申请信息！")
     }
     
+    func textField(editClosure:@escaping ((_ text:String)->())) -> Void {
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        
+        let txt = alert.addTextField()
+        
+        alert.addButton("确定") {
+            editClosure(txt.text!)
+        }
+        
+        alert.addButton("取消") {
+            debugPrint("---取消---")
+        }
+        alert.showEdit("", subTitle: "请输入回复内容")
+    }
+    
     func load(text:String) -> Void {
         self.result = self.alert().showWait("", subTitle: text)
     }
@@ -103,6 +123,13 @@ extension UIViewController{
             registerClosure(user,pwd)
         })
         
+    }
+    
+    func editTextField(editClosure:@escaping ((_ content:String)->())) -> Void {
+        
+        Alert.shareInstance.textField { (text) in
+            editClosure(text)
+        }
     }
     
     func load(text:String) -> Void {
