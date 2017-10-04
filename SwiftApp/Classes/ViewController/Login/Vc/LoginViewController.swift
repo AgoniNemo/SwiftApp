@@ -12,6 +12,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     var vModle = LoginVModel();
     
+    var isBack:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +22,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         self.view.backgroundColor = UIColor.white;
         
         self.view.addSubview(self.animatedImagesView);
+        self.animatedImagesView.startAnimating();
         
         self.view.addSubview(self.bgView);
         
@@ -80,7 +83,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     func loginSuccess() {
         self.hidden()
         self.animatedImagesView.stopAnimating();
-        self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
+        if isBack == false {
+            self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
+        }else{
+            self.dismiss(animated: false, completion: { 
+                self.tabBarController?.selectedIndex = 0
+            })
+        }
+        
     }
     
     
@@ -94,7 +104,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        self.animatedImagesView.startAnimating();
+        if isBack == false {
+            self.animatedImagesView.startAnimating();
+        }
+        
     }
     func animatedImagesNumberOfImages(animatedImagesView: AnimatedImagesView) -> Int {
         return 2;
@@ -155,7 +168,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
         let animatedView = AnimatedImagesView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH));
         animatedView.delegate = self;
-        animatedView.startAnimating();
+        
 
         return animatedView;
     }()

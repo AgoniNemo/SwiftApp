@@ -95,6 +95,7 @@ public class LoginVModel:ViewModelInterface{
         debugPrint(para)
         LoginNetManager.loginRequest(params: para) {[weak self] (dict, err) in
             if err != nil{
+                debugPrint(err as Any)
                 self?.delegate?.alertInfo(text: "登录失败!")
             }else{
                 debugPrint(dict as Any)

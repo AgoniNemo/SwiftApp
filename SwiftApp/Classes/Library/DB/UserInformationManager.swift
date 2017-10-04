@@ -57,12 +57,12 @@ class UserInformationManager: RootDBManager {
     
     func verifyData(Forkey key:String) -> Bool {
         
-        return self.verifyDataWithDict(dict: ["key":key], relationship: [], tableName: tableName);
+        return self.verifyDataWithDict(dict: ["user":key], relationship: [], tableName: tableName);
     }
     
     func updateData(ForDict dict:[String:String]) -> Bool {
         
-        return self.updateDataWithDict(dict: dict, condition: ["key"], overlook: ["user"], tableName: tableName);
+        return self.updateDataWithDict(dict: dict, condition: [[["user":UserModel.shareInstance.user]]], overlook: ["user"], tableName: tableName);
     }
     
     func updateData(ForArray array:[[String:String]]) -> Bool {

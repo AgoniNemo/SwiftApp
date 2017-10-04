@@ -75,6 +75,7 @@ class UserModel {
         self.authority = dict["authority"]!
         self.token = dict["token"]!
         
+        
     }
     
     public func save() -> Bool {
@@ -85,6 +86,10 @@ class UserModel {
         d["loginTime"] = Date.stringTimestamp();
         self.isTokenExpire = false
         self.stutas = true;
+        
+        if DatabaseHelper.sharedInstance.userMager.verifyData(Forkey: user) {
+            return DatabaseHelper.sharedInstance.userMager.updateData(ForDict: d)
+        }
         
         return DatabaseHelper.sharedInstance.userMager.insertData(dict: d)
     }

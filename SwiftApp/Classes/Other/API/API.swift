@@ -8,7 +8,7 @@
 
 import Foundation
 
-let DEV_STATE_ONLINE = 0  // 本地开关 1：打开   0：关闭
+let DEV_STATE_ONLINE = 1  // 本地开关 1：打开   0：关闭
 
 let URI_ROOT:String = {
     

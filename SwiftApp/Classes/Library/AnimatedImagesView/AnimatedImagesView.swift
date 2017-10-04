@@ -34,6 +34,7 @@ class AnimatedImagesView: UIView {
     
     open func startAnimating(){
     
+        debugPrint(animating as Any)
         if (animating == nil || animating == false) {
             animating = true;
             self.imageSwappingTimer.fire();
@@ -71,7 +72,7 @@ class AnimatedImagesView: UIView {
         var nextImageToShowIndex = 0;
         
         repeat {
-//            print("total",totalImages ?? Int());
+            print("total",totalImages ?? Int());
             nextImageToShowIndex = AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 0, maxNumber: (totalImages ?? Int())-1);
             
         }while(nextImageToShowIndex == currentlyDisplayingImageIndex);

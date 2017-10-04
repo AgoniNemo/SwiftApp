@@ -46,13 +46,15 @@ class MyViewController: RootViewController {
         t.delegate = self
         t.dataSource = self
         t.tableFooterView = UIView()
+        t.tableHeaderView = self.headerView
+        
         return t
     }()
     
     lazy var headerView: GlassEffectView = {
         
-        let h = GlassEffectView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 180))
-        h.backgroundColor = UIColor.red
+        let h = GlassEffectView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 180*2))
+        h.header = #imageLiteral(resourceName: "header")
         
         return h
     }()
@@ -78,16 +80,6 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
         
         return cell
         
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return self.headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return self.headerView.frame.width
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
