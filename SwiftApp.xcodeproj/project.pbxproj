@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA1226CE1F695D3900E097DF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */; };
+		BA1299DA1F8616EF00C4AB30 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */; };
 		BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */; };
 		BA14DE421F82865F00E0337F /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE411F82865F00E0337F /* MyCell.swift */; };
 		BA14DE441F8286A500E0337F /* MyVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE431F8286A500E0337F /* MyVModel.swift */; };
@@ -91,6 +92,7 @@
 		8AC3BD026D47223AA5311820 /* Pods_SwiftApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2901BAC3FB9DAB81D95128 /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListViewController.swift; sourceTree = "<group>"; };
 		BA14DE411F82865F00E0337F /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		BA14DE431F8286A500E0337F /* MyVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVModel.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 			children = (
 				BA683D8E1F7B7D450027B227 /* Date+Extension.swift */,
 				BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */,
+				BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				BAF71C2D1F69085A00D3A265 /* RootViewController.swift in Sources */,
 				BA14DE481F828D3000E0337F /* GlassEffectView.swift in Sources */,
 				BA8502C11F6F9FEB00769782 /* BaseNetWorking.swift in Sources */,
+				BA1299DA1F8616EF00C4AB30 /* UIImage+Extension.swift in Sources */,
 				BA683D8F1F7B7D450027B227 /* Date+Extension.swift in Sources */,
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
 				BA7E9EA51F711F5B005831CA /* DatabaseParameter.swift in Sources */,

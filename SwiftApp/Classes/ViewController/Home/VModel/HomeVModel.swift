@@ -29,8 +29,8 @@ class HomeVModel:HomeVModelInterface {
     
     
     func loadingMore() {
-        page += 1
         self.request()
+        page += 1
     }
     
     func loadLate() {

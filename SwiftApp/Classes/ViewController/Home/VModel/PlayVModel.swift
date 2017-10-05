@@ -65,7 +65,12 @@ class PlayVModel: PlayVModelInterface {
             debugPrint(d as Any)
             
             if err == nil{
-                let dict = ["time":Date.timeStampToString(timeStamp: "\(time)"),"name":"\(UserModel.shareInstance.name)","content":"\(text)","headPath":headPath]
+                let dict = [
+                    "time":"\(time)",
+                    "name":"\(UserModel.shareInstance.name)",
+                    "content":"\(text)",
+                    "headPath":headPath
+                ]
                 let model = ReplyModel.init(dict: dict)
                 self?.dataSorce.append(model)
                 self?.delegate?.reloadData()

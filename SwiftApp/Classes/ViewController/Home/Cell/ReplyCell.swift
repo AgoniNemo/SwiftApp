@@ -17,7 +17,7 @@ class ReplyCell: UITableViewCell {
         self.nameLable.text = model.username
         self.contentLable.text = model.content
         self.timeLable.text = model.duration
-        self.iconView.kf.setImage(with: URL.init(string: model.icon), placeholder: #imageLiteral(resourceName: "header"))
+        self.iconView.kf.setImage(with: URL.init(string: model.icon), placeholder: #imageLiteral(resourceName: "Avatar"))
     }
     
     class func cell(WithTableView tabView:UITableView) -> ReplyCell{

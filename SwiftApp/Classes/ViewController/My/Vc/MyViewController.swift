@@ -54,8 +54,7 @@ class MyViewController: RootViewController {
     lazy var headerView: GlassEffectView = {
         
         let h = GlassEffectView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 180*2))
-        h.header = #imageLiteral(resourceName: "header")
-        
+        h.setImage(url: "")
         return h
     }()
 
@@ -85,6 +84,7 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+
     }
     
 }
