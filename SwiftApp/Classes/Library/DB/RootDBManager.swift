@@ -76,7 +76,7 @@ class RootDBManager: NSObject {
                 sql = sql.appendingFormat("%@%@",str,tag)
             }
         }
-        
+        // 生成条件语句
         let string = self.getCondition(array: condition, dict: dict);
         
         sql = sql.appendingFormat(" where %@",string)
@@ -331,9 +331,15 @@ class RootDBManager: NSObject {
                 if s.lowercased() == "or" || s.lowercased() == "and"  {
                     string.append(" \(value) ")
                 }else{
+                    /**
                     let k = dict.first?.key ?? String();
                     let v = dict.first?.value ?? String();
                     string.append("\(k) = '\(v)'");
+                     */
+                    debugPrint(value,dict)
+                    let k:String = value as! String
+                    let v:String = dict[k]!;
+                    string.append("\(value) = '\(v)'");
                 }
             }else{
                 if value is [[String:String]] {
@@ -357,7 +363,7 @@ class RootDBManager: NSObject {
         
     }
     
-    /// 查询数据
+    // MARK: - 查询数据
     /// parameter array:需要查询的多个条件 格式为[["key":"value"],"or",["key":"value"],"and",["key":"value"]]
     /// parameter tableName：表名字
     func inquireData(WithArray array:Array<Any>,tableName:String) -> Array<Dictionary<String,String>> {

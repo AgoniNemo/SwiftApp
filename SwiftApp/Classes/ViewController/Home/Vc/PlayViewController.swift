@@ -29,6 +29,7 @@ class PlayViewController: RootViewController{
         
         debugPrint(url)
         
+        model?.save()
         vModel.id = (model?.id)!
         vModel.delegate = self
         vModel.loadingMore()

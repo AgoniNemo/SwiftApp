@@ -70,10 +70,10 @@ extension SettingViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "settingCell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell")
         
         if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: "settingCell")
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "SettingCell")
         }
         
         cell?.textLabel?.text = vModel.rowModel(row: indexPath.row)["name"]
@@ -83,7 +83,7 @@ extension SettingViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
     }
     
 

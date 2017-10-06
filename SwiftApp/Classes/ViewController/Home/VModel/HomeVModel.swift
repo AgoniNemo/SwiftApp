@@ -59,8 +59,12 @@ class HomeVModel:HomeVModelInterface {
             
             if err == nil{
                 guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
-                    let mesg = d["message"] as! String
-                    self?.delegate?.alertInfo(text: mesg)
+                    let mesg = d["message"] as? String
+                    if mesg == nil{
+                        self?.delegate?.alertInfo(text: "数据加载出错！")
+                        return
+                    }
+                    self?.delegate?.alertInfo(text: mesg!)
                     return
                 }
                 if datas.count > 0,self?.page == 0{

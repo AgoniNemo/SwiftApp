@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		BA1226CE1F695D3900E097DF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */; };
 		BA1299DA1F8616EF00C4AB30 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */; };
+		BA137A381F8712680036C669 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA137A371F8712680036C669 /* VideoManager.swift */; };
+		BA137A3A1F873F0C0036C669 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA137A391F873F0C0036C669 /* HistoryViewController.swift */; };
+		BA137A3C1F87404E0036C669 /* HistoryVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA137A3B1F87404E0036C669 /* HistoryVModel.swift */; };
 		BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */; };
 		BA14DE421F82865F00E0337F /* MyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE411F82865F00E0337F /* MyCell.swift */; };
 		BA14DE441F8286A500E0337F /* MyVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA14DE431F8286A500E0337F /* MyVModel.swift */; };
@@ -93,6 +96,9 @@
 		8F2901BAC3FB9DAB81D95128 /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		BA137A371F8712680036C669 /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
+		BA137A391F873F0C0036C669 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		BA137A3B1F87404E0036C669 /* HistoryVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVModel.swift; sourceTree = "<group>"; };
 		BA14DE3D1F8231E400E0337F /* CategoriesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListViewController.swift; sourceTree = "<group>"; };
 		BA14DE411F82865F00E0337F /* MyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCell.swift; sourceTree = "<group>"; };
 		BA14DE431F8286A500E0337F /* MyVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVModel.swift; sourceTree = "<group>"; };
@@ -220,6 +226,7 @@
 			children = (
 				BA14DE431F8286A500E0337F /* MyVModel.swift */,
 				BA51C5621F84B27D005960AF /* SettingVModel.swift */,
+				BA137A3B1F87404E0036C669 /* HistoryVModel.swift */,
 			);
 			path = VModel;
 			sourceTree = "<group>";
@@ -440,6 +447,7 @@
 				BA7E9E9D1F711F5B005831CA /* DatabaseHelper.swift */,
 				BA7E9E9F1F711F5B005831CA /* RootDBManager.swift */,
 				BA7E9EA01F711F5B005831CA /* UserInformationManager.swift */,
+				BA137A371F8712680036C669 /* VideoManager.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -519,6 +527,7 @@
 			children = (
 				BAF71C211F69085A00D3A265 /* MyViewController.swift */,
 				BA14DE451F82881300E0337F /* SettingViewController.swift */,
+				BA137A391F873F0C0036C669 /* HistoryViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -843,11 +852,13 @@
 				BA683D8F1F7B7D450027B227 /* Date+Extension.swift in Sources */,
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
 				BA7E9EA51F711F5B005831CA /* DatabaseParameter.swift in Sources */,
+				BA137A3C1F87404E0036C669 /* HistoryVModel.swift in Sources */,
 				BA7E4CED1F72626F002FC5C9 /* VideoModel.swift in Sources */,
 				BA17F33E1F80C2CD0020D5A5 /* CategoriesCell.swift in Sources */,
 				BAF71C481F6912AA00D3A265 /* AnimatedImagesView.swift in Sources */,
 				BAF71C501F6912AA00D3A265 /* Extension.swift in Sources */,
 				BAF71C621F6913FF00D3A265 /* HomeViewController.swift in Sources */,
+				BA137A381F8712680036C669 /* VideoManager.swift in Sources */,
 				BA51C5631F84B27D005960AF /* SettingVModel.swift in Sources */,
 				BA8502C81F6FB13200769782 /* UIViewCotroller+Alert.swift in Sources */,
 				BAF71C511F6912AA00D3A265 /* LineTextField.swift in Sources */,
@@ -864,6 +875,7 @@
 				BA7E9EA41F711F5B005831CA /* DatabaseHelper.swift in Sources */,
 				BA5E8AFE1F7FD01B00182291 /* VideoPlayerController.swift in Sources */,
 				BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */,
+				BA137A3A1F873F0C0036C669 /* HistoryViewController.swift in Sources */,
 				BA7E9E961F711224005831CA /* API.swift in Sources */,
 				BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */,
 				BA846F711F7E8BF0003DA1E4 /* ReplyModel.swift in Sources */,

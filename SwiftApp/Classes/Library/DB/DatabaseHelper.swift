@@ -41,4 +41,12 @@ final class DatabaseHelper: NSObject{
     
     }()
     
+    lazy var videoMager:VideoManager = {
+        
+        let video:VideoManager = VideoManager.videoManagerForQueue(queue: self.queue!);
+        
+        return video;
+        
+    }()
+    
 }

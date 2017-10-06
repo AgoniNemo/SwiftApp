@@ -53,7 +53,8 @@ extension Date{
         let string = NSString(string: timeStamp)
         let timeSta:TimeInterval = string.doubleValue
         let dfmatter = DateFormatter()
-        dfmatter.dateFormat="yyyy年MM月dd日"
+        // yyyy年MM月dd日 HH:mm:ss
+        dfmatter.dateFormat="yyyy年MM月dd日 HH:mm"
         
         let date = Date.init(timeIntervalSince1970: timeSta)
         

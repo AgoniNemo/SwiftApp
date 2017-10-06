@@ -65,15 +65,17 @@ class UserInformationManager: RootDBManager {
         return self.updateDataWithDict(dict: dict, condition: [[["user":UserModel.shareInstance.user]]], overlook: ["user"], tableName: tableName);
     }
     
+    // 有点问题先放着
     func updateData(ForArray array:[[String:String]]) -> Bool {
         
-        return self.updateDataWithArray(array: array, condition: ["key"], overlook: ["user"], tableName: tableName);
+        return self.updateDataWithArray(array: array, condition: ["user"], overlook: ["user"], tableName: tableName);
     }
     
     func inquireData(ForDict dict:[String:String]) -> [[String:String]] {
         
         return self.inquireData(WithArray: [[dict]], tableName: tableName);
     }
+    
     @discardableResult
     func deleteAll() -> Bool {
         return self.delete(ForTableName: tableName);
