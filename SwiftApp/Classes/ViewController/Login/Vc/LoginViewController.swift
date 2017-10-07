@@ -70,7 +70,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     func registerClick() -> Void {
         
         self.showTextField { [weak self](user, pwd,code) in
-            self?.vModle.register(user: user,pwd: pwd)
+            self?.vModle.register(user: user,pwd: pwd,invitationCode: nil)
         }
     }
     
@@ -87,7 +87,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
             self.navigationController?.pushViewController(self.homeTabbarController, animated: false);
         }else{
             self.dismiss(animated: false, completion: { 
-                self.tabBarController?.selectedIndex = 0
             })
         }
         
@@ -181,7 +180,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     }()
     
     
-    
+    deinit {
+        debugPrint(self)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

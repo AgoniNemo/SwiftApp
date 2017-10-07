@@ -54,13 +54,18 @@ class VideoManager: RootDBManager {
     
     func getCollectData() -> [[String:Any]] {
         
-        return self.getData(condition: "collect = '1'", conditionBack: "", order: "order by id desc", tableName: tableName);
+        return self.getData(condition: "collect = '1'", conditionBack: "", order: "order by watchTime desc", tableName: tableName);
         
+    }
+    
+    func delete(dict:[String:String]) -> Bool {
+        
+        return self.updateData(ForDict: dict)
     }
     
     func getHistoryData() -> [[String:Any]] {
         
-        return self.getData(condition: "history = '1'", conditionBack: "", order: "order by id desc", tableName: tableName);
+        return self.getData(condition: "history = '1'", conditionBack: "", order: "order by watchTime desc", tableName: tableName);
         
     }
 

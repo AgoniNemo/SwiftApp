@@ -11,15 +11,15 @@ import ESPullToRefresh
 
 class HomeViewController: RootViewController,HomeVModelDelegate{
 
-    var vModle = HomeVModel()
+    var vModel = HomeVModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        vModle.delegate = self;
+        vModel.delegate = self;
         self.alertload()
-        vModle.loadingMore()
+        vModel.loadingMore()
         
         self.view.addSubview(self.tabView)
 
@@ -40,7 +40,7 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         
         self.tabView.es_addPullToRefresh {
             [unowned self] in
-            self.vModle.loadLate()
+            self.vModel.loadLate()
             self.tabView.es_stopPullToRefresh(ignoreDate: true)
             /// Set ignore footer or not
             self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
@@ -49,7 +49,7 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         self.tabView.es_addInfiniteScrolling {
             [unowned self] in
             debugPrint("es_addInfiniteScrolling")
-            self.vModle.loadingMore()
+            self.vModel.loadingMore()
         }
     }
     
@@ -58,8 +58,6 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         self.tabView.es_stopLoadingMore()
         self.tabView.reloadData()
     }
-
-    
 
     
     
@@ -96,14 +94,14 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vModle.numberOfRowsInSection()
+        return vModel.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = HomeCell.cell(WithTableView: tableView)
         
-        cell.setModel(model: vModle.rowModel(row: indexPath.row))
+        cell.setModel(model: vModel.rowModel(row: indexPath.row))
         
         return cell
         
@@ -111,7 +109,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let model = vModle.rowModel(row: indexPath.row)
+        let model = vModel.rowModel(row: indexPath.row)
         
         if model.hls == false {
             skipViewCotroller(model)

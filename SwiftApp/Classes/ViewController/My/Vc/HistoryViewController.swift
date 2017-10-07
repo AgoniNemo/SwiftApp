@@ -11,27 +11,53 @@ import UIKit
 class HistoryViewController: RootViewController {
 
     
-    let vModel = HistoryVModel()
+    let vModel = HisAColVModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.title = "观看历史"
+        
         setBackButton()
         
         vModel.delegate = self
         vModel.loadAll()
         
-        self.view.addSubview(self.tableView)
+        self.view.addSubview(self.collection)
         
     }
     
-    lazy var tableView: UITableView = {
-        let t = UITableView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH), style: .grouped)
-        t.delegate = self
-        t.dataSource = self
+    lazy var collection: UICollectionView = {
         
-        return t
+        let layout = UICollectionViewFlowLayout()
+        
+        let w = SCREEN_WIDTH/2
+        let h = 180/240*w
+        layout.itemSize = CGSize.init(width: w, height: h+30+25)
+        layout.scrollDirection = .vertical
+        
+        //设置行间距(最小)
+        layout.minimumLineSpacing = 0
+        
+        //设置列间距(最小)
+        layout.minimumInteritemSpacing = 0
+        
+        //设置边距
+//        layout.sectionInset = UIEdgeInsetsMake(5, 5, 0, 5)
+        
+        let c = UICollectionView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH), collectionViewLayout: layout)
+        c.delegate = self
+        c.dataSource = self
+        c.backgroundColor = UIColor.white
+        c.register(HistoryCell.self, forCellWithReuseIdentifier: "\(HistoryCell.self)")
+        c.showsVerticalScrollIndicator = true
+        
+        return c
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,10 +67,10 @@ class HistoryViewController: RootViewController {
 
 }
 
-extension HistoryViewController:HistoryVModelDelegate{
+extension HistoryViewController:HisAColVModelDelegate{
 
     func reloadData() {
-        self.tableView.reloadData()
+        self.collection.reloadData()
     }
     
     func alertload() {
@@ -53,31 +79,41 @@ extension HistoryViewController:HistoryVModelDelegate{
 
     func alertInfo(text: String) {
         
+        self.alertInfo(text: text)
     }
 }
 
-extension HistoryViewController:UITableViewDelegate,UITableViewDataSource{
+extension HistoryViewController:UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vModel.numberOfRowsInSection()
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.vModel.numberOfRowsInSection()
+    }
+    
+    //返回UICollectionViewCell视图
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell")
+        let cell = HistoryCell.cell(WithCollectionView: collectionView, index: indexPath)
+        cell.setModel(model: vModel.rowModel(row: indexPath.row))
         
-        if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: "HistoryCell")
+        cell.closure = { [weak self]()->() in
+            self?.vModel.delete(row: indexPath.row)
         }
         
-        
-        return cell!
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let model = vModel.rowModel(row: indexPath.row)
+        let p = PlayViewController()
+        p.model = model.video
+        p.hidesBottomBarWhenPushed = true;
+        self.navigationController?.pushViewController(p, animated: true)
+
     }
     
     

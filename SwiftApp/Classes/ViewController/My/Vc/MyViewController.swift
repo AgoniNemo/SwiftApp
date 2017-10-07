@@ -84,6 +84,13 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.row == 1 {
+            skipHis()
+        }
+        
+    }
+    
+    func skipHis() -> Void {
         let vc = HistoryViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)

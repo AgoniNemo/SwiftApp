@@ -78,7 +78,7 @@ class PlayViewController: RootViewController{
     
     lazy var tabView:UITableView = {
         let y:CGFloat = self.view.frame.width*0.6
-        let t = UITableView.init(frame:  XCGRect(0, y, SCREEN_WIDTH, SCREEN_HEIGH-y-40), style: .grouped)
+        let t = UITableView.init(frame:  XCGRect(0, y+20, SCREEN_WIDTH, SCREEN_HEIGH-y-40-20), style: .grouped)
         
         t.delegate = self;
         t.dataSource = self;

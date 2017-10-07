@@ -71,9 +71,10 @@ class RootDBManager: NSObject {
             let value:String = dict[key]!;
             
             if !overlook.contains(key){
+                let s = (idx == 0) ? "" : " ";
+                let tag = (idx > 0) ? "," : s;
                 let str = "\(key) = '\(value)'";
-                let tag = (idx == keys.count - 1) ?" ":",";
-                sql = sql.appendingFormat("%@%@",str,tag)
+                sql = sql.appendingFormat("%@%@",tag,str)
             }
         }
         // 生成条件语句

@@ -82,6 +82,7 @@ extension CategoriesViewController:UICollectionViewDataSource,UICollectionViewDe
         let model = vModel.rowModel(row: indexPath.row)
         let vc = CategoriesListViewController()
         vc.searchKey = model.key
+        vc.title = model.title
         vc.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(vc, animated: true)
     }

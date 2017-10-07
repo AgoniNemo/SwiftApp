@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 
 extension Date{
@@ -73,6 +73,27 @@ extension Date{
         
         return "\(dateStamp)"
     
+    }
+    
+    static func formattedDateDescription(stringTime:String) -> String {
+        
+        let timeInterval = Date().timeIntervalSince1970
+
+        let v = Float(timeInterval) - NSString.init(string: stringTime).floatValue
+        
+        if v < 60 {
+            return "刚刚"
+        }else if (v < 3600){
+            return "\(Int(v/60))分钟前"
+        }else if (v < 21600){
+            return "\(Int(v/3600))小时前"
+        }else if (v < 3600 * 24){
+            return "今天"
+        }else if (v < 3600 * 48){
+            return "昨天"
+        }
+        
+        return self.stringToTimeStamp(stringTime:stringTime)
     }
 }
 

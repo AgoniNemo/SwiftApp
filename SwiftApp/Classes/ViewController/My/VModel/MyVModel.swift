@@ -16,6 +16,7 @@ protocol MyVModelInterface:BaseVModelInterface {
     
     weak var delegate: MyVModelDelegate? { get set }
     
+    
 }
 
 class MyVModel:MyVModelInterface {
