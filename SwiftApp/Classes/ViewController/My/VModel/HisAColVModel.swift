@@ -40,7 +40,7 @@ class HisAColVModel:HisAColVModelInterface {
         let model = dataSorce[row]
         var b = false
         if self.his {
-           b = model.update()
+           b = model.delete()
         }else{
             
         }

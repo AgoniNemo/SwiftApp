@@ -26,6 +26,9 @@
 		BA17F3401F80D4C30020D5A5 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA17F33F1F80D4C30020D5A5 /* CategoriesModel.swift */; };
 		BA1858191F8887660060AAA6 /* HisAColModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1858181F8887660060AAA6 /* HisAColModel.swift */; };
 		BA18581B1F889DA30060AAA6 /* CatgrListVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18581A1F889DA30060AAA6 /* CatgrListVModel.swift */; };
+		BA1969C81F89C9DF00527FBB /* AboutOurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */; };
+		BA1969CA1F89CFC300527FBB /* InfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969C91F89CFC300527FBB /* InfomationViewController.swift */; };
+		BA1969CC1F89D03B00527FBB /* MyCollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */; };
 		BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD8191F83791600A22DDF /* CommentNetManager.swift */; };
 		BA51C5631F84B27D005960AF /* SettingVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA51C5621F84B27D005960AF /* SettingVModel.swift */; };
 		BA5E8AFA1F7FD01B00182291 /* FileHandlePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */; };
@@ -116,6 +119,9 @@
 		BA17F33F1F80D4C30020D5A5 /* CategoriesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		BA1858181F8887660060AAA6 /* HisAColModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HisAColModel.swift; sourceTree = "<group>"; };
 		BA18581A1F889DA30060AAA6 /* CatgrListVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatgrListVModel.swift; sourceTree = "<group>"; };
+		BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutOurViewController.swift; sourceTree = "<group>"; };
+		BA1969C91F89CFC300527FBB /* InfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfomationViewController.swift; sourceTree = "<group>"; };
+		BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectViewController.swift; sourceTree = "<group>"; };
 		BA1BD8191F83791600A22DDF /* CommentNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNetManager.swift; sourceTree = "<group>"; };
 		BA51C5621F84B27D005960AF /* SettingVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVModel.swift; sourceTree = "<group>"; };
 		BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandlePath.swift; sourceTree = "<group>"; };
@@ -545,6 +551,9 @@
 				BAF71C211F69085A00D3A265 /* MyViewController.swift */,
 				BA14DE451F82881300E0337F /* SettingViewController.swift */,
 				BA137A391F873F0C0036C669 /* HistoryViewController.swift */,
+				BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */,
+				BA1969C91F89CFC300527FBB /* InfomationViewController.swift */,
+				BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -872,6 +881,7 @@
 				BA683D8F1F7B7D450027B227 /* Date+Extension.swift in Sources */,
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
 				BA7E9EA51F711F5B005831CA /* DatabaseParameter.swift in Sources */,
+				BA1969CC1F89D03B00527FBB /* MyCollectViewController.swift in Sources */,
 				BA7E4CED1F72626F002FC5C9 /* VideoModel.swift in Sources */,
 				BA17F33E1F80C2CD0020D5A5 /* CategoriesCell.swift in Sources */,
 				BAF71C481F6912AA00D3A265 /* AnimatedImagesView.swift in Sources */,
@@ -888,6 +898,7 @@
 				BA17978D1F6E9B54005F645C /* UserModel.swift in Sources */,
 				BA5E8AFC1F7FD01B00182291 /* DownloadManager.swift in Sources */,
 				BA17F3331F807CB00020D5A5 /* CategoriesNetManager.swift in Sources */,
+				BA1969C81F89C9DF00527FBB /* AboutOurViewController.swift in Sources */,
 				BA7E4CF01F726B8B002FC5C9 /* HomeVModel.swift in Sources */,
 				BA17F33B1F80C1470020D5A5 /* CategoriesVModel.swift in Sources */,
 				BA5E8AFB1F7FD01B00182291 /* UIImage + ComPress.swift in Sources */,
@@ -895,6 +906,7 @@
 				BA7E9EA41F711F5B005831CA /* DatabaseHelper.swift in Sources */,
 				BA5E8AFE1F7FD01B00182291 /* VideoPlayerController.swift in Sources */,
 				BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */,
+				BA1969CA1F89CFC300527FBB /* InfomationViewController.swift in Sources */,
 				BA137A3A1F873F0C0036C669 /* HistoryViewController.swift in Sources */,
 				BA7E9E961F711224005831CA /* API.swift in Sources */,
 				BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */,

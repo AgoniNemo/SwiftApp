@@ -48,13 +48,13 @@ extension Date{
     }
     
     // MARK: 时间戳转时间
-    static func timeStampToString(timeStamp:String)->String {
+    static func timeStampToString(timeStamp:String,dateFormat:String? = "yyyy年MM月dd日 HH:mm")->String {
         
         let string = NSString(string: timeStamp)
         let timeSta:TimeInterval = string.doubleValue
         let dfmatter = DateFormatter()
         // yyyy年MM月dd日 HH:mm:ss
-        dfmatter.dateFormat="yyyy年MM月dd日 HH:mm"
+        dfmatter.dateFormat = dateFormat
         
         let date = Date.init(timeIntervalSince1970: timeSta)
         
@@ -78,16 +78,19 @@ extension Date{
     static func formattedDateDescription(stringTime:String) -> String {
         
         let timeInterval = Date().timeIntervalSince1970
-
+        
+        let theDay = self.timeStampToString(timeStamp: stringTime,dateFormat: "yyyy年MM月dd日")
+        let currentDay = self.timeStampToString(timeStamp: "\(timeInterval)",dateFormat: "yyyy年MM月dd日")
+        
         let v = Float(timeInterval) - NSString.init(string: stringTime).floatValue
         
         if v < 60 {
             return "刚刚"
-        }else if (v < 3600){
+        }else if (v < 3600){ // 1小时
             return "\(Int(v/60))分钟前"
-        }else if (v < 21600){
+        }else if (v < 21600){ // 6小时
             return "\(Int(v/3600))小时前"
-        }else if (v < 3600 * 24){
+        }else if ((v < 3600 * 24) && theDay == currentDay){
             return "今天"
         }else if (v < 3600 * 48){
             return "昨天"

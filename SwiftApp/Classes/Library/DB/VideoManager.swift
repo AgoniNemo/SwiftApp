@@ -60,7 +60,7 @@ class VideoManager: RootDBManager {
     
     func delete(dict:[String:String]) -> Bool {
         
-        return self.updateData(ForDict: dict)
+        return self.delete(dict: dict, name: tableName)
     }
     
     func getHistoryData() -> [[String:Any]] {

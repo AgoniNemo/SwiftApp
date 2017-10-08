@@ -84,10 +84,29 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.row == 1 {
+        switch indexPath.row {
+        case 0:
+            skipCol()
+        case 1:
             skipHis()
+        case 2:
+            skipInfo()
+        default:
+            debugPrint("no viewCotrller")
         }
         
+    }
+    
+    func skipCol() -> Void {
+        let vc = MyCollectViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func skipInfo() -> Void {
+        let vc = InfomationViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func skipHis() -> Void {

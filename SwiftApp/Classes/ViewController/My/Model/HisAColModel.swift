@@ -25,7 +25,22 @@ class HisAColModel{
     }
 
     func update() -> Bool {
-       return DatabaseHelper.sharedInstance.videoMager.delete(dict: ["videoId":(self.video?.id)!,"history":"0"])
+       return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: ["videoId":(self.video?.id)!,"history":"0"])
+    }
+    
+    func delete() -> Bool {
+        
+        let array = DatabaseHelper.sharedInstance.videoMager.inquireData(ForDict: ["videoId":(self.video?.id)!])
+        
+        if array.count > 0 {
+           let dict = array.first
+            
+            if dict?["collect"] == "0"{
+                return DatabaseHelper.sharedInstance.videoMager.delete(dict: ["videoId":(self.video?.id)!])
+            }
+        }
+        
+        return self.update()
     }
     
     class func allCollect() -> [[String:Any]] {

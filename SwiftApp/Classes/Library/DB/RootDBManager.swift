@@ -479,6 +479,20 @@ class RootDBManager: NSObject {
         return b;
     }
     
+    func delete(dict:[String:String],name:String) -> Bool {
+        
+        let condition = self.getCondition(array: [dict], dict: dict)
+        let sql = "delete from \(name) where \(condition)"
+        
+        var b = false;
+        self.queue?.inDatabase({ (db:FMDatabase) in
+            db.open();
+            b = db.executeUpdate(sql, withArgumentsIn: []);
+        })
+        
+        return b;
+    }
+    
     func sqlStatements(sql:String) -> Bool {
         
         var b = false;

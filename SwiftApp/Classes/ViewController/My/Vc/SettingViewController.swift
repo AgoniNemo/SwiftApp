@@ -84,6 +84,10 @@ extension SettingViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
+        if indexPath.row == 1 {
+            let vc = AboutOurViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 

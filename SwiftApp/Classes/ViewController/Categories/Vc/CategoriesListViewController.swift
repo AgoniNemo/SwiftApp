@@ -33,6 +33,10 @@ class CategoriesListViewController: RootViewController {
         refresh()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     func refresh() -> Void {
         
         self.tabView.es_addPullToRefresh {
