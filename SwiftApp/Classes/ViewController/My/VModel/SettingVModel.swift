@@ -28,12 +28,13 @@ class SettingVModel:SettingVModelInterface {
         
     }
     
-    func rowModel(row: Int) -> [String:String] {
+    func indexPathModel(indexPath: IndexPath) -> [String:String] {
         
-        return self.dataSorce[row]
+        return self.dataSorce[indexPath.row]
+        
     }
     
-    func numberOfRowsInSection() -> Int {
+    func numberOfRowsInSection(section:Int) -> Int {
         
         return self.dataSorce.count
     }

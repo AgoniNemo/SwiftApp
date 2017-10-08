@@ -20,8 +20,10 @@ class CategoriesCell: UICollectionViewCell {
     }
     
     func setModel(model:CategoriesModel) -> Void {
-        self.iconView.image = UIImage.init(named: model.icon)
-        self.titleLable.text = model.title
+        if DEVELOP_TEST == false {
+            self.iconView.image = UIImage.init(named: model.icon)
+            self.titleLable.text = model.title
+        }
     }
     
     lazy var titleLable: UILabel = {

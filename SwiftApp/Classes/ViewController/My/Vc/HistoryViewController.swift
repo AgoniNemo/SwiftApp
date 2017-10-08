@@ -79,7 +79,7 @@ extension HistoryViewController:HisAColVModelDelegate{
 
     func alertInfo(text: String) {
         
-        self.alertInfo(text: text)
+        self.show(text: text)
     }
 }
 
@@ -90,17 +90,21 @@ extension HistoryViewController:UICollectionViewDataSource,UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.vModel.numberOfRowsInSection()
+        return self.vModel.numberOfRowsInSection(section: section)
     }
     
     //返回UICollectionViewCell视图
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = HistoryCell.cell(WithCollectionView: collectionView, index: indexPath)
-        cell.setModel(model: vModel.rowModel(row: indexPath.row))
+        cell.setModel(model: vModel.indexPathModel(indexPath: indexPath))
         
         cell.closure = { [weak self]()->() in
-            self?.vModel.delete(row: indexPath.row)
+            
+            self?.showInfo(text: "确定删除 ？", closure: {[weak self]()->() in
+                self?.vModel.delete(row: indexPath.row)
+            })
+            
         }
         
         return cell
@@ -108,13 +112,12 @@ extension HistoryViewController:UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let model = vModel.rowModel(row: indexPath.row)
+        let model = vModel.indexPathModel(indexPath: indexPath)
         let p = PlayViewController()
         p.model = model.video
         p.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(p, animated: true)
 
     }
-    
     
 }

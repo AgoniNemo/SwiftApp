@@ -56,7 +56,22 @@ class Alert {
             duration: duration!
         )
     }
-    
+    func showInfo(text:String,closure:@escaping (()->())) -> Void {
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        
+        let alert = SCLAlertView(appearance: appearance)
+        
+        alert.addButton("确定") {
+            closure()
+        }
+        
+        alert.addButton("取消") {
+            debugPrint("---取消---")
+        }
+        alert.showNotice("提 示", subTitle: text)
+    }
     
     
     func textField(registerClosure:@escaping ((_ user:String,_ pwd:String,_ code:String)->())) -> Void {
@@ -116,6 +131,14 @@ extension UIViewController{
         
         Alert.shareInstance.show(text: text)
     
+    }
+    
+    func showInfo(text:String,closure:@escaping (()->())) -> Void {
+        
+        Alert.shareInstance.showInfo(text: text) { 
+            closure()
+        }
+        
     }
     
     func showTextField(registerClosure:@escaping ((_ user:String,_ pwd:String,_ code:String)->())) -> Void {

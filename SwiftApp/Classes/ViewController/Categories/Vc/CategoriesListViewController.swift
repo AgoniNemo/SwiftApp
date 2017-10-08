@@ -102,14 +102,14 @@ extension CategoriesListViewController:UITableViewDelegate,UITableViewDataSource
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vModel.numberOfRowsInSection()
+        return vModel.numberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = HomeCell.cell(WithTableView: tableView)
         
-        cell.setModel(model: vModel.rowModel(row: indexPath.row))
+        cell.setModel(model: vModel.indexPathModel(indexPath: indexPath))
         
         return cell
         
@@ -117,7 +117,7 @@ extension CategoriesListViewController:UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let model = vModel.rowModel(row: indexPath.row)
+        let model = vModel.indexPathModel(indexPath: indexPath)
         
         if model.hls == false {
             skipViewCotroller(model)

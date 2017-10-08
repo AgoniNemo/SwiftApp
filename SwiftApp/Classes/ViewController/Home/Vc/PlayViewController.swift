@@ -36,21 +36,41 @@ class PlayViewController: RootViewController{
         
         self.videoPlayer.playConfig(url, view: self.videoPlayBGView)
         
-        setCommitButton()
+        setBottomButton()
     }
-    func setCommitButton() -> Void{
-        
-
-        let btn = UIButton.init(type: .system)
-        btn.frame = XCGRect(0, SCREEN_HEIGH-40, SCREEN_WIDTH, 40)
-        btn.setTitle("回  复", for: .normal)
-        btn.setTitleColor(UIColor.white, for: .normal)
-        btn.backgroundColor = HOMECOLOR
-        
-        btn.addTarget(self, action: #selector(commitAction), for: UIControlEvents.touchUpInside);
-        
-        self.view.addSubview(btn)
     
+    func setBottomButton() -> Void{
+        
+        let w = SCREEN_WIDTH/2
+        let commitBtn = UIButton.init(type: .system)
+        commitBtn.frame = XCGRect(w, SCREEN_HEIGH-40, w, 40)
+        commitBtn.setTitle("回  复", for: .normal)
+        commitBtn.setTitleColor(UIColor.white, for: .normal)
+        commitBtn.backgroundColor = HOMECOLOR
+        
+        commitBtn.addTarget(self, action: #selector(commitAction), for: UIControlEvents.touchUpInside);
+        
+        self.view.addSubview(commitBtn)
+        
+        
+        let collectBtn = UIButton.init(type: .system)
+        collectBtn.frame = XCGRect(0, SCREEN_HEIGH-40, w, 40)
+        collectBtn.tintColor = UIColor.clear
+        collectBtn.isSelected = (self.model?.verifyCollect())!
+        collectBtn.setTitle("收藏", for: .normal)
+        collectBtn.setTitle("取消收藏", for: .selected)
+        collectBtn.setTitleColor(UIColor.white, for: .normal)
+        collectBtn.backgroundColor = UIColor.black
+        
+        collectBtn.addTarget(self, action: #selector(collectAction(_:)), for: UIControlEvents.touchUpInside);
+        
+        self.view.addSubview(collectBtn)
+    
+    }
+    
+    func collectAction(_ button:UIButton) -> Void {
+        button.isSelected = !button.isSelected
+        self.model?.collect(b: button.isSelected)
     }
     
     func commitAction() -> Void {
@@ -138,14 +158,14 @@ extension PlayViewController:UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vModel.numberOfRowsInSection()
+        return vModel.numberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = ReplyCell.cell(WithTableView: tableView)
         
-        cell.setModel(model: vModel.rowModel(row: indexPath.row))
+        cell.setModel(model: vModel.indexPathModel(indexPath: indexPath))
         
         return cell
         
@@ -154,8 +174,9 @@ extension PlayViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return model?.title
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 25
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

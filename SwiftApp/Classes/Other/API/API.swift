@@ -17,3 +17,6 @@ let URI_ROOT:String = {
     }
     return "http://0.0.0.0:8083"
 }()
+
+// 界面隐藏开关
+let DEVELOP_TEST = false

@@ -33,12 +33,14 @@ class PlayVModel: PlayVModelInterface {
         
     }
     
-    func rowModel(row: Int) -> ReplyModel {
+    
+    func indexPathModel(indexPath: IndexPath) -> ReplyModel {
         
-        return self.dataSorce[row]
+        return self.dataSorce[indexPath.row]
+        
     }
     
-    func numberOfRowsInSection() -> Int {
+    func numberOfRowsInSection(section:Int) -> Int {
         return self.dataSorce.count
     }
     

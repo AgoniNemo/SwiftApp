@@ -43,13 +43,14 @@ class CategoriesVModel:CategoriesVModelInterface {
 
     }
     
-    func rowModel(row: Int) -> CategoriesModel {
+    func indexPathModel(indexPath: IndexPath) -> CategoriesModel {
         
-        return self.dataSource[row]
+        return self.dataSource[indexPath.row]
+        
     }
     
-    func numberOfRowsInSection() -> Int {
-        debugPrint(self.dataSource.count)
+    
+    func numberOfRowsInSection(section:Int) -> Int {
         return self.dataSource.count
     }
 

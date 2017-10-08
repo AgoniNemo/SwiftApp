@@ -11,7 +11,6 @@ import Kingfisher
 
 class HomeCell: UITableViewCell {
 
-    let isTest = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,12 +23,12 @@ class HomeCell: UITableViewCell {
 
         self.bgView.backgroundColor = RGBA(r: 250, g: 250, b: 250, a: 0.9)
         
-        if isTest == false {
+        if DEVELOP_TEST == false {
             self.iconView.kf.setImage(with: URL(string: model.icon))
             self.titleLabel.text = model.title
             self.timeLable.text = "\(model.duration)\t"
             self.ratingLable.text = "评分:\(model.rating)"
-            self.viewsLable.text = "  观看人数:\(model.views)"
+            self.viewsLable.text = "  观看次数:\(model.views)"
         }
     }
     
@@ -47,7 +46,7 @@ class HomeCell: UITableViewCell {
         
     }
     
-    /// MARK:观看人数
+    /// MARK:观看次数
     lazy var viewsLable:UILabel = {
         
         let y = self.iconView.maxY!-30
@@ -58,7 +57,7 @@ class HomeCell: UITableViewCell {
         v.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(v)
         
-        if self.isTest == true {
+        if DEVELOP_TEST == true {
             v.text = "viewsLable"
             v.backgroundColor = UIColor.brown
         }
@@ -75,7 +74,7 @@ class HomeCell: UITableViewCell {
         
         self.bgView.addSubview(r)
         
-        if self.isTest == true {
+        if DEVELOP_TEST == true {
             r.text = "ratingLable"
             r.backgroundColor = UIColor.orange
         }
@@ -93,7 +92,7 @@ class HomeCell: UITableViewCell {
         t.textColor = UIColor.white
         t.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(t)
-        if self.isTest == true {
+        if DEVELOP_TEST == true {
             t.text = "timeLable"
             t.backgroundColor = UIColor.red
         }
@@ -109,7 +108,7 @@ class HomeCell: UITableViewCell {
         l.font = UIFont.systemFont(ofSize: 16)
         self.bgView.addSubview(l)
         
-        if self.isTest == true {
+        if DEVELOP_TEST == true {
             l.backgroundColor = UIColor.blue
             l.text = "title"
         }

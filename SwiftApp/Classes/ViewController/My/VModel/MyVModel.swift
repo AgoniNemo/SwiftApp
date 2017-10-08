@@ -34,7 +34,13 @@ class MyVModel:MyVModelInterface {
         return self.dataSorce[row]
     }
     
-    func numberOfRowsInSection() -> Int {
+    func indexPathModel(indexPath: IndexPath) -> [String:String] {
+        
+        return self.dataSorce[indexPath.row]
+        
+    }
+    
+    func numberOfRowsInSection(section:Int) -> Int {
         
         return self.dataSorce.count
     }

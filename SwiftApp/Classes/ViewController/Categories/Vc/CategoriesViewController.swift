@@ -65,21 +65,21 @@ extension CategoriesViewController:UICollectionViewDataSource,UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.vModel.numberOfRowsInSection()
+        return self.vModel.numberOfRowsInSection(section: section)
     }
     
     //返回UICollectionViewCell视图
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = CategoriesCell.cell(WithCollectionView: collectionView, index: indexPath)
-        cell.setModel(model: vModel.rowModel(row: indexPath.row))
+        cell.setModel(model: vModel.indexPathModel(indexPath: indexPath))
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let model = vModel.rowModel(row: indexPath.row)
+        let model = vModel.indexPathModel(indexPath: indexPath)
         let vc = CategoriesListViewController()
         vc.searchKey = model.key
         vc.title = model.title

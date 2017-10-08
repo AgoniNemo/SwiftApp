@@ -276,6 +276,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
         self.activityView.stopAnimating()
     }
     
+    
     /// MARK:外部方法播放
     func playerControlPlay() -> Void {
         self.playButton.isSelected = true

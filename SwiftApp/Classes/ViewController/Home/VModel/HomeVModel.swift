@@ -85,11 +85,13 @@ class HomeVModel:HomeVModelInterface {
     
     }
     
-    func rowModel(row: Int) -> VideoModel {
-        return self.dataSource[row]
+    func indexPathModel(indexPath: IndexPath) -> VideoModel {
+        
+        return self.dataSource[indexPath.row]
+        
     }
     
-    func numberOfRowsInSection() -> Int {
+    func numberOfRowsInSection(section:Int) -> Int {
         return self.dataSource.count
     }
     

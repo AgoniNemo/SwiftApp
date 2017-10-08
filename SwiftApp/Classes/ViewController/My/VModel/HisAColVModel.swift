@@ -40,9 +40,9 @@ class HisAColVModel:HisAColVModelInterface {
         let model = dataSorce[row]
         var b = false
         if self.his {
-           b = model.delete()
+           b = model.deleteHistory()
         }else{
-            
+           b = model.deleteCollect()
         }
         if b {
             dataSorce.remove(at: row)
@@ -65,12 +65,14 @@ class HisAColVModel:HisAColVModelInterface {
         self.delegate?.reloadData()
     }
     
-    func rowModel(row: Int) -> HisAColModel {
+    
+    func indexPathModel(indexPath: IndexPath) -> HisAColModel {
         
-        return self.dataSorce[row]
+        return self.dataSorce[indexPath.row]
+        
     }
     
-    func numberOfRowsInSection() -> Int {
+    func numberOfRowsInSection(section:Int) -> Int {
         
         return self.dataSorce.count
     }

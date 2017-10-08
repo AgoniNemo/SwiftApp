@@ -24,11 +24,19 @@ class HisAColModel{
         
     }
 
-    func update() -> Bool {
-       return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: ["videoId":(self.video?.id)!,"history":"0"])
+    func update(_ d:[String:String]) -> Bool {
+        var dict:[String:String] = Dictionary.init()
+        
+        for value in d.enumerated() {
+            dict[value.element.key] = value.element.value
+        }
+        
+        dict["videoId"] = (self.video?.id)!
+        
+       return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: dict)
     }
     
-    func delete() -> Bool {
+    func deleteHistory() -> Bool {
         
         let array = DatabaseHelper.sharedInstance.videoMager.inquireData(ForDict: ["videoId":(self.video?.id)!])
         
@@ -40,7 +48,12 @@ class HisAColModel{
             }
         }
         
-        return self.update()
+        return self.update(["history":"0"])
+    }
+    
+    func deleteCollect() -> Bool {
+        
+        return self.update(["collect":"0"])
     }
     
     class func allCollect() -> [[String:Any]] {

@@ -68,7 +68,7 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vModel.numberOfRowsInSection()
+        return vModel.numberOfRowsInSection(section: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,7 +104,7 @@ extension MyViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func skipInfo() -> Void {
-        let vc = InfomationViewController()
+        let vc = InformationViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

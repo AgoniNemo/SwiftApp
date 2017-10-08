@@ -1,24 +1,24 @@
 //
-//  HistoryCell.swift
+//  MyCollectCell.swift
 //  SwiftApp
 //
-//  Created by Nemo on 2017/10/7.
+//  Created by Nemo on 2017/10/8.
 //  Copyright © 2017年 Nemo. All rights reserved.
 //
 
 import UIKit
 
-class HistoryCell: UICollectionViewCell {
+class MyCollectCell: UICollectionViewCell {
     
-    
+        
     typealias Completion = () -> ()
     var closure:Completion?;
     
-    class func cell(WithCollectionView collectionView:UICollectionView ,index:IndexPath) -> HistoryCell {
+    class func cell(WithCollectionView collectionView:UICollectionView ,index:IndexPath) -> MyCollectCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(self)", for: index)
         
-        return cell as! HistoryCell
+        return cell as! MyCollectCell
         
     }
     
@@ -26,11 +26,11 @@ class HistoryCell: UICollectionViewCell {
     func setModel(model:HisAColModel) -> Void {
         
         if DEVELOP_TEST == false {
-            
             self.iconView.kf.setImage(with: URL(string: (model.video?.icon)!))
             self.titleLable.text = model.video?.title
             self.contentView.addSubview(self.delBtn)
-            self.timeLable.text = Date.formattedDateDescription(stringTime: model.time)
+            self.timeLable.text = "\(model.video?.duration ?? String())\t"
+            self.viewsLable.text = " 观看次数:\(model.video?.views ?? String())"
         }
     }
     
@@ -42,20 +42,36 @@ class HistoryCell: UICollectionViewCell {
         
     }
     
+    
+    lazy var viewsLable:UILabel = {
+        
+        let y = self.iconView.height!-25
+        let w = self.iconView.width! -  self.timeLable.width! + 20
+        let v:UILabel = UILabel.init(frame: XCGRect(0, y, w, 25))
+        v.font = UIFont.boldSystemFont(ofSize: 13)
+        v.textColor = UIColor.white
+        v.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
+        self.iconView.addSubview(v)
+        
+        return v
+    }()
+    
     lazy var timeLable: UILabel = {
-        let t:UILabel = UILabel.init(frame: XCGRect(5, self.contentView.height! - 20, self.iconView.width!-20, 20))
+        
+        let t:UILabel = UILabel.init(frame: XCGRect(self.iconView.width! - 100, self.iconView.height! - 25, 100, 25))
         t.font = UIFont.systemFont(ofSize: 13)
-        t.numberOfLines = 0
+        t.textAlignment = .right
         t.isUserInteractionEnabled = true
-        t.textColor = UIColor.lightGray
-        self.contentView.addSubview(t)
+        t.textColor = UIColor.white
+        t.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
+        self.iconView.addSubview(t)
         return t
     }()
     
     private lazy var delBtn: UIButton = {
         let d:UIButton = UIButton.init(type: .system)
-        d.frame = XCGRect(self.contentView.width! - 45, self.contentView.height! - 20, 40, 20)
-        d.setTitle("删除", for: .normal)
+        d.frame = XCGRect(self.contentView.width! - 65, self.contentView.height! - 20, 60, 20)
+        d.setTitle("取消收藏", for: .normal)
         d.setTitleColor(HOMECOLOR, for: .normal)
         d.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         d.addTarget(self, action: #selector(deleteAction), for: .touchUpInside)

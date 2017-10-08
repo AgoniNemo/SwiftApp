@@ -65,7 +65,7 @@ class SettingViewController: RootViewController {
 extension SettingViewController:UITableViewDelegate,UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vModel.numberOfRowsInSection()
+        return vModel.numberOfRowsInSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,7 +76,7 @@ extension SettingViewController:UITableViewDelegate,UITableViewDataSource{
             cell = UITableViewCell.init(style: .default, reuseIdentifier: "SettingCell")
         }
         
-        cell?.textLabel?.text = vModel.rowModel(row: indexPath.row)["name"]
+        cell?.textLabel?.text = vModel.indexPathModel(indexPath: indexPath)["name"]
         
         return cell!
     }

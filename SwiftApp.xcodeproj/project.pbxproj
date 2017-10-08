@@ -27,8 +27,12 @@
 		BA1858191F8887660060AAA6 /* HisAColModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1858181F8887660060AAA6 /* HisAColModel.swift */; };
 		BA18581B1F889DA30060AAA6 /* CatgrListVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA18581A1F889DA30060AAA6 /* CatgrListVModel.swift */; };
 		BA1969C81F89C9DF00527FBB /* AboutOurViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */; };
-		BA1969CA1F89CFC300527FBB /* InfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969C91F89CFC300527FBB /* InfomationViewController.swift */; };
 		BA1969CC1F89D03B00527FBB /* MyCollectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */; };
+		BA1969CE1F89F7E500527FBB /* MyInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969CD1F89F7E500527FBB /* MyInfoModel.swift */; };
+		BA1969D01F89F7FC00527FBB /* InformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969CF1F89F7FC00527FBB /* InformationViewController.swift */; };
+		BA1969D21F89F84600527FBB /* InfoVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969D11F89F84600527FBB /* InfoVModel.swift */; };
+		BA1969D41F89FB8200527FBB /* MyInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969D31F89FB8200527FBB /* MyInfoCell.swift */; };
+		BA1969D61F8A33AA00527FBB /* MyCollectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969D51F8A33AA00527FBB /* MyCollectCell.swift */; };
 		BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD8191F83791600A22DDF /* CommentNetManager.swift */; };
 		BA51C5631F84B27D005960AF /* SettingVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA51C5621F84B27D005960AF /* SettingVModel.swift */; };
 		BA5E8AFA1F7FD01B00182291 /* FileHandlePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */; };
@@ -120,8 +124,12 @@
 		BA1858181F8887660060AAA6 /* HisAColModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HisAColModel.swift; sourceTree = "<group>"; };
 		BA18581A1F889DA30060AAA6 /* CatgrListVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatgrListVModel.swift; sourceTree = "<group>"; };
 		BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutOurViewController.swift; sourceTree = "<group>"; };
-		BA1969C91F89CFC300527FBB /* InfomationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfomationViewController.swift; sourceTree = "<group>"; };
 		BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectViewController.swift; sourceTree = "<group>"; };
+		BA1969CD1F89F7E500527FBB /* MyInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoModel.swift; sourceTree = "<group>"; };
+		BA1969CF1F89F7FC00527FBB /* InformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationViewController.swift; sourceTree = "<group>"; };
+		BA1969D11F89F84600527FBB /* InfoVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoVModel.swift; sourceTree = "<group>"; };
+		BA1969D31F89FB8200527FBB /* MyInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoCell.swift; sourceTree = "<group>"; };
+		BA1969D51F8A33AA00527FBB /* MyCollectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectCell.swift; sourceTree = "<group>"; };
 		BA1BD8191F83791600A22DDF /* CommentNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNetManager.swift; sourceTree = "<group>"; };
 		BA51C5621F84B27D005960AF /* SettingVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVModel.swift; sourceTree = "<group>"; };
 		BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandlePath.swift; sourceTree = "<group>"; };
@@ -230,6 +238,8 @@
 				BA14DE411F82865F00E0337F /* MyCell.swift */,
 				BA14DE471F828D3000E0337F /* GlassEffectView.swift */,
 				BA137A3F1F87EBB60036C669 /* HistoryCell.swift */,
+				BA1969D31F89FB8200527FBB /* MyInfoCell.swift */,
+				BA1969D51F8A33AA00527FBB /* MyCollectCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -240,6 +250,7 @@
 				BA14DE431F8286A500E0337F /* MyVModel.swift */,
 				BA51C5621F84B27D005960AF /* SettingVModel.swift */,
 				BA137A3D1F87E9DE0036C669 /* HisAColVModel.swift */,
+				BA1969D11F89F84600527FBB /* InfoVModel.swift */,
 			);
 			path = VModel;
 			sourceTree = "<group>";
@@ -299,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				BA1858181F8887660060AAA6 /* HisAColModel.swift */,
+				BA1969CD1F89F7E500527FBB /* MyInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -552,8 +564,8 @@
 				BA14DE451F82881300E0337F /* SettingViewController.swift */,
 				BA137A391F873F0C0036C669 /* HistoryViewController.swift */,
 				BA1969C71F89C9DF00527FBB /* AboutOurViewController.swift */,
-				BA1969C91F89CFC300527FBB /* InfomationViewController.swift */,
 				BA1969CB1F89D03B00527FBB /* MyCollectViewController.swift */,
+				BA1969CF1F89F7FC00527FBB /* InformationViewController.swift */,
 			);
 			path = Vc;
 			sourceTree = "<group>";
@@ -868,6 +880,7 @@
 				BA137A3E1F87E9DE0036C669 /* HisAColVModel.swift in Sources */,
 				BA17F3391F8081090020D5A5 /* BaseProtocol.swift in Sources */,
 				BA846F6F1F7E8A9A003DA1E4 /* ReplyCell.swift in Sources */,
+				BA1969CE1F89F7E500527FBB /* MyInfoModel.swift in Sources */,
 				BAF71C5E1F6913BA00D3A265 /* CategoriesViewController.swift in Sources */,
 				BA137A401F87EBB60036C669 /* HistoryCell.swift in Sources */,
 				BAF71C2B1F69085A00D3A265 /* LoginViewController.swift in Sources */,
@@ -882,8 +895,10 @@
 				BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */,
 				BA7E9EA51F711F5B005831CA /* DatabaseParameter.swift in Sources */,
 				BA1969CC1F89D03B00527FBB /* MyCollectViewController.swift in Sources */,
+				BA1969D01F89F7FC00527FBB /* InformationViewController.swift in Sources */,
 				BA7E4CED1F72626F002FC5C9 /* VideoModel.swift in Sources */,
 				BA17F33E1F80C2CD0020D5A5 /* CategoriesCell.swift in Sources */,
+				BA1969D41F89FB8200527FBB /* MyInfoCell.swift in Sources */,
 				BAF71C481F6912AA00D3A265 /* AnimatedImagesView.swift in Sources */,
 				BAF71C501F6912AA00D3A265 /* Extension.swift in Sources */,
 				BAF71C621F6913FF00D3A265 /* HomeViewController.swift in Sources */,
@@ -902,11 +917,12 @@
 				BA7E4CF01F726B8B002FC5C9 /* HomeVModel.swift in Sources */,
 				BA17F33B1F80C1470020D5A5 /* CategoriesVModel.swift in Sources */,
 				BA5E8AFB1F7FD01B00182291 /* UIImage + ComPress.swift in Sources */,
+				BA1969D61F8A33AA00527FBB /* MyCollectCell.swift in Sources */,
 				BA7E9EA61F711F5B005831CA /* RootDBManager.swift in Sources */,
 				BA7E9EA41F711F5B005831CA /* DatabaseHelper.swift in Sources */,
 				BA5E8AFE1F7FD01B00182291 /* VideoPlayerController.swift in Sources */,
 				BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */,
-				BA1969CA1F89CFC300527FBB /* InfomationViewController.swift in Sources */,
+				BA1969D21F89F84600527FBB /* InfoVModel.swift in Sources */,
 				BA137A3A1F873F0C0036C669 /* HistoryViewController.swift in Sources */,
 				BA7E9E961F711224005831CA /* API.swift in Sources */,
 				BA14DE3E1F8231E400E0337F /* CategoriesListViewController.swift in Sources */,

@@ -18,8 +18,8 @@ import Foundation
 
 protocol BaseVModelInterface {
     associatedtype ModelType
-    func numberOfRowsInSection() -> Int
+    func numberOfRowsInSection(section:Int) -> Int
     func loadingMore()
-    func rowModel(row:Int) -> ModelType
+    func indexPathModel(indexPath:IndexPath) -> ModelType
     func loadLate()
 }

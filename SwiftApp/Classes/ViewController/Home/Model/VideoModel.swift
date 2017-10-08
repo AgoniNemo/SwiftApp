@@ -91,5 +91,31 @@ class VideoModel {
         
     }
 
+    func verifyCollect() -> Bool {
+        
+        let array = DatabaseHelper.sharedInstance.videoMager.inquireData(ForDict: ["videoId":id])
+        
+        if array.count > 0 {
+            let dict = array.first
+            
+            if dict?["collect"] == "1"{
+                return true
+            }
+        }
+
+        return false
+    }
+    
+    @discardableResult
+    func collect(b:Bool) -> Bool {
+        
+        var d:[String:String] = Dictionary.init()
+        d["collect"] = b ? "1" : "0"
+        d["videoId"] = self.dict["videoId"]
+        
+        return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: d)
+        
+    }
+    
     
 }
