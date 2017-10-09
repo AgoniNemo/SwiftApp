@@ -96,7 +96,7 @@ extension Date{
             return "昨天"
         }
         
-        return self.stringToTimeStamp(stringTime:stringTime)
+        return self.timeStampToString(timeStamp: stringTime)
     }
 }
 
