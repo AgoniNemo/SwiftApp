@@ -34,6 +34,7 @@
 		BA1969D41F89FB8200527FBB /* MyInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969D31F89FB8200527FBB /* MyInfoCell.swift */; };
 		BA1969D61F8A33AA00527FBB /* MyCollectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1969D51F8A33AA00527FBB /* MyCollectCell.swift */; };
 		BA1BD81A1F83791600A22DDF /* CommentNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1BD8191F83791600A22DDF /* CommentNetManager.swift */; };
+		BA2A8DCB1F8CC8720066CB03 /* UIImageView+FaceAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2A8DCA1F8CC8720066CB03 /* UIImageView+FaceAware.swift */; };
 		BA51C5631F84B27D005960AF /* SettingVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA51C5621F84B27D005960AF /* SettingVModel.swift */; };
 		BA5E8AFA1F7FD01B00182291 /* FileHandlePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */; };
 		BA5E8AFB1F7FD01B00182291 /* UIImage + ComPress.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8AEE1F7FD01B00182291 /* UIImage + ComPress.swift */; };
@@ -131,6 +132,7 @@
 		BA1969D31F89FB8200527FBB /* MyInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoCell.swift; sourceTree = "<group>"; };
 		BA1969D51F8A33AA00527FBB /* MyCollectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectCell.swift; sourceTree = "<group>"; };
 		BA1BD8191F83791600A22DDF /* CommentNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentNetManager.swift; sourceTree = "<group>"; };
+		BA2A8DCA1F8CC8720066CB03 /* UIImageView+FaceAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+FaceAware.swift"; sourceTree = "<group>"; };
 		BA51C5621F84B27D005960AF /* SettingVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVModel.swift; sourceTree = "<group>"; };
 		BA5E8AED1F7FD01B00182291 /* FileHandlePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHandlePath.swift; sourceTree = "<group>"; };
 		BA5E8AEE1F7FD01B00182291 /* UIImage + ComPress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage + ComPress.swift"; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 		BA8502C61F6FB12700769782 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				BA2A8DCA1F8CC8720066CB03 /* UIImageView+FaceAware.swift */,
 				BA683D8E1F7B7D450027B227 /* Date+Extension.swift */,
 				BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */,
 				BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */,
@@ -897,6 +900,7 @@
 				BA1969CC1F89D03B00527FBB /* MyCollectViewController.swift in Sources */,
 				BA1969D01F89F7FC00527FBB /* InformationViewController.swift in Sources */,
 				BA7E4CED1F72626F002FC5C9 /* VideoModel.swift in Sources */,
+				BA2A8DCB1F8CC8720066CB03 /* UIImageView+FaceAware.swift in Sources */,
 				BA17F33E1F80C2CD0020D5A5 /* CategoriesCell.swift in Sources */,
 				BA1969D41F89FB8200527FBB /* MyInfoCell.swift in Sources */,
 				BAF71C481F6912AA00D3A265 /* AnimatedImagesView.swift in Sources */,

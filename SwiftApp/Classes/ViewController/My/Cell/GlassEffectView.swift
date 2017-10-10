@@ -52,7 +52,8 @@ class GlassEffectView: UIView {
         h.layer.shadowColor = UIColor.black.cgColor
         h.layer.shadowOpacity = 5
         h.layer.shadowOffset = CGSize.init(width: 1, height: 1)
-        
+        // 修正头像位置
+        h.focusOnFaces = true
         return h
     }()
     
