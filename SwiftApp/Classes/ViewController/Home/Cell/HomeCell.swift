@@ -29,6 +29,12 @@ class HomeCell: UITableViewCell {
             self.timeLable.text = "\(model.duration)\t"
             self.ratingLable.text = "评分:\(model.rating)"
             self.viewsLable.text = "  观看次数:\(model.views)"
+        }else{
+            self.iconView.image = #imageLiteral(resourceName: "Avatar")
+            self.titleLabel.text = "model.title"
+            self.timeLable.text = "\(model.duration)\t"
+            self.ratingLable.text = "评分:\(model.rating)"
+            self.viewsLable.text = "  观看次数:\(model.views)"
         }
     }
     
@@ -57,11 +63,6 @@ class HomeCell: UITableViewCell {
         v.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(v)
         
-        if DEVELOP_TEST == true {
-            v.text = "viewsLable"
-            v.backgroundColor = UIColor.brown
-        }
-        
         return v
     }()
     
@@ -73,12 +74,6 @@ class HomeCell: UITableViewCell {
         r.font = UIFont.boldSystemFont(ofSize: 15)
         
         self.bgView.addSubview(r)
-        
-        if DEVELOP_TEST == true {
-            r.text = "ratingLable"
-            r.backgroundColor = UIColor.orange
-        }
-        
         return r
     }()
     
@@ -92,10 +87,6 @@ class HomeCell: UITableViewCell {
         t.textColor = UIColor.white
         t.backgroundColor = RGBA(r: 0, g: 0, b: 0, a: 0.6)
         self.bgView.addSubview(t)
-        if DEVELOP_TEST == true {
-            t.text = "timeLable"
-            t.backgroundColor = UIColor.red
-        }
         return t
     }()
     
@@ -108,10 +99,6 @@ class HomeCell: UITableViewCell {
         l.font = UIFont.systemFont(ofSize: 16)
         self.bgView.addSubview(l)
         
-        if DEVELOP_TEST == true {
-            l.backgroundColor = UIColor.blue
-            l.text = "title"
-        }
         return l
     }()
     

@@ -22,7 +22,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
         self.view.backgroundColor = UIColor.white;
         
         self.view.addSubview(self.animatedImagesView);
-        self.animatedImagesView.startAnimating();
         
         self.view.addSubview(self.bgView);
         
@@ -103,10 +102,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,AnimatedImagesVi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        if isBack == false {
-            self.animatedImagesView.startAnimating();
-        }
-        
+        self.animatedImagesView.startAnimating();
     }
     func animatedImagesNumberOfImages(animatedImagesView: AnimatedImagesView) -> Int {
         return 2;

@@ -31,6 +31,12 @@ class HistoryCell: UICollectionViewCell {
             self.titleLable.text = model.video?.title
             self.contentView.addSubview(self.delBtn)
             self.timeLable.text = Date.formattedDateDescription(stringTime: model.time)
+        }else{
+            self.iconView.image = #imageLiteral(resourceName: "Avatar")
+            self.titleLable.text = "this is title this is title this is title"
+            self.contentView.addSubview(self.delBtn)
+            self.timeLable.text = "2017-10-10 09:52"
+            
         }
     }
     

@@ -27,8 +27,14 @@ class MyCollectCell: UICollectionViewCell {
         
         if DEVELOP_TEST == false {
             self.iconView.kf.setImage(with: URL(string: (model.video?.icon)!))
-            self.titleLable.text = model.video?.title
+            self.titleLabel.text = model.video?.title
             self.contentView.addSubview(self.delBtn)
+            self.timeLable.text = "\(model.video?.duration ?? String())\t"
+            self.viewsLable.text = " 观看次数:\(model.video?.views ?? String())"
+        }else{
+            self.iconView.image = #imageLiteral(resourceName: "Avatar")
+            self.titleLabel.text = "model.title"
+            self.timeLable.text = "model.duration"
             self.timeLable.text = "\(model.video?.duration ?? String())\t"
             self.viewsLable.text = " 观看次数:\(model.video?.views ?? String())"
         }
@@ -78,7 +84,7 @@ class MyCollectCell: UICollectionViewCell {
         return d
     }()
     
-    private lazy var titleLable: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let t:UILabel = UILabel.init(frame: XCGRect(5, self.iconView.maxY!+1, self.iconView.width!, 40))
         t.font = UIFont.systemFont(ofSize: 13)
         t.numberOfLines = 0

@@ -19,36 +19,38 @@ protocol AnimatedImagesViewDelegate:class {
 
 class AnimatedImagesView: UIView {
     
-    private var imageViews:NSArray?;
+    private var imageViews:[UIImageView] = Array.init();
     private var animating:Bool?;
-    private var totalImages:Int?;
+    private var totalImages:Int = 0;
     private var currentlyDisplayingImageViewIndex:Int?;
     private var currentlyDisplayingImageIndex:Int?;
     
     
-    
-     var kAnimatedImagesViewDefaultTimePerImage = 20.0;
-     var noImageDisplayingIndex = -1;
-     var imageSwappingAnimationDuration = 2.0;
-     var imageViewsBorderOffset = 150.0;
+    let kAnimatedImagesViewDefaultTimePerImage:TimeInterval = 20.0;
+    var noImageDisplayingIndex = -1;
+    var imageSwappingAnimationDuration = 2.0;
+    var imageViewsBorderOffset = 150.0;
     
     open func startAnimating(){
     
         debugPrint(animating as Any)
         if (animating == nil || animating == false) {
             animating = true;
+            // 启动计时器
             self.imageSwappingTimer.fire();
+            // 计时器继续
+            imageSwappingTimer.fireDate = Date.distantPast;
         }
     }
     
     open func stopAnimating(){
     
     if (self.animating == true) {
-        imageSwappingTimer.fireDate = NSDate.distantPast;
+        // 计时器暂停
+        imageSwappingTimer.fireDate = Date.distantFuture;
             UIView.animate(withDuration: imageSwappingAnimationDuration, delay: 0.0, options: .beginFromCurrentState, animations: {
-                for imageView in self.imageViews!{
-                    let img = imageView as! UIImageView;
-                    img.alpha = 0.0;
+                for imageView in self.imageViews{
+                    imageView.alpha = 0.0;
                 }
             }, completion: { (finished:Bool) in
                 self.currentlyDisplayingImageIndex = self.noImageDisplayingIndex;
@@ -59,41 +61,47 @@ class AnimatedImagesView: UIView {
     
     func bringNextImage(){
         
-        let hide = self.imageViews?.object(at: currentlyDisplayingImageViewIndex!);
-        let imageViewToHide = hide as! UIImageView;
-        
+        let imageViewToHide = self.imageViews[currentlyDisplayingImageViewIndex!]
+
+        debugPrint("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
         currentlyDisplayingImageViewIndex =
             (currentlyDisplayingImageViewIndex == 0) ? 1 : 0;
         
+        debugPrint("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
         
-        let show = self.imageViews?.object(at: currentlyDisplayingImageViewIndex ?? Int());
-        let imageViewToShow = show as! UIImageView;
+        let imageViewToShow = self.imageViews[currentlyDisplayingImageViewIndex!]
         
         var nextImageToShowIndex = 0;
         
         repeat {
-            print("total",totalImages ?? Int());
-            nextImageToShowIndex = AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 0, maxNumber: (totalImages ?? Int())-1);
+            
+            nextImageToShowIndex = AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 0, maxNumber: totalImages - 1);
             
         }while(nextImageToShowIndex == currentlyDisplayingImageIndex);
         
         currentlyDisplayingImageIndex = nextImageToShowIndex;
         
-//        print("nextImageToShowIndex",nextImageToShowIndex);
+        debugPrint("nextImageToShowIndex:\(nextImageToShowIndex)")
         
         imageViewToShow.image = self.delegate?.animatedImagesView(animatedImagesView: self, index: nextImageToShowIndex);
         
         let  kMovementAndTransitionTimeOffset = 0.1;
 
-        UIView.animate(withDuration: self.timePerImage + imageSwappingAnimationDuration +
-            kMovementAndTransitionTimeOffset, delay: 0.0, options: [.beginFromCurrentState,.curveLinear], animations: {
+        let duration = kAnimatedImagesViewDefaultTimePerImage + imageSwappingAnimationDuration +
+        kMovementAndTransitionTimeOffset
+                
+        UIView.animate(withDuration: duration, delay: 0.0, options: [.beginFromCurrentState,.curveLinear], animations: {
                 let randomTranslationValueX = Double(self.imageViewsBorderOffset) * 3.5 - Double(AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 0, maxNumber: Int(self.imageViewsBorderOffset)));
-//                print("x:",randomTranslationValueX);
+            
+                debugPrint("x:\(randomTranslationValueX)");
+            
                 let translationTransform = CGAffineTransform(translationX:CGFloat(randomTranslationValueX), y:0);
                 let result: Int  = AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 115, maxNumber: 120);
                 
                 let randomScaleTransformValue: CGFloat = CGFloat(result) / 100;
-//                print("result:",(randomScaleTransformValue));
+            
+                debugPrint("result:\(randomScaleTransformValue)")
+            
                 let scaleTransform = CGAffineTransform(scaleX:randomScaleTransformValue, y:randomScaleTransformValue);
                 
                 imageViewToShow.transform = scaleTransform.concatenating(translationTransform);
@@ -104,7 +112,7 @@ class AnimatedImagesView: UIView {
             
             imageViewToShow.alpha = 1.0;
             imageViewToHide.alpha = 0.0;
-            
+
         }, completion: { (finished:Bool) in
             if (finished) {
                 imageViewToHide.transform = CGAffineTransform.identity;
@@ -114,9 +122,12 @@ class AnimatedImagesView: UIView {
     }
     
     func reloadData(){
-        totalImages = self.delegate?.animatedImagesNumberOfImages(animatedImagesView: self);
-    
+        totalImages = (self.delegate?.animatedImagesNumberOfImages(animatedImagesView: self))!;
+        
+        // 启动计时器
         self.imageSwappingTimer.fire();
+        // 计时器继续
+        self.imageSwappingTimer.fireDate = Date.distantPast;
     }
 
     
@@ -125,8 +136,10 @@ class AnimatedImagesView: UIView {
         self._init();
     }
     
-    func _init(){
-        let images = NSMutableArray.init();
+    private func _init(){
+        
+        self.imageViews = Array.init();
+        
         for _ in 0 ..< 2 {
             
             let frame = CGRect.init(x:(CGFloat)(-imageViewsBorderOffset*3.3), y: (CGFloat)(-imageViewsBorderOffset), width: self.bounds.size.width +
@@ -138,10 +151,9 @@ class AnimatedImagesView: UIView {
             imageView.contentMode = .scaleAspectFill;
             self.addSubview(imageView);
             
-            images.add(imageView);
+            self.imageViews.append(imageView)
         }
         
-        self.imageViews = NSArray.init(array: images);
         currentlyDisplayingImageIndex = noImageDisplayingIndex;
         
         currentlyDisplayingImageViewIndex = 0;
@@ -165,25 +177,20 @@ class AnimatedImagesView: UIView {
 
     
     lazy var imageSwappingTimer: Timer = {
-        let timer = Timer.scheduledTimer(timeInterval: self.timePerImage, target: self, selector:#selector(bringNextImage), userInfo: nil, repeats: true);
+        let timer = Timer.scheduledTimer(timeInterval: self.kAnimatedImagesViewDefaultTimePerImage, target: self, selector:#selector(bringNextImage), userInfo: nil, repeats: true);
         return timer;
     }();
-    
-    lazy var timePerImage: TimeInterval = {
-        return self.kAnimatedImagesViewDefaultTimePerImage;
-    
-    }();
-    
 
     var delegate:AnimatedImagesViewDelegate?{
         
         didSet{
-            totalImages = self.delegate?.animatedImagesNumberOfImages(animatedImagesView: self);
+            totalImages = (self.delegate?.animatedImagesNumberOfImages(animatedImagesView: self))!;
         }
     }
     
     deinit {
         self.imageSwappingTimer.invalidate();
+        debugPrint("释放:\(self)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -195,12 +202,12 @@ class AnimatedImagesView: UIView {
  想要在 Swift 中使用 weak delegate，我们就需要将 protocol 限制在 class 内。一种做法是将 protocol 声明为 Objective-C 的，这可以通过在 protocol 前面加上 @objc 关键字来达到，Objective-C 的 protocol 都只有类能实现，因此使用 weak 来修饰就合理了：
  
  @objc protocol MyClassDelegate {
- func method()
+     func method()
  }
  另一种可能更好的办法是在 protocol 声明的名字后面加上 class，这可以为编译器显式地指明这个 protocol 只能由 class 来实现。
  
  protocol MyClassDelegate: class {
- func method()
+     func method()
  }
  相比起添加 @objc，后一种方法更能表现出问题的实质，同时也避免了过多的不必要的 Objective-C 兼容，可以说是一种更好的解决方式。
  

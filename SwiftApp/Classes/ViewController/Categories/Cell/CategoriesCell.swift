@@ -23,6 +23,9 @@ class CategoriesCell: UICollectionViewCell {
         if DEVELOP_TEST == false {
             self.iconView.image = UIImage.init(named: model.icon)
             self.titleLable.text = model.title
+        }else{
+            self.iconView.image = #imageLiteral(resourceName: "Avatar")
+            self.titleLable.text = "model.title"
         }
     }
     

@@ -48,7 +48,7 @@ class HomeVModel:HomeVModelInterface {
             "count":"20",
             "page":"\(page)"
         ]
-        debugPrint("page:\(page)")
+//        debugPrint("page:\(page)")
         VideoNetManager.loadVideoRequest(params: params) { [weak self](dict, err) in
             
             guard let d:[String:Any] = dict else{
