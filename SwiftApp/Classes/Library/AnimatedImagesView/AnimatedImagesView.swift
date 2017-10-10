@@ -20,7 +20,7 @@ protocol AnimatedImagesViewDelegate:class {
 class AnimatedImagesView: UIView {
     
     private var imageViews:[UIImageView] = Array.init();
-    private var animating:Bool?;
+    private var animating:Bool = false;
     private var totalImages:Int = 0;
     private var currentlyDisplayingImageViewIndex:Int?;
     private var currentlyDisplayingImageIndex:Int?;
@@ -31,13 +31,15 @@ class AnimatedImagesView: UIView {
     var imageSwappingAnimationDuration = 2.0;
     var imageViewsBorderOffset = 150.0;
     
-    open func startAnimating(){
-    
-        debugPrint(animating as Any)
-        if (animating == nil || animating == false) {
+    // 这个方法要注意，在同个界面不要多次执行这会造成动画停止的问题
+    public func startAnimating(){
+
+        if (animating == false) {
             animating = true;
-            // 启动计时器
+            /**
+            * 启动计时器
             self.imageSwappingTimer.fire();
+            */
             // 计时器继续
             imageSwappingTimer.fireDate = Date.distantPast;
         }
@@ -52,9 +54,9 @@ class AnimatedImagesView: UIView {
                 for imageView in self.imageViews{
                     imageView.alpha = 0.0;
                 }
-            }, completion: { (finished:Bool) in
-                self.currentlyDisplayingImageIndex = self.noImageDisplayingIndex;
-                self.animating = false;
+            }, completion: { [weak self](finished:Bool) in
+                self?.currentlyDisplayingImageIndex = self?.noImageDisplayingIndex;
+                self?.animating = false;
             });
         }
     }
@@ -123,9 +125,10 @@ class AnimatedImagesView: UIView {
     
     func reloadData(){
         totalImages = (self.delegate?.animatedImagesNumberOfImages(animatedImagesView: self))!;
-        
-        // 启动计时器
+        /**
+        * 启动计时器
         self.imageSwappingTimer.fire();
+        */
         // 计时器继续
         self.imageSwappingTimer.fireDate = Date.distantPast;
     }
