@@ -40,17 +40,18 @@ class CategoriesListViewController: RootViewController {
     func refresh() -> Void {
         
         self.tabView.es_addPullToRefresh {
-            [unowned self] in
-            self.vModel.loadLate()
-            self.tabView.es_stopPullToRefresh(ignoreDate: true)
+            [weak self] in
+
+            self?.vModel.loadLate()
+            self?.tabView.es_stopPullToRefresh(ignoreDate: true)
             /// Set ignore footer or not
-            self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            self?.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
         }
         
         self.tabView.es_addInfiniteScrolling {
-            [unowned self] in
+            [weak self] in
             debugPrint("es_addInfiniteScrolling")
-            self.vModel.loadingMore()
+            self?.vModel.loadingMore()
         }
     }
     
