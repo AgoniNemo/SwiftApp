@@ -27,6 +27,7 @@ extension BaseNetWorking {
                         completionHandler(value,nil)
                     }
                 case .failure(let error):
+                    debugPrint("请求出错:\(error)")
                     completionHandler(nil,error)
                 }
         }

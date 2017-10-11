@@ -19,4 +19,4 @@ let URI_ROOT:String = {
 }()
 
 // 界面隐藏开关
-let DEVELOP_TEST = false
+let DEVELOP_TEST = true

@@ -83,7 +83,7 @@ class UserModel {
             return false
         }
         d["status"] = "1";
-        d["loginTime"] = Date.stringTimestamp();
+        debugPrint("登录时间：\(Date.timeStampToString(timeStamp: self.dic!["loginTime"]!))")
         self.isTokenExpire = false
         self.stutas = true;
         

@@ -19,7 +19,6 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         
         vModel.delegate = self;
         self.alertload()
-        vModel.loadingMore()
         
         self.view.addSubview(self.tabView)
 
@@ -37,31 +36,34 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         self.show(text: text)
     }
     func refresh() -> Void {
-        
+        debugPrint("刷新。。。")
         self.tabView.es_addPullToRefresh {
             [weak self] in
+            debugPrint("es_加载最新！\(String(describing: self))")
             self?.vModel.loadLate()
-            self?.tabView.es_stopPullToRefresh(ignoreDate: true)
+//            self?.tabView.es_stopPullToRefresh(ignoreDate: true)
             /// Set ignore footer or not
-            self?.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+//            self?.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
         }
         
         self.tabView.es_addInfiniteScrolling {
             [weak self] in
-            debugPrint("es_addInfiniteScrolling")
+            debugPrint("es_加载更多")
             self?.vModel.loadingMore()
         }
     }
     
     func reloadData() {
+        debugPrint("reloadData")
         self.hidden()
         self.tabView.es_stopLoadingMore()
+        self.tabView.es_stopPullToRefresh(ignoreDate: true)
         self.tabView.reloadData()
     }
 
     
     
-    lazy var tabView:UITableView = {
+    private lazy var tabView:UITableView = {
     
         let t = UITableView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH))
         

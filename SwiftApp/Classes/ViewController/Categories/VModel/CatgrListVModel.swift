@@ -69,6 +69,12 @@ class CatgrListVModel:CatgrListVModelInterface {
                     self?.delegate?.alertInfo(text: mesg!)
                     return
                 }
+                
+                if datas.count == 0{
+                    self?.delegate?.alertInfo(text: "已经没有更多数据了！")
+                    return
+                }
+                
                 if datas.count > 0,self?.page == 0{
                     self?.dataSource.removeAll()
                 }

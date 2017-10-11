@@ -26,7 +26,6 @@ class CategoriesListViewController: RootViewController {
         vModel.key = searchKey
         vModel.delegate = self;
         self.alertload()
-        vModel.loadingMore()
         
         self.view.addSubview(self.tabView)
         
@@ -38,19 +37,17 @@ class CategoriesListViewController: RootViewController {
     }
     
     func refresh() -> Void {
-        
+        debugPrint("刷新。。。\(String(describing: self))")
         self.tabView.es_addPullToRefresh {
             [weak self] in
-
+            debugPrint("es_加载最新\(String(describing: self))")
             self?.vModel.loadLate()
-            self?.tabView.es_stopPullToRefresh(ignoreDate: true)
-            /// Set ignore footer or not
-            self?.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            
         }
         
         self.tabView.es_addInfiniteScrolling {
             [weak self] in
-            debugPrint("es_addInfiniteScrolling")
+            debugPrint("es_加载更多\(String(describing: self))")
             self?.vModel.loadingMore()
         }
     }
@@ -91,6 +88,7 @@ extension CategoriesListViewController:CatgrListVModelDelegate{
     func reloadData() {
         self.hidden()
         self.tabView.es_stopLoadingMore()
+        self.tabView.es_stopPullToRefresh(ignoreDate: true)
         self.tabView.reloadData()
     }
 

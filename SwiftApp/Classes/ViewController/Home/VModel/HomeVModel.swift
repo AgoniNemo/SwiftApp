@@ -61,12 +61,19 @@ class HomeVModel:HomeVModelInterface {
                 guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
                     let mesg = d["message"] as? String
                     if mesg == nil{
+                        debugPrint(d)
                         self?.delegate?.alertInfo(text: "数据加载出错！")
                         return
                     }
                     self?.delegate?.alertInfo(text: mesg!)
                     return
                 }
+                
+                if datas.count == 0{
+                    self?.delegate?.alertInfo(text: "已经没有更多数据了！")
+                    return
+                }
+                
                 if datas.count > 0,self?.page == 0{
                     self?.dataSource.removeAll()
                 }
