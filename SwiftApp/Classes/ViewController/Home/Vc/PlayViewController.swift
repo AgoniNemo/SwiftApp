@@ -137,10 +137,6 @@ class PlayViewController: RootViewController{
 }
 extension PlayViewController:PlayVModelDelegate{
     
-    func alertload() {
-        
-    }
-
     func alertInfo(text:String){
         self.show(text: text)
     }

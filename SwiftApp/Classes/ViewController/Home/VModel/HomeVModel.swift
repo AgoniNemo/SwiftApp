@@ -70,7 +70,7 @@ class HomeVModel:HomeVModelInterface {
                 }
                 
                 if datas.count == 0{
-                    self?.delegate?.alertInfo(text: "已经没有更多数据了！")
+                    self?.delegate?.noMoreData!()
                     return
                 }
                 

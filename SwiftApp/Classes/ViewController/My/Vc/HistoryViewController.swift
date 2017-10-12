@@ -73,9 +73,6 @@ extension HistoryViewController:HisAColVModelDelegate{
         self.collection.reloadData()
     }
     
-    func alertload() {
-        
-    }
 
     func alertInfo(text: String) {
         

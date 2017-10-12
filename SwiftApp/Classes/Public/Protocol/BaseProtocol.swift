@@ -13,7 +13,8 @@ import Foundation
     
     func alertInfo(text:String)
     func reloadData()
-    func alertload()
+    @objc optional func alertload()
+    @objc optional func noMoreData()
 }
 
 protocol BaseVModelInterface {

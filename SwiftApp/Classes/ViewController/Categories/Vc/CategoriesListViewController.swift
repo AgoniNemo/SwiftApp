@@ -84,6 +84,10 @@ extension CategoriesListViewController:CatgrListVModelDelegate{
         self.show(text: text)
     }
     
+    func noMoreData() {
+        self.show(text: "已经没有更多数据了！")
+        self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+    }
     
     func reloadData() {
         self.hidden()

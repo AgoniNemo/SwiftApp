@@ -43,9 +43,6 @@ class InformationViewController: RootViewController {
 }
 extension InformationViewController:InfoVModelDelegate{
 
-    func alertload() {
-        
-    }
 
     func reloadData() {
         self.tabView.reloadData()

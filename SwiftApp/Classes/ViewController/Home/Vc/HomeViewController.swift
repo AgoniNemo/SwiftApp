@@ -9,7 +9,7 @@
 import UIKit
 import ESPullToRefresh
 
-class HomeViewController: RootViewController,HomeVModelDelegate{
+class HomeViewController: RootViewController{
 
     var vModel = HomeVModel()
     
@@ -28,13 +28,7 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
-    func alertload() {
-        self.load(text: "数据加载中...")
-    }
-    
-    func alertInfo(text: String) {
-        self.show(text: text)
-    }
+   
     func refresh() -> Void {
         debugPrint("刷新。。。")
         self.tabView.es_addPullToRefresh {
@@ -43,7 +37,7 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
             self?.vModel.loadLate()
 //            self?.tabView.es_stopPullToRefresh(ignoreDate: true)
             /// Set ignore footer or not
-//            self?.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+            
         }
         
         self.tabView.es_addInfiniteScrolling {
@@ -63,7 +57,7 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
 
     
     
-    private lazy var tabView:UITableView = {
+     lazy var tabView:UITableView = {
     
         let t = UITableView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH))
         
@@ -86,7 +80,22 @@ class HomeViewController: RootViewController,HomeVModelDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension HomeViewController:HomeVModelDelegate{
+    
+    func alertload() {
+        self.load(text: "数据加载中...")
+    }
+    
+    func alertInfo(text: String) {
+        self.show(text: text)
+    }
+    
+    func noMoreData() {
+        self.show(text: "已经没有更多数据了！")
+        self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+    }
 }
 
 extension HomeViewController:UITableViewDelegate,UITableViewDataSource{

@@ -31,7 +31,7 @@ class HomeCell: UITableViewCell {
             self.viewsLable.text = "  观看次数:\(model.views)"
         }else{
             self.iconView.image = #imageLiteral(resourceName: "Avatar")
-            self.titleLabel.text = "model.title"
+            self.titleLabel.text = model.title
             self.timeLable.text = "\(model.duration)\t"
             self.ratingLable.text = "评分:\(model.rating)"
             self.viewsLable.text = "  观看次数:\(model.views)"
