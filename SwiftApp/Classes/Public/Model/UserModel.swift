@@ -13,7 +13,7 @@ class UserModel {
     
     static let shareInstance = UserModel()
     
-    private var dic:[String:String]?;
+    private var dic:[String:String] = Dictionary.init();
     var isTokenExpire:Bool = false
     
     var user:String = "";
@@ -51,6 +51,7 @@ class UserModel {
         guard d.count > 0 else {
             return
         }
+        self.dic = d
         
         setProperties(dict: d)
         self.stutas = true;
@@ -77,13 +78,27 @@ class UserModel {
         
         
     }
+    private func setDict() -> Void {
+        
+        dic["user"] = self.user
+        dic["sex"] = self.sex
+        dic["age"] = self.age
+        dic["name"] = self.name
+        
+        dic["phoneNumber"] = self.phoneNumber
+        dic["headPath"] = self.headPath
+        dic["authority"] = self.authority
+        dic["token"] = self.token
+    }
     
     public func save() -> Bool {
-        guard var d = self.dic else {
+        setDict()
+        guard self.dic.count > 0 else {
             return false
         }
+        var d = self.dic
         d["status"] = "1";
-        debugPrint("登录时间：\(Date.timeStampToString(timeStamp: self.dic!["loginTime"]!))")
+        debugPrint("登录时间：\(Date.timeStampToString(timeStamp: self.dic["loginTime"]!))")
         self.isTokenExpire = false
         self.stutas = true;
         

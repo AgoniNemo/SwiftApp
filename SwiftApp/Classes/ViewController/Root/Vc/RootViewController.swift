@@ -18,6 +18,22 @@ class RootViewController: UIViewController,UIGestureRecognizerDelegate{
         
     }
     
+    func setRightButton(title:String) -> Void {
+
+        let btn = UIButton.init(type: .system)
+        btn.frame = XCGRect(0, 0, 20, 20)
+        btn.setTitle(title, for: .normal)
+        btn.setTitleColor(UIColor.white, for: .normal)
+        btn.addTarget(self, action: #selector(rightAction), for: UIControlEvents.touchUpInside);
+        
+        let item = UIBarButtonItem.init(customView: btn)
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    
+    func rightAction() -> Void {
+        
+    }
+    
     func setBackButton() -> Void {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
         let btn = UIButton.init(type: .custom)

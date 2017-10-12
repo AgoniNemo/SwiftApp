@@ -82,12 +82,12 @@ class Alert {
         
         let alert = SCLAlertView(appearance: appearance)
         
-        let txt = alert.addTextField("请输入用户名")
-        let pwd = alert.addTextField("请输入密码")
-        let cde = alert.addTextField("请输入邀请码")
+        let txtF = alert.addTextField("请输入用户名")
+        let pwdF = alert.addTextField("请输入密码")
+        let cdeF = alert.addTextField("请输入邀请码")
         
         alert.addButton("注册") {
-            registerClosure(txt.text!,pwd.text!,cde.text!)
+            registerClosure(txtF.text!,pwdF.text!,cdeF.text!)
         }
         
         alert.addButton("取消") {

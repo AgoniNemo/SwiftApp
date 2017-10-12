@@ -25,7 +25,6 @@ class MyInfoCell: UITableViewCell {
             self.endView.isHidden = true
         }
         
-        
     }
     
     
@@ -37,6 +36,7 @@ class MyInfoCell: UITableViewCell {
         if cell == nil {
             
             cell = MyInfoCell.init(style: .default, reuseIdentifier: Id)
+            cell?.accessoryType = .disclosureIndicator
         }
         
         return cell!
@@ -47,7 +47,7 @@ class MyInfoCell: UITableViewCell {
         
         let h:CGFloat = 30.0
         let y:CGFloat  = (self.height! - h)/2
-        let e = UILabel.init(frame: XCGRect(SCREEN_WIDTH - 10 - 100, y, 100,h))
+        let e = UILabel.init(frame: XCGRect(SCREEN_WIDTH - 30 - 100, y, 100,h))
         e.textAlignment = .right
         e.font = UIFont.systemFont(ofSize: 14)
         self.contentView.addSubview(e)
@@ -59,7 +59,7 @@ class MyInfoCell: UITableViewCell {
         let r:CGFloat = 30.0
         let y:CGFloat  = (self.height! - r)/2
         
-        let i = UIImageView.init(frame: XCGRect(SCREEN_WIDTH-10 - r, y, r,r))
+        let i = UIImageView.init(frame: XCGRect(SCREEN_WIDTH - 30 - r, y, r,r))
         i.layer.masksToBounds = true
         i.layer.cornerRadius = r/2
         self.contentView.addSubview(i)

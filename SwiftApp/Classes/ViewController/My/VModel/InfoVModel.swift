@@ -51,9 +51,10 @@ class InfoVModel:InfoVModelInterface {
     }
     
     func loadingMore() {
+        dataSorce.removeAll()
         let model = UserModel.shareInstance
         
-        let ary = [["head":"头像","end":"","url":"\(model.headPath)/"],["head":"昵称","end":model.name,"url":""],["head":"性别","end":model.sex,"url":""],["head":"年龄","end":model.age,"url":""],["head":"手机号","end":model.phoneNumber,"url":""]]
+        let ary = [["head":"头像","end":"","url":"\(model.headPath)/"],["head":"昵称","end":model.name,"url":""],["head":"性别","end":model.sex,"url":""],["head":"年龄","end":model.age,"url":""],["head":"手机号","end":model.phoneNumber,"url":""],["head":"修改密码","end":"","url":""]]
         
         var lis:[MyInfoModel] = Array.init()
         

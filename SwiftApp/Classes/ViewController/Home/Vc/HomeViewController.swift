@@ -90,6 +90,7 @@ extension HomeViewController:HomeVModelDelegate{
     
     func alertInfo(text: String) {
         self.show(text: text)
+        self.tabView.es_stopLoadingMore()
     }
     
     func noMoreData() {

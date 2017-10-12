@@ -22,7 +22,7 @@ protocol ViewModelInterface {
     func userNameDidChange(text:String?)
     func passwordDidChange(text:String?)
     func login()
-    func register(user:String,pwd:String,invitationCode:String?)
+    func register(user:String,pwd:String,invitationCode:String)
 }
 
 
@@ -44,19 +44,22 @@ public class LoginVModel:ViewModelInterface{
     }
     
     func register(user:String,pwd:String,
-                  invitationCode:String? = "TVRnM013UVdkdmJtbE9aVzF2TVRVd056QXlNak0zTWc9PQ==") {
-        
+                  invitationCode:String) {
+        var code = invitationCode
+        if code.characters.count == 0 {
+            code = "TVRnM013UVdkdmJtbE9aVzF2TVRVd056YzRNREk1Tmc9PQ=="
+        }
         let para:[String:Any] = [
             "user":user,
             "password":pwd,
-            "invitationCode":invitationCode!
+            "invitationCode":code
         ]
         
         LoginNetManager.registerRequest(params: para) { [weak self](dict, err) in
             if err != nil{
                 self?.delegate?.alertInfo(text: "注册失败!")
             }else{
-//                debugPrint(dict as Any)
+                debugPrint(dict as Any)
                 
                 guard let dic:[String:Any] = dict else{
                     debugPrint("---出错---")
