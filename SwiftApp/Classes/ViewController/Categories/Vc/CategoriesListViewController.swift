@@ -38,14 +38,14 @@ class CategoriesListViewController: RootViewController {
     
     func refresh() -> Void {
         debugPrint("刷新。。。\(String(describing: self))")
-        self.tabView.es_addPullToRefresh {
+        self.tabView.addPullToRefresh {
             [weak self] in
             debugPrint("es_加载最新\(String(describing: self))")
             self?.vModel.loadLate()
             
         }
         
-        self.tabView.es_addInfiniteScrolling {
+        self.tabView.addInfiniteScrolling {
             [weak self] in
             debugPrint("es_加载更多\(String(describing: self))")
             self?.vModel.loadingMore()
@@ -86,13 +86,13 @@ extension CategoriesListViewController:CatgrListVModelDelegate{
     
     func noMoreData() {
         self.show(text: "已经没有更多数据了！")
-        self.tabView.es_stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
+        self.tabView.stopPullToRefresh(ignoreDate: true, ignoreFooter: false)
     }
     
     func reloadData() {
         self.hidden()
-        self.tabView.es_stopLoadingMore()
-        self.tabView.es_stopPullToRefresh(ignoreDate: true)
+        self.tabView.stopLoadingMore()
+        self.tabView.stopPullToRefresh(ignoreDate: true)
         self.tabView.reloadData()
     }
 

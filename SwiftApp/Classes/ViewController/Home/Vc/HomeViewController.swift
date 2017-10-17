@@ -31,7 +31,7 @@ class HomeViewController: RootViewController{
    
     func refresh() -> Void {
         debugPrint("刷新。。。")
-        self.tabView.es_addPullToRefresh {
+        self.tabView.addPullToRefresh {
             [weak self] in
             debugPrint("es_加载最新！\(String(describing: self))")
             self?.vModel.loadLate()
@@ -40,7 +40,7 @@ class HomeViewController: RootViewController{
             
         }
         
-        self.tabView.es_addInfiniteScrolling {
+        self.tabView.addInfiniteScrolling {
             [weak self] in
             debugPrint("es_加载更多")
             self?.vModel.loadingMore()
@@ -50,8 +50,8 @@ class HomeViewController: RootViewController{
     func reloadData() {
         debugPrint("reloadData")
         self.hidden()
-        self.tabView.es_stopLoadingMore()
-        self.tabView.es_stopPullToRefresh(ignoreDate: true)
+        self.tabView.stopLoadingMore()
+        self.tabView.stopPullToRefresh(ignoreDate: true)
         self.tabView.reloadData()
     }
 

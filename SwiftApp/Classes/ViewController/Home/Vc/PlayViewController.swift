@@ -105,6 +105,12 @@ class PlayViewController: RootViewController{
         t.rowHeight = 90
         t.showsVerticalScrollIndicator = false
         
+        let l = UILabel.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 40))
+        l.text = self.model?.title
+        l.font = UIFont.systemFont(ofSize: 16)
+        l.numberOfLines = 0
+        l.textColor = UIColor.gray
+        t.tableHeaderView = l
         
         return t
         
@@ -165,14 +171,6 @@ extension PlayViewController:UITableViewDelegate,UITableViewDataSource{
         
         return cell
         
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return model?.title
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
