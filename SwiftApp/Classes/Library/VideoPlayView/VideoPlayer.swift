@@ -503,10 +503,13 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
     }
     
     private func handleShowViewSublayers() -> Void {
+        /**
         for layer in videoShowView.subviews {
             layer.layer.removeFromSuperlayer()
         }
         videoShowView.layer.addSublayer(self.currentPlayerLayer!)
+        */
+        videoShowView.layer.insertSublayer(self.currentPlayerLayer!, at: 0)
     }
     
     // MARK: - removeObserver
