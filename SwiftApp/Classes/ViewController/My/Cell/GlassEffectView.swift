@@ -26,8 +26,14 @@ class GlassEffectView: UIView {
         
         let iUrl = URL.init(string: url)
 
-        self.bgView.kf.setImage(with: iUrl, placeholder: image)
-        self.headerView.kf.setImage(with: iUrl, placeholder: image)
+        if url.characters.count > 0 {
+            self.bgView.kf.setImage(with: iUrl)
+            self.headerView.kf.setImage(with: iUrl)
+        }else{
+            self.bgView.kf.setImage(with: iUrl, placeholder: image)
+            self.headerView.kf.setImage(with: iUrl, placeholder: image)
+        }
+        
     }
     
     override init(frame: CGRect) {

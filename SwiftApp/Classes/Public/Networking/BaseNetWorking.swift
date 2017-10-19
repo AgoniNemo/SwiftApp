@@ -33,4 +33,24 @@ extension BaseNetWorking {
         }
     }
 
+    class func upload(multipartData:@escaping ((MultipartFormData)->()),url:String,completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+        
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            multipartData(multipartFormData)
+        }, to: url) { (encodingResult) in
+            
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON(completionHandler: { (response) in
+                    if let value = response.result.value as? [String : Any] {
+                        completionHandler(value,nil)
+                    }
+                })
+            case .failure(let encodingError):
+                debugPrint("请求出错:\(encodingError)")
+                completionHandler(nil,encodingError)
+            }
+        }
+    }
+    
 }

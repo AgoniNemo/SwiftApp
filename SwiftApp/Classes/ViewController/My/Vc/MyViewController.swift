@@ -40,6 +40,10 @@ class MyViewController: RootViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+         self.headerView.setImage(url: UserModel.shareInstance.headPath)
+    }
     
     lazy var tabView: UITableView = {
         let t = UITableView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGH), style: .grouped)
@@ -52,9 +56,8 @@ class MyViewController: RootViewController {
     }()
     
     lazy var headerView: GlassEffectView = {
-        
         let h = GlassEffectView.init(frame: XCGRect(0, 0, SCREEN_WIDTH, 180*2))
-        h.setImage(url: "")
+
         return h
     }()
 

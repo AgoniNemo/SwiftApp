@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import Alamofire
 
 class UserInfoModifyManager: BaseNetWorking {
-
     
     class func modifyPasswordRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         self.post(url: "\(URI_ROOT)/user/modifyPassword", params: params) { (dict, error) in
@@ -19,6 +19,15 @@ class UserInfoModifyManager: BaseNetWorking {
     
     class func modifyInfoRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         self.post(url: "\(URI_ROOT)/user/modifyInfo", params: params) { (dict, error) in
+            completionHandler(dict,error)
+        }
+    }
+    
+    class func uploadRequest(multipartData:@escaping ((MultipartFormData)->()),completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+        
+        self.upload(multipartData: { (data) in
+            multipartData(data)
+        }, url: "\(URI_ROOT)/file/updateImage") { (dict, error) in
             completionHandler(dict,error)
         }
     }

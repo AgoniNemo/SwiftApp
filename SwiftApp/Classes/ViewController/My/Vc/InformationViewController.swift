@@ -10,6 +10,8 @@ import UIKit
 
 class InformationViewController: RootViewController {
 
+    typealias Closure = (()->())
+    var refreshImageClosure:Closure?
     
     let vModel = InfoVModel()
     
@@ -35,21 +37,48 @@ class InformationViewController: RootViewController {
         return t
     }()
 
+    lazy var imagePick: UIImagePickerController = {
+        let i = UIImagePickerController.init()
+        i.delegate = self
+        i.modalPresentationStyle = .overFullScreen
+        i.allowsEditing = true
+        return i
+    }()
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 }
+
+extension InformationViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        let image:UIImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        let data = UIImageJPEGRepresentation(image, 0.7)
+        
+        self.vModel.uploadImage(data: data!)
+        
+    }
+    
+}
+
 extension InformationViewController:InfoVModelDelegate{
 
-
+    func alertload() {
+        self.load(text: "上传中...")
+    }
+    
     func reloadData() {
+        self.hidden()
         self.tabView.reloadData()
     }
     
     func alertInfo(text: String) {
-        
+        self.show(text: text)
     }
 }
 
@@ -87,9 +116,40 @@ extension InformationViewController: UITableViewDelegate,UITableViewDataSource{
                 self?.vModel.loadingMore()
             }
             self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            showActionSheet()
         }
         
     }
     
+    func showActionSheet() -> Void {
+        
+        let clickedHandler = { [weak self](sheetView: ActionSheetView, index: Int) in
+            debugPrint("点击\(index)")
+            self?.selectAction(index: index)
+        }
+        
+        let otherButtonTitles = ["拍照", "相册"]
+        let actionSheet = ActionSheetView(cancelButtonTitle: "取消",
+                                          otherButtonTitles: otherButtonTitles,
+                                          clickedHandler: clickedHandler)
+        actionSheet.show()
+    }
+    
+    func selectAction(index:Int) -> Void {
+        
+        if index == 0 {
+            return
+        }
+        
+        var sourceType:UIImagePickerControllerSourceType = .photoLibrary
+        if (index == 1) {
+            sourceType = .camera
+        }else if (index == 2){
+            sourceType = .photoLibrary
+        }
+        self.imagePick.sourceType = sourceType
+        self.present(self.imagePick, animated: true, completion: nil)
+    }
     
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA0764601F9853B5008D93AC /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA07645C1F98518C008D93AC /* ActionSheetCell.swift */; };
+		BA0764611F9853B5008D93AC /* ActionSheetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA07645D1F98518C008D93AC /* ActionSheetConfig.swift */; };
+		BA0764621F9853B5008D93AC /* ActionSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA07645E1F98518C008D93AC /* ActionSheetView.swift */; };
+		BA0764631F9853B5008D93AC /* CWActionSheet.h in Sources */ = {isa = PBXBuildFile; fileRef = BA07645F1F98518C008D93AC /* CWActionSheet.h */; };
 		BA1226CE1F695D3900E097DF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */; };
 		BA1299DA1F8616EF00C4AB30 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */; };
 		BA137A381F8712680036C669 /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA137A371F8712680036C669 /* VideoManager.swift */; };
@@ -109,6 +113,10 @@
 		89252DD8A1878B64256287B2 /* Pods_SwiftAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC3BD026D47223AA5311820 /* Pods_SwiftApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F2901BAC3FB9DAB81D95128 /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BA07645C1F98518C008D93AC /* ActionSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
+		BA07645D1F98518C008D93AC /* ActionSheetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetConfig.swift; sourceTree = "<group>"; };
+		BA07645E1F98518C008D93AC /* ActionSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetView.swift; sourceTree = "<group>"; };
+		BA07645F1F98518C008D93AC /* CWActionSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWActionSheet.h; sourceTree = "<group>"; };
 		BA1226CD1F695D3900E097DF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		BA1299D91F8616EF00C4AB30 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		BA137A371F8712680036C669 /* VideoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
@@ -240,6 +248,17 @@
 				89252DD8A1878B64256287B2 /* Pods_SwiftAppUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA07645B1F98518C008D93AC /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				BA07645C1F98518C008D93AC /* ActionSheetCell.swift */,
+				BA07645D1F98518C008D93AC /* ActionSheetConfig.swift */,
+				BA07645E1F98518C008D93AC /* ActionSheetView.swift */,
+				BA07645F1F98518C008D93AC /* CWActionSheet.h */,
+			);
+			path = ActionSheet;
 			sourceTree = "<group>";
 		};
 		BA14DE3F1F82864600E0337F /* Cell */ = {
@@ -619,6 +638,7 @@
 		BAF71C2F1F6912AA00D3A265 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				BA07645B1F98518C008D93AC /* ActionSheet */,
 				BA5E8AEB1F7FD01B00182291 /* VideoPlayView */,
 				BA7E9E9A1F711F5B005831CA /* DB */,
 				BAF71C301F6912AA00D3A265 /* AnimatedImagesView */,
@@ -884,6 +904,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA0764601F9853B5008D93AC /* ActionSheetCell.swift in Sources */,
+				BA0764611F9853B5008D93AC /* ActionSheetConfig.swift in Sources */,
+				BA0764621F9853B5008D93AC /* ActionSheetView.swift in Sources */,
+				BA0764631F9853B5008D93AC /* CWActionSheet.h in Sources */,
 				BAF71C2E1F69085A00D3A265 /* ViewController.swift in Sources */,
 				BA7E9EA71F711F5B005831CA /* UserInformationManager.swift in Sources */,
 				BA846F731F7E9BFC003DA1E4 /* HLSViewController.swift in Sources */,

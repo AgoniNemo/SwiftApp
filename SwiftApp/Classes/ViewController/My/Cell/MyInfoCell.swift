@@ -20,7 +20,8 @@ class MyInfoCell: UITableViewCell {
         
         if model.url.characters.count > 0 {
             self.endView.isHidden = false
-            self.endView.kf.setImage(with: URL.init(string: model.url), placeholder: #imageLiteral(resourceName: "header"))
+            let url = model.url.replacingOccurrences(of: " ", with: "")
+            self.endView.kf.setImage(with: URL.init(string: url), placeholder: #imageLiteral(resourceName: "header"))
         }else{
             self.endView.isHidden = true
         }
