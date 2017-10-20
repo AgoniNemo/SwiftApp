@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>SwiftApp</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,8 +27,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>允许此权限才能使用相册！</string>
 	<key>NSCameraUsageDescription</key>
 	<string>允许此权限才能使用相机功能！</string>
+	<key>NSContactsUsageDescription</key>
+	<string>允许此权限才能使用联系人！</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>允许此权限才能使用麦克风！</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>允许此权限才能使用相册！</string>
 	<key>UILaunchStoryboardName</key>

@@ -25,7 +25,13 @@ class InformationViewController: RootViewController {
         vModel.loadingMore()
         
         self.view.addSubview(self.tabView)
-    
+        
+        setUI()
+    }
+    func setUI() -> Void {
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 3) {
+            self.imagePick.sourceType = .photoLibrary
+        }
     }
     
     lazy var tabView: UITableView = {
@@ -42,6 +48,7 @@ class InformationViewController: RootViewController {
         i.delegate = self
         i.modalPresentationStyle = .overFullScreen
         i.allowsEditing = true
+        i.navigationBar.tintColor = UIColor.white
         return i
     }()
     
@@ -149,7 +156,9 @@ extension InformationViewController: UITableViewDelegate,UITableViewDataSource{
             sourceType = .photoLibrary
         }
         self.imagePick.sourceType = sourceType
-        self.present(self.imagePick, animated: true, completion: nil)
+        self.present(self.imagePick, animated: true) {
+            
+        }
     }
     
 }
