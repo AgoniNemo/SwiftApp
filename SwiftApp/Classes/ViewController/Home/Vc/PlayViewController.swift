@@ -235,6 +235,8 @@ extension PlayViewController:VideoPlayerDelegate{
             })
             
         }
+        let y = self.videoPlayBGView.frame.maxY
+        self.tabView.frame = XCGRect(0, y, SCREEN_WIDTH, SCREEN_HEIGH-y)
         //        self.navigationController?.navigationBar.isHidden = !_isHalfScreen
         self.videoPlayer.fullScreen(!_isHalfScreen)
     }
