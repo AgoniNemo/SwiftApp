@@ -133,7 +133,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource{
     func skipHLSViewCotroller(_ model:VideoModel) -> Void {
         let h = HLSViewController()
         h.model = model
-        //        h.hidesBottomBarWhenPushed = true;
+        h.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(h, animated: true)
     }
     

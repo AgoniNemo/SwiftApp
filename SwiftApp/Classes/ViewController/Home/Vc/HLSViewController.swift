@@ -18,7 +18,7 @@ class HLSViewController: RootViewController {
         
         self.view.backgroundColor = UIColor.white
 
-        // Do any additional setup after loading the view.
+        setBackButton()
     }
 
     override func didReceiveMemoryWarning() {
