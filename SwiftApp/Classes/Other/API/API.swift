@@ -8,15 +8,15 @@
 
 import Foundation
 
-let DEV_STATE_ONLINE = 0  // 本地开关 1：打开  0：关闭
+let DEV_STATE_ONLINE = 1  // 本地开关 1：打开  0：关闭
 
 let URI_ROOT:String = {
     
     if DEV_STATE_ONLINE == 0{
         return "https://xxxserver.herokuapp.com"
     }
-    return "http://0.0.0.0:8090"
+    return "http://0.0.0.0:8099"
 }()
 
 // 界面隐藏开关
-let DEVELOP_TEST = false
+let DEVELOP_TEST = true
