@@ -25,7 +25,7 @@ let userMagerArray = ["user","name","age","sex","phoneNumber","headPath","author
 
 
 /**
- ** 用户数据表字段
+ ** 收藏影片与历史数据表字段
  * title 影片标题
  * views 观看次数
  * duration 影片时间
@@ -39,6 +39,8 @@ let userMagerArray = ["user","name","age","sex","phoneNumber","headPath","author
  * collect 是否为收载影片
  * history 是否为历史(一般为1，如果看过了，但是在观看里删除了，就为0)
  * watchTime 观看时间
+ * collectTime 收藏时间
+ * user 收藏的账号
  */
-let videoMagerArray = ["title","views","duration","rating","icon","category","playPath","symbol","hls","videoId","collect","history","watchTime"]
+let videoMagerArray = ["title","views","duration","rating","icon","category","playPath","symbol","hls","videoId","collect","history","watchTime","collectTime","user"]
 

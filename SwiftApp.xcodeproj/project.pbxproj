@@ -79,6 +79,7 @@
 		BA8502C81F6FB13200769782 /* UIViewCotroller+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */; };
 		BA853CFB1F735BD200E37FFD /* VideoNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA853CFA1F735BD200E37FFD /* VideoNetManager.swift */; };
 		BA853CFF1F73CB1200E37FFD /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA853CFE1F73CB1200E37FFD /* PlayViewController.swift */; };
+		BA869D211FD78AA800AA3AE1 /* CollectNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA869D201FD78AA800AA3AE1 /* CollectNetManager.swift */; };
 		BAF71C111F69084800D3A265 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C101F69084800D3A265 /* PrefixHeader.swift */; };
 		BAF71C2B1F69085A00D3A265 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C1E1F69085A00D3A265 /* LoginViewController.swift */; };
 		BAF71C2C1F69085A00D3A265 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF71C211F69085A00D3A265 /* MyViewController.swift */; };
@@ -191,6 +192,7 @@
 		BA8502C71F6FB13200769782 /* UIViewCotroller+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewCotroller+Alert.swift"; sourceTree = "<group>"; };
 		BA853CFA1F735BD200E37FFD /* VideoNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoNetManager.swift; sourceTree = "<group>"; };
 		BA853CFE1F73CB1200E37FFD /* PlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		BA869D201FD78AA800AA3AE1 /* CollectNetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectNetManager.swift; sourceTree = "<group>"; };
 		BAF71C101F69084800D3A265 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixHeader.swift; sourceTree = "<group>"; };
 		BAF71C1E1F69085A00D3A265 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BAF71C211F69085A00D3A265 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				BA17F3321F807CB00020D5A5 /* CategoriesNetManager.swift */,
 				BA1BD8191F83791600A22DDF /* CommentNetManager.swift */,
 				BA7D2CE21F8F454700F39970 /* UserInfoModifyManager.swift */,
+				BA869D201FD78AA800AA3AE1 /* CollectNetManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -946,6 +949,7 @@
 				BAF71C621F6913FF00D3A265 /* HomeViewController.swift in Sources */,
 				BA137A381F8712680036C669 /* VideoManager.swift in Sources */,
 				BA51C5631F84B27D005960AF /* SettingVModel.swift in Sources */,
+				BA869D211FD78AA800AA3AE1 /* CollectNetManager.swift in Sources */,
 				BA8502C81F6FB13200769782 /* UIViewCotroller+Alert.swift in Sources */,
 				BAF71C511F6912AA00D3A265 /* LineTextField.swift in Sources */,
 				BA7E4CEA1F726002002FC5C9 /* HomeCell.swift in Sources */,

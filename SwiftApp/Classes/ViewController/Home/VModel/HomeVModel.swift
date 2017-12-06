@@ -38,6 +38,59 @@ class HomeVModel:HomeVModelInterface {
         self.request()
     }
     
+    func updateCollect() -> Void {
+        
+        let token = UserModel.shareInstance.token
+        let user = UserModel.shareInstance.user
+        let params = [
+            "user":user,
+            "token":token
+        ]
+        
+        CollectNetManager.collectListRequest(params: params) { (dict, err) in
+            
+            guard let d:[String:Any] = dict else{
+                debugPrint("数据加载失败!")
+                return
+            }
+            if err == nil{
+                debugPrint(d)
+                guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
+                    let mesg = d["message"] as? String
+                    if mesg == nil{
+                        debugPrint(d)
+                        return
+                    }
+                    return
+                }
+                
+                let models = HisAColModel.allCollect()
+                
+                if models.count > 0 {
+                    let locDtStr = (models.last)!["collectTime"] as! String
+                    let netDtStr = datas.last!["video_updated_at"] as! String
+                    if locDtStr == netDtStr {
+                        return
+                    }
+                }
+                
+                for dict in datas{
+                    
+                   let model = HisAColModel.init(dict: dict)
+                    
+                    model.collect()
+                    
+                }
+                
+                
+            }else{
+                debugPrint("错误:\(String(describing: err))")
+            }
+            
+        }
+    }
+    
+    
     private func request() -> Void{
         
         let token = UserModel.shareInstance.token

@@ -40,6 +40,12 @@ class VideoManager: RootDBManager {
         return self.updateDataWithDict(dict: dict, condition: [[["videoId":dict["videoId"]]]], overlook: ["videoId"], tableName: tableName);
     }
     
+    @discardableResult
+    func updateData(ForDict dict:[String:String],_ condition:[[[String:String]]],_ overlook:[String]) -> Bool {
+        
+        return self.updateDataWithDict(dict: dict, condition: condition, overlook: overlook, tableName: tableName);
+    }
+    
     func verifyData(Forkey key:String) -> Bool {
         
         return self.verifyDataWithDict(dict: ["videoId":key], relationship: [], tableName: tableName);

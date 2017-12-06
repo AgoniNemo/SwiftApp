@@ -69,21 +69,21 @@ class VideoModel {
     }
     
     @discardableResult
-    func save() -> Bool {
+    func save(_ b:Bool = true) -> Bool {
         
         self.dict["watchTime"] = Date.stringTimestamp()
-        self.dict["history"] = "1"
+        self.dict["history"] = b ? "1" : "0"
         
         if DatabaseHelper.sharedInstance.videoMager.verifyData(Forkey: id) {
             var d:[String:String] = Dictionary.init()
             d["watchTime"] = self.dict["watchTime"]
-            d["history"] = "1"
+            d["history"] = b ? "1" : "0"
             d["videoId"] = self.dict["videoId"]
             
             return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: d)
         }
         
-        self.dict["collect"] = "0"
+        self.dict["collect"] = b ? "0" : "1"
         
         let b = DatabaseHelper.sharedInstance.videoMager.insertData(dict: self.dict)
         

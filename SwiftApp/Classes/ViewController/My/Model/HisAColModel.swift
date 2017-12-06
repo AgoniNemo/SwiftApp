@@ -56,6 +56,11 @@ class HisAColModel{
         return self.update(["collect":"0"])
     }
     
+    class func deleteAllCollect() -> Bool {
+        
+        return DatabaseHelper.sharedInstance.videoMager.updateData(ForDict: ["collect":"0"], [[["user":UserModel.shareInstance.user]]], ["user"])
+    }
+    
     class func allCollect() -> [[String:Any]] {
         
         return DatabaseHelper.sharedInstance.videoMager.getCollectData()
@@ -64,6 +69,14 @@ class HisAColModel{
     class func allHistory() -> [[String:Any]] {
         
         return DatabaseHelper.sharedInstance.videoMager.getHistoryData()
+    }
+    
+    @discardableResult
+    func collect() -> Bool {
+        
+        let a:Bool = (self.video?.save(false))!
+        
+        return a
     }
     
 }

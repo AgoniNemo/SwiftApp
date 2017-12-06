@@ -16,15 +16,17 @@ class HomeViewController: RootViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         vModel.delegate = self;
+        vModel.updateCollect()
+        
         self.alertload()
         
         self.view.addSubview(self.tabView)
 
         refresh()
-        
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
@@ -48,11 +50,12 @@ class HomeViewController: RootViewController{
     }
     
     func reloadData() {
-        debugPrint("reloadData")
+        debugPrint("----reloadData----")
         self.hidden()
         self.tabView.stopLoadingMore()
         self.tabView.stopPullToRefresh(ignoreDate: true)
         self.tabView.reloadData()
+        
     }
 
     
@@ -73,7 +76,7 @@ class HomeViewController: RootViewController{
 
     
     deinit {
-
+        debugPrint(self)
     }
     
     override func didReceiveMemoryWarning() {
