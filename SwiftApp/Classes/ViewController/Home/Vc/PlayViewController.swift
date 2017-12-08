@@ -29,8 +29,8 @@ class PlayViewController: RootViewController{
         
         debugPrint(url)
         
-        model?.save()
-        vModel.id = (model?.id)!
+        
+        vModel.model = self.model
         vModel.delegate = self
         vModel.loadingMore()
         
@@ -70,7 +70,7 @@ class PlayViewController: RootViewController{
     
     func collectAction(_ button:UIButton) -> Void {
         button.isSelected = !button.isSelected
-        self.model?.collect(b: button.isSelected)
+        vModel.collect(b: button.isSelected)
     }
     
     func commitAction() -> Void {
@@ -145,6 +145,10 @@ extension PlayViewController:PlayVModelDelegate{
     
     func alertInfo(text:String){
         self.show(text: text)
+    }
+    
+    func alertload() {
+        self.load(text: "收藏中...")
     }
     
     func reloadData(){

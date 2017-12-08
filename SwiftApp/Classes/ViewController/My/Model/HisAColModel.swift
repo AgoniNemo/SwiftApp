@@ -44,7 +44,8 @@ class HisAColModel{
            let dict = array.first
             
             if dict?["collect"] == "0"{
-                return DatabaseHelper.sharedInstance.videoMager.delete(dict: ["videoId":(self.video?.id)!])
+                let dict = ["videoId":(self.video?.id)!]
+                return DatabaseHelper.sharedInstance.videoMager.delete(array:[dict],dict:dict)
             }
         }
         
@@ -69,6 +70,13 @@ class HisAColModel{
     class func allHistory() -> [[String:Any]] {
         
         return DatabaseHelper.sharedInstance.videoMager.getHistoryData()
+    }
+    
+    /// -MARK:删除
+    @discardableResult
+    class func delete() -> Bool {
+        
+        return DatabaseHelper.sharedInstance.videoMager.delete(array: [[["history":"0"]],"and",[["collect":"0"]]], dict: [:])
     }
     
     @discardableResult

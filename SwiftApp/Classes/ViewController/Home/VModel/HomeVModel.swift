@@ -38,6 +38,7 @@ class HomeVModel:HomeVModelInterface {
         self.request()
     }
     
+    // -MARK:同步收藏数据
     func updateCollect() -> Void {
         
         let token = UserModel.shareInstance.token
@@ -75,14 +76,19 @@ class HomeVModel:HomeVModelInterface {
                 }
                 
                 for dict in datas{
+                   var d = dict
+                   d["watchTime"] = Date.stringTimestamp()
+                   d["collectTime"] = d["video_updated_at"]
+                   d.removeValue(forKey: "video_updated_at")
+                   d["user"] = user
+                   let model = HisAColModel.init(dict: d)
                     
-                   let model = HisAColModel.init(dict: dict)
-                    
-                    model.collect()
+                   model.collect()
                     
                 }
-                
-                
+                // 删除不是观看历史与收藏的数据
+                let b = HisAColModel.delete()
+                debugPrint("删除状态:\(b)")
             }else{
                 debugPrint("错误:\(String(describing: err))")
             }

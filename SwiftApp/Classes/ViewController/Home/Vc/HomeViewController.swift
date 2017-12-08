@@ -17,7 +17,10 @@ class HomeViewController: RootViewController{
         super.viewDidLoad()
         
         vModel.delegate = self;
-        vModel.updateCollect()
+        
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 5) {
+            self.vModel.updateCollect()
+        }
         
         self.alertload()
         
