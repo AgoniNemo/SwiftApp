@@ -19,10 +19,11 @@ class PlayViewController: RootViewController{
     var _isBack = true
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIDevice.current.isX() ? UIColor.black : UIColor.white
         
         self.view.addSubview(self.tabView)
         let url:String = (model?.playPath)!
@@ -87,7 +88,7 @@ class PlayViewController: RootViewController{
     }()
     
     lazy var videoPlayBGView: UIView = {
-        let view:UIView = UIView.init(frame: CGRect.init(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.width*0.6))
+        let view:UIView = UIView.init(frame: CGRect.init(x: 0, y: self.viewY, width: self.view.frame.width, height: self.view.frame.width*0.6))
         view.backgroundColor = UIColor.black
         
         self.view.addSubview(view)
@@ -98,7 +99,7 @@ class PlayViewController: RootViewController{
     
     lazy var tabView:UITableView = {
         let y:CGFloat = self.view.frame.width*0.6
-        let t = UITableView.init(frame:  XCGRect(0, y+20, SCREEN_WIDTH, SCREEN_HEIGH-y-40-20), style: .grouped)
+        let t = UITableView.init(frame:  XCGRect(0, y+self.viewY, SCREEN_WIDTH, SCREEN_HEIGH-y-40-self.viewY), style: .grouped)
         
         t.delegate = self;
         t.dataSource = self;
@@ -114,6 +115,14 @@ class PlayViewController: RootViewController{
         
         return t
         
+    }()
+    
+    
+    let viewY:CGFloat = {
+        if UIDevice.current.isX() {
+            return 30
+        }
+        return 20
     }()
     
     override var shouldAutorotate: Bool{
@@ -206,7 +215,7 @@ extension PlayViewController:VideoPlayerDelegate{
             UIDevice.current.setValue(NSNumber.init(value: 3), forKey: "orientation")
             UIDevice.current.setValue(NSNumber.init(value: 1), forKey: "orientation")
             UIView.animate(withDuration: 0.5, animations: {
-                self.videoPlayBGView.frame = CGRect.init(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.width*0.6)
+                self.videoPlayBGView.frame = CGRect.init(x: 0, y: self.viewY, width: self.view.frame.width, height: self.view.frame.width*0.6)
             })
             self.videoPlayer.fullScreen(!_isHalfScreen)
         }else{
@@ -229,7 +238,7 @@ extension PlayViewController:VideoPlayerDelegate{
             UIDevice.current.setValue(NSNumber.init(value: 3), forKey: "orientation")
             UIDevice.current.setValue(NSNumber.init(value: 1), forKey: "orientation")
             UIView.animate(withDuration: 0.5, animations: {
-                self.videoPlayBGView.frame = CGRect.init(x: 0, y: 20, width: self.view.frame.width, height: self.view.frame.width*0.6)
+                self.videoPlayBGView.frame = CGRect.init(x: 0, y: self.viewY, width: self.view.frame.width, height: self.view.frame.width*0.6)
             })
         }else{
             UIDevice.current.setValue(NSNumber.init(value: 1), forKey: "orientation")
