@@ -17,7 +17,7 @@ import UIKit
 }
 
 protocol ViewModelInterface {
-    weak var delegate: LoginVModelDelegate? { get set }
+    var delegate: LoginVModelDelegate? { get set }
     
     func userNameDidChange(text:String?)
     func passwordDidChange(text:String?)
@@ -46,7 +46,7 @@ public class LoginVModel:ViewModelInterface{
     func register(user:String,pwd:String,
                   invitationCode:String) {
         var code = invitationCode
-        if code.characters.count == 0 {
+        if code.count == 0 {
             code = "TVRnM013UVdkdmJtbE9aVzF2TVRVd056YzRNREk1Tmc9PQ=="
         }
         let para:[String:Any] = [

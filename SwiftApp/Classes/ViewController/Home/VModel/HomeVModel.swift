@@ -10,12 +10,12 @@ import Foundation
 
 
 protocol HomeVModelDelegate:BaseVModelDelegate {
-    
+    func skipLogin()
 }
 
 protocol HomeVModelInterface:BaseVModelInterface {
 
-    weak var delegate: HomeVModelDelegate? { get set }
+    var delegate: HomeVModelDelegate? { get set }
 
 }
 
@@ -48,14 +48,14 @@ class HomeVModel:HomeVModelInterface {
             "count":"20",
             "page":"\(page)"
         ]
-//        debugPrint("page:\(page)")
+        
         VideoNetManager.loadVideoRequest(params: params) { [weak self](dict, err) in
             
             guard let d:[String:Any] = dict else{
+
                 self?.delegate?.alertInfo(text: "数据加载失败!")
                 return
             }
-//            debugPrint(dict as Any)
             
             if err == nil{
                 guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
@@ -65,7 +65,13 @@ class HomeVModel:HomeVModelInterface {
                         self?.delegate?.alertInfo(text: "数据加载出错！")
                         return
                     }
+                    
                     self?.delegate?.alertInfo(text: mesg!)
+                    
+                    if ((d["code"] as? String) == "1003") {
+                        self?.delegate?.skipLogin()
+                        return
+                    }
                     return
                 }
                 

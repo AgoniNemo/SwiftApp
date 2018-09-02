@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 enum ModifyType:Int {
     case name = 0
@@ -22,6 +23,7 @@ class ModifyInfoViewController: RootViewController {
     
     var type:ModifyType? = .name
     var vModel = ModifyInfoVModel()
+    let dataSource:Array = ["男","女"]
     
     typealias Completion = () -> ()
     var closure:Completion?;
@@ -41,8 +43,13 @@ class ModifyInfoViewController: RootViewController {
             self.textField.placeholder = "请输入旧密码"
             self.pswField.placeholder = "请输入新密码"
             
-        }else{
+        }else if(type == .name){
             self.textField.placeholder = "请输入\(model?.head ?? String())"
+        }else{
+            self.view.addSubview(tableView)
+            tableView.snp.makeConstraints { (maks) in
+                maks.top.right.bottom.left.equalTo(self.view)
+            }
         }
         
     }
@@ -83,6 +90,14 @@ class ModifyInfoViewController: RootViewController {
         return t
     }()
     
+    lazy var tableView: UITableView = {
+        let t = UITableView.init()
+        t.delegate = self
+        t.dataSource = self
+        t.tableFooterView = UIView()
+        return t
+    }()
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -107,4 +122,38 @@ extension ModifyInfoViewController:ModifyInfoVModelDelegate{
     func alertInfo(text: String) {
         self.show(text: text)
     }
+}
+
+extension ModifyInfoViewController:UITableViewDelegate,UITableViewDataSource{
+    
+
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier:  "\(self)Id")
+        
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "\(self)Id")
+        }
+        
+        cell?.textLabel?.text = dataSource[indexPath.row]
+        
+        return cell!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let result = dataSource[indexPath.row]
+        vModel.textDidChange(text:result)
+    }
+    
 }

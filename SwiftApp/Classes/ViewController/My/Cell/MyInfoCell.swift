@@ -18,7 +18,7 @@ class MyInfoCell: UITableViewCell {
         self.endLable.text = model.end
         
         
-        if model.url.characters.count > 0 {
+        if model.url.count > 0 {
             self.endView.isHidden = false
             let url = model.url.replacingOccurrences(of: " ", with: "")
             self.endView.kf.setImage(with: URL.init(string: url), placeholder: #imageLiteral(resourceName: "header"))

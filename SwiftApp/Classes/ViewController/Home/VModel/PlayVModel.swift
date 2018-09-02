@@ -14,7 +14,7 @@ protocol PlayVModelDelegate:BaseVModelDelegate {
 
 protocol PlayVModelInterface:BaseVModelInterface {
     
-    weak var delegate: PlayVModelDelegate? { get set }
+    var delegate: PlayVModelDelegate? { get set }
     
     func commit(text:String) -> Void
     

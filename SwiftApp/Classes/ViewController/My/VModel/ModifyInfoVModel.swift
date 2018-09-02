@@ -15,7 +15,7 @@ import Foundation
 
 private protocol ModifyInfoVModelInterface {
     
-    weak var delegate: ModifyInfoVModelDelegate? { get set }
+    var delegate: ModifyInfoVModelDelegate? { get set }
     
 }
 

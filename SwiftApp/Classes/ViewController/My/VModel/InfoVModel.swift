@@ -15,7 +15,7 @@ protocol InfoVModelDelegate:BaseVModelDelegate {
 
 private protocol InfoVModelInterface:BaseVModelInterface {
     
-    weak var delegate: InfoVModelDelegate? { get set }
+    var delegate: InfoVModelDelegate? { get set }
 
     func numberOfSections() -> Int
     
