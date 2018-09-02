@@ -15,8 +15,8 @@ let URI_ROOT:String = {
     if DEV_STATE_ONLINE == 0{
         return "https://xxxserver.herokuapp.com"
     }
-    return "http://0.0.0.0:8088"
+    return "http://0.0.0.0:8099"
 }()
 
 // 界面隐藏开关
-let DEVELOP_TEST = false
+let DEVELOP_TEST = true

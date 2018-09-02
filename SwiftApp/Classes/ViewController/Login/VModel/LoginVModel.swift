@@ -109,7 +109,7 @@ public class LoginVModel:ViewModelInterface{
                     return
                 }
                 
-                if dic["code"] as! String != "0" {
+                if dic["code"] as? String != "0" {
                     self?.delegate?.alertInfo(text: dic["message"] as! String)
                     return
                 }

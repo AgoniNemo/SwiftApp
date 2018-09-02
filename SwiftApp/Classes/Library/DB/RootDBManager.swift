@@ -320,6 +320,8 @@ class RootDBManager: NSObject {
         return dataArray;
     }
     
+    // MARK: - 生成sql条件
+    /// parameter array:需要查询的多个条件 格式为[["key":"value"],"or",["key":"value"],"and",["key":"value"]]
     private func getCondition(array:Array<Any>,dict:Dictionary<String,String>) -> String {
         
         var string = String.init();
@@ -479,9 +481,9 @@ class RootDBManager: NSObject {
         return b;
     }
     
-    func delete(dict:[String:String],name:String) -> Bool {
+    func delete(array:Array<Any>,dict:[String:String],name:String) -> Bool {
         
-        let condition = self.getCondition(array: [dict], dict: dict)
+        let condition = self.getCondition(array: array, dict: dict)
         let sql = "delete from \(name) where \(condition)"
         
         var b = false;

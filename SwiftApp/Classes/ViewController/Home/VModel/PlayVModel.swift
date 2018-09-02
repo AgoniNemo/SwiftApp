@@ -17,22 +17,69 @@ protocol PlayVModelInterface:BaseVModelInterface {
     var delegate: PlayVModelDelegate? { get set }
     
     func commit(text:String) -> Void
+    func sava() -> Bool
+    func collect(b:Bool) -> Void
     
 }
 
 class PlayVModel: PlayVModelInterface {
     
+    var model: VideoModel?
+    
     weak var delegate: PlayVModelDelegate?
-    
-    var id:String = ""
-    
-    
+        
     private var dataSorce:[ReplyModel] = []
     
     func loadLate() {
         
     }
     
+    func collect(b:Bool) -> Void {
+        let token = UserModel.shareInstance.token
+        let user = UserModel.shareInstance.user
+        let id:String = (self.model?.id)!
+        let status = b ? "1" : "0"
+        
+        let params = [
+            "user":user,
+            "token":token,
+            "id":id,
+            "collection":status
+        ]
+        self.delegate?.alertload!()
+        
+        CollectNetManager.collectRequest(params: params) { [weak self](dict, err) in
+            
+            guard let dic:[String:Any] = dict else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+                return
+            }
+            
+            debugPrint(dic as Any)
+            
+            guard let d:[String:Any] = dic["data"] as? [String : Any] else{
+                self?.delegate?.alertInfo(text: "数据加载失败!")
+                return
+            }
+            
+            let s:Bool = (d["status"] as? Bool)!
+            
+            if err == nil,s == true{
+                
+                let text = b ? "收藏成功!" : "取消收藏成功!"
+                self?.delegate?.alertInfo(text: text)
+                self?.model?.collect(b: b)
+            }else{
+                self?.delegate?.alertInfo(text: "操作失败!")
+            }
+            
+        }
+        
+    }
+    
+    func sava() -> Bool {
+        return (model?.save())!
+    }
     
     func indexPathModel(indexPath: IndexPath) -> ReplyModel {
         
@@ -50,6 +97,8 @@ class PlayVModel: PlayVModelInterface {
         let user = UserModel.shareInstance.user
         let headPath = UserModel.shareInstance.headPath
         let time = Date.intTimestamp()
+        let id:String = (self.model?.id)!
+        
         let params = [
             "id":id,
             "user":user,
@@ -90,6 +139,7 @@ class PlayVModel: PlayVModelInterface {
         
         let token = UserModel.shareInstance.token
         let user = UserModel.shareInstance.user
+        let id:String = (self.model?.id)!
         
         let params = [
             "id":id,
