@@ -14,7 +14,7 @@ protocol CategoriesVModelDelegate:BaseVModelDelegate {
 }
 
 protocol CategoriesVModelInterface:BaseVModelInterface {
-    weak var delegate: CategoriesVModelDelegate? { get set }
+    var delegate: CategoriesVModelDelegate? { get set }
 }
 
 class CategoriesVModel:CategoriesVModelInterface {
@@ -23,7 +23,8 @@ class CategoriesVModel:CategoriesVModelInterface {
     
     private var dataSource:[CategoriesModel] = Array.init();
     
-    private let lists:[[String:String]] = [["icon":"27.jpg","title":"成人动漫","key":"/cartoon/"], ["icon":"31.jpg","title":"长视频","key":"/changshipin/"], ["icon":"22.jpg","title":"潮喷","key":"/chaopen/"], ["icon":"16.jpg","title":"大屌","key":"/dadiao/"], ["icon":"15.jpg","title":"肛交","key":"/gangjiao/"], ["icon":"12.jpg","title":"高清HD","key":"/gaoqing/"], ["icon":"36.jpg","title":"男同性恋","key":"/gay/"], ["icon":"6.jpg","title":"国产自拍","key":"/guochan/"], ["icon":"9.jpg","title":"巨乳波霸","key":"/juru/"], ["icon":"8.jpg","title":"口爆颜射","key":"/koubaoyanshe/"], ["icon":"26.jpg","title":"性感美女","key":"/meinv/"], ["icon":"24.jpg","title":"嫩妹","key":"/nenmei/"], ["icon":"33.jpg","title":"女同性恋","key":"/nvtong/"], ["icon":"3.jpg","title":"欧美性爱","key":"/oumei/"], ["icon":"34.jpg","title":"日韩情色","key":"/party/"], ["icon":"30.jpg","title":"公众户外","key":"/public/"], ["icon":"17.jpg","title":"自慰器具","key":"/qijuziwei/"], ["icon":"7.jpg","title":"集体群交","key":"/qunjiao/"], ["icon":"28.jpg","title":"强奸","key":"/rapping/"], ["icon":"10.jpg","title":"熟女人妻","key":"/renqishunv/"], ["icon":"39.jpg","title":"青娱乐美女热舞","key":"/rewu/"], ["icon":"5.jpg","title":"日本无码","key":"/ribenwuma/"], ["icon":"25.jpg","title":"性爱","key":"/sex/"], ["icon":"29.jpg","title":"丝袜美腿","key":"/siwa/"], ["icon":"11.jpg","title":"SM调教","key":"/smxingnue/"], ["icon":"18.jpg","title":"素人","key":"/suren/"], ["icon":"35.jpg","title":"偷情乱伦","key":"/touqingyuluanlun/"], ["icon":"40.jpg","title":"VIP会员专区","key":"/vip/"], ["icon":"32.jpg","title":"短视频","key":"/xiaobian/"], ["icon":"23.jpg","title":"校园激情","key":"/xiaoyuan/"], ["icon":"2.jpg","title":"亚洲性爱","key":"/yazhou/"], ["icon":"4.jpg","title":"日本有码","key":"/youma/"], ["icon":"21.jpg","title":"制服诱惑","key":"/zhifu/"], ["icon":"37.jpg","title":"重口味","key":"/zhongkouwei/"], ["icon":"19.jpg","title":"中文字幕","key":"/zhongwenzimu/"], ["icon":"13.jpg","title":"网络主播","key":"/zhubo/"], ["icon":"20.jpg","title":"足交","key":"/zujiao/"]]
+    private let lists:[[String:String]] = [["icon": "51", "title": "3P群交", "key": "/3pqj/"], ["icon": "65", "title": "HD高清", "key": "/adgq/"], ["icon": "53", "title": "凹凸门事件", "key": "/atmsj/"], ["icon": "62", "title": "潮吹", "key": "/cc/"], ["icon": "54", "title": "长视频", "key": "/csp/"], ["icon": "64", "title": "大屌", "key": "/dd/"], ["icon": "47", "title": "动漫", "key": "/dm/"], ["icon": "55", "title": "短视频", "key": "/dsp/"], ["icon": "43", "title": "国产", "key": "/gc/"], ["icon": "57", "title": "户外野外公共场所", "key": "/hwyw/"], ["icon": "45", "title": "剧情三级", "key": "/jqsj/"], ["icon": "63", "title": "口爆颜射", "key": "/kbys/"], ["icon": "46", "title": "口交足交", "key": "/kjzj/"], ["icon": "58", "title": "学生妹校园", "key": "/msmxy/"], ["icon": "52", "title": "男同女同", "key": "/ntnt/"], ["icon": "44", "title": "欧美", "key": "/om/"], ["icon": "60", "title": "器具及自慰", "key": "/qjjzw/"], ["icon": "42", "title": "日韩", "key": "/rh/"], ["icon": "48", "title": "人妻乱伦偷情", "key": "/rqlltq/"], ["icon": "67", "title": "人妻熟女", "key": "/rqsn/"], ["icon": "50", "title": "SM调教", "key": "/smtj/"], ["icon": "61", "title": "少女美女", "key": "/sn/"], ["icon": "68", "title": "性爱", "key": "/xa/"], ["icon": "56", "title": "直播", "key": "/zb/"], ["icon": "41", "title": "制服丝袜", "key": "/zfsw/"], ["icon": "66", "title": "重口味", "key": "/zkw/"], ["icon": "49", "title": "自拍偷拍", "key": "/zptp/"], ["icon": "59", "title": "中文字幕", "key": "/zwzm/"]]
+
 
     
     func loadingMore() {
@@ -54,7 +55,4 @@ class CategoriesVModel:CategoriesVModelInterface {
         return self.dataSource.count
     }
 
-    
-    
-    
 }

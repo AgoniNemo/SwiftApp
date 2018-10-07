@@ -68,8 +68,13 @@ class HomeVModel:HomeVModelInterface {
                 let models = HisAColModel.allCollect()
                 
                 if models.count > 0 {
-                    let locDtStr = (models.last)!["collectTime"] as! String
-                    let netDtStr = datas.last!["video_updated_at"] as! String
+                    guard let locDtStr:String = models.last!["collectTime"] as? String else {
+                        return
+                    }
+                    guard let netDtStr:String = models.last!["video_updated_at"] as? String else {
+                        return
+                    }
+                    
                     if locDtStr == netDtStr {
                         return
                     }
@@ -117,7 +122,7 @@ class HomeVModel:HomeVModelInterface {
             }
             
             if err == nil{
-                guard let datas:[[String:Any]] = d["data"] as? [[String : Any]] else{
+                guard let datas:[String:Any] = d["data"] as? [String : Any] else{
                     let mesg = d["message"] as? String
                     if mesg == nil{
                         debugPrint(d)
@@ -134,15 +139,24 @@ class HomeVModel:HomeVModelInterface {
                     return
                 }
                 
-                if datas.count == 0{
+                guard let list:[[String:Any]] = datas["list"] as? [[String:Any]] else{
+                    let mesg = d["message"] as? String
+                    if mesg == nil{
+                        debugPrint(d)
+                        return
+                    }
+                    return
+                }
+                
+                if list.count == 0{
                     self?.delegate?.noMoreData!()
                     return
                 }
                 
-                if datas.count > 0,self?.page == 0{
+                if list.count > 0,self?.page == 0{
                     self?.dataSource.removeAll()
                 }
-                for (_,dic) in datas.enumerated(){
+                for (_,dic) in list.enumerated(){
                     
                     let model = VideoModel.init(dict: dic)
                     self?.dataSource.append(model)

@@ -1,6 +1,6 @@
 //
 //  UIImageView+FaceAware.swift
-//  FaceAware
+//  VaporApp
 //
 
 import UIKit
