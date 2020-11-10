@@ -11,13 +11,13 @@ import Alamofire
 
 class UserInfoModifyManager: BaseNetWorking {
     
-    class func modifyPasswordRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+    class func modifyPasswordRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         self.post(url: "\(URI_ROOT)/user/modifyPassword", params: params) { (dict, error) in
             completionHandler(dict,error)
         }
     }
     
-    class func modifyInfoRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+    class func modifyInfoRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         self.post(url: "\(URI_ROOT)/user/modifyInfo", params: params) { (dict, error) in
             completionHandler(dict,error)
         }

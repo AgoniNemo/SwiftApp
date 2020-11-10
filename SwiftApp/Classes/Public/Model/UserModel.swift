@@ -16,10 +16,10 @@ class UserModel {
     private var dic:[String:String] = Dictionary.init();
     var isTokenExpire:Bool = false
     
-    var user:String = "";
-    var sex:String = "";
-    var age:String = "";
-    var name:String = "";
+    var user:String = ""
+    var sex:String = ""
+    var age:String = ""
+    var name:String = ""
     
     var phoneNumber:String = "";
     var headPath:String = "";
@@ -45,14 +45,14 @@ class UserModel {
     }
     
     private init() {
-        debugPrint(self)
+        XLogLine(self)
         let d = DatabaseHelper.sharedInstance.userMager.getData()
         
         guard d.count > 0 else {
             return
         }
         self.dic = d
-        
+         
         setProperties(dict: d)
         self.stutas = true;
         
@@ -98,7 +98,7 @@ class UserModel {
         }
         var d = self.dic
         d["status"] = "1";
-        debugPrint("登录时间：\(Date.timeStampToString(timeStamp: self.dic["loginTime"]!))")
+        XLogLine("登录时间：\(Date.timeStampToString(timeStamp: self.dic["loginTime"]!))")
         self.isTokenExpire = false
         self.stutas = true;
         

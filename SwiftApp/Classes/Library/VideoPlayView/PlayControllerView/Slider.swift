@@ -130,11 +130,11 @@ class Slider: UIControl {
         
         
         /**
-        debugPrint(self.trackImageView.frame)
-        debugPrint(self.bufferImageView.frame)
-        debugPrint(self.thumbValueImageView.frame)
-        debugPrint(self.thumb.frame)
-        debugPrint(self.thumbImageView.frame)
+        XLogLine(self.trackImageView.frame)
+        XLogLine(self.bufferImageView.frame)
+        XLogLine(self.thumbValueImageView.frame)
+        XLogLine(self.thumb.frame)
+        XLogLine(self.thumbImageView.frame)
          */
     }
     
@@ -144,7 +144,7 @@ class Slider: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setThumbImage(thumbImage:UIImage,state:UIControlState) -> Void {
+    func setThumbImage(thumbImage:UIImage,state:UIControl.State) -> Void {
         
         if (state == .normal) {
             self.thumbImageView.image = thumbImage;

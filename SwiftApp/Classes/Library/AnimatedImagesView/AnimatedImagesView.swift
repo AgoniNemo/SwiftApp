@@ -61,15 +61,15 @@ class AnimatedImagesView: UIView {
         }
     }
     
-    func bringNextImage(){
+    @objc func bringNextImage(){
         
         let imageViewToHide = self.imageViews[currentlyDisplayingImageViewIndex!]
 
-        debugPrint("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
+        XLogLine("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
         currentlyDisplayingImageViewIndex =
             (currentlyDisplayingImageViewIndex == 0) ? 1 : 0;
         
-        debugPrint("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
+        XLogLine("currentlyDisplayingImageViewIndex\(String(describing: currentlyDisplayingImageViewIndex))");
         
         let imageViewToShow = self.imageViews[currentlyDisplayingImageViewIndex!]
         
@@ -83,7 +83,7 @@ class AnimatedImagesView: UIView {
         
         currentlyDisplayingImageIndex = nextImageToShowIndex;
         
-        debugPrint("nextImageToShowIndex:\(nextImageToShowIndex)")
+        XLogLine("nextImageToShowIndex:\(nextImageToShowIndex)")
         
         imageViewToShow.image = self.delegate?.animatedImagesView(animatedImagesView: self, index: nextImageToShowIndex);
         
@@ -95,14 +95,14 @@ class AnimatedImagesView: UIView {
         UIView.animate(withDuration: duration, delay: 0.0, options: [.beginFromCurrentState,.curveLinear], animations: {
                 let randomTranslationValueX = Double(self.imageViewsBorderOffset) * 3.5 - Double(AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 0, maxNumber: Int(self.imageViewsBorderOffset)));
             
-                debugPrint("x:\(randomTranslationValueX)");
+                XLogLine("x:\(randomTranslationValueX)");
             
                 let translationTransform = CGAffineTransform(translationX:CGFloat(randomTranslationValueX), y:0);
                 let result: Int  = AnimatedImagesView.self.randomIntBetweenNumber(minNumber: 115, maxNumber: 120);
                 
                 let randomScaleTransformValue: CGFloat = CGFloat(result) / 100;
             
-                debugPrint("result:\(randomScaleTransformValue)")
+                XLogLine("result:\(randomScaleTransformValue)")
             
                 let scaleTransform = CGAffineTransform(scaleX:randomScaleTransformValue, y:randomScaleTransformValue);
                 
@@ -193,7 +193,7 @@ class AnimatedImagesView: UIView {
     
     deinit {
         self.imageSwappingTimer.invalidate();
-        debugPrint("释放:\(self)")
+        XLogLine("释放:\(self)")
     }
     
     required init?(coder aDecoder: NSCoder) {

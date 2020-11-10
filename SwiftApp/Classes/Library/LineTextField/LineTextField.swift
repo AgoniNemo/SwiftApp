@@ -28,7 +28,7 @@ class LineTextField: UITextField {
     }
     
     func placeholder(color:UIColor,string:String) -> Void {
-        self.attributedPlaceholder = NSAttributedString(string:string,attributes: [NSForegroundColorAttributeName: color]);
+        self.attributedPlaceholder = NSAttributedString(string:string,attributes: [NSAttributedString.Key.foregroundColor: color]);
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {

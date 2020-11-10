@@ -22,7 +22,7 @@ class VideoManager: RootDBManager {
         let b = mager.creatTabelWithKeys(keys: videoMagerArray, tableName: mager.tableName)
         
         if b == false {
-            debugPrint("创建数据表失败!");
+            XLogLine("创建数据表失败!");
         }
         
         return mager;

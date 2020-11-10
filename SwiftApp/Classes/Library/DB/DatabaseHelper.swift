@@ -28,7 +28,7 @@ final class DatabaseHelper: NSObject{
         let array = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         
         let path = "\(array[0])/DataStore.db";
-        debugPrint(path)
+        XLogLine(path)
         
         return path;
     }

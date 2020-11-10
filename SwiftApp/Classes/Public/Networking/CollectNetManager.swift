@@ -10,14 +10,14 @@ import UIKit
 
 class CollectNetManager: BaseNetWorking {
 
-    class func collectListRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void{
+    class func collectListRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void{
         
         self.post(url: "\(URI_ROOT)/video/collectionList", params: params) { (dict, error) in
             completionHandler(dict,error)
         }
     }
     
-    class func collectRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void{
+    class func collectRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void{
         
         self.post(url: "\(URI_ROOT)/video/colState", params: params) { (dict, error) in
             completionHandler(dict,error)

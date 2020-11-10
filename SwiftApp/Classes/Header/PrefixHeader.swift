@@ -28,12 +28,12 @@ func XLog(_ item: Any...) {
 ///   - message: 打印消息
 ///   - file: 打印所属类
 ///   - lineNumber: 打印语句所在行数
-func XLogLine<T>(message : T, file : String = #file, lineNumber : Int = #line) {
+func XLogLine<T>(_ message: T, file : String = #file, lineNumber : Int = #line) {
     
     #if DEBUG
         
         let fileName = (file as NSString).lastPathComponent
-        print("[\(fileName):line:\(lineNumber)]- \(message)")
+        print("[\(fileName)  line:\(lineNumber)]   \(message)")
         
     #endif
 }

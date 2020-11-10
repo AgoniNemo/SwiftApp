@@ -30,7 +30,7 @@ extension Date{
         
         let value = now - Double(time)!
         
-        debugPrint(value)
+        XLogLine(value)
         
         if value > (10 * 24 * 60 * 60) {
             

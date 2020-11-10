@@ -339,7 +339,7 @@ class RootDBManager: NSObject {
                     let v = dict.first?.value ?? String();
                     string.append("\(k) = '\(v)'");
                      */
-                    debugPrint(value,dict)
+                    XLog(value,dict)
                     let k:String = value as! String
                     let v:String = dict[k]!;
                     string.append("\(value) = '\(v)'");
@@ -397,7 +397,7 @@ class RootDBManager: NSObject {
         var d:[String:String] = Dictionary();
         
         for (_,v) in dict.enumerated() {
-            debugPrint(v)
+            XLogLine(v)
             d[v.key] = v.value as? String
         }
         

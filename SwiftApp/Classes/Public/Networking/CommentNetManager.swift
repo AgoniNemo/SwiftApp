@@ -10,14 +10,14 @@ import UIKit
 
 class CommentNetManager: BaseNetWorking {
 
-    class func commitRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+    class func commitRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         
         self.post(url: "\(URI_ROOT)/comment/commit", params: params) { (dict, error) in
             completionHandler(dict,error)
         }
     }
     
-    class func commitListRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+    class func commitListRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         
         self.post(url: "\(URI_ROOT)/comment/list", params: params) { (dict, error) in
             completionHandler(dict,error)

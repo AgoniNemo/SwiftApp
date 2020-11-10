@@ -62,18 +62,18 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
         
         self.videoCachePath = String.cacheFilePath(fileName: videoName)
         
-        debugPrint("videoTempPath === \(self.videoTempPath))")
-        debugPrint("videoCachePath === \(self.videoCachePath))")
+        XLogLine("videoTempPath === \(self.videoTempPath))")
+        XLogLine("videoCachePath === \(self.videoCachePath))")
         
         if self.fileManager.fileExists(atPath: self.videoCachePath) {
-            debugPrint("---缓存目录下已存在下载完成的文件可以直接播放---")
+            XLogLine("---缓存目录下已存在下载完成的文件可以直接播放---")
             self.delegate?.didFileExisted(self, self.videoCachePath)
         }else{
             
             if self.fileManager.fileExists(atPath: self.videoTempPath) {
                 self.fileHandle = FileHandle.init(forUpdatingAtPath: self.videoTempPath)
                 curruentLength = CGFloat((self.fileHandle?.seekToEndOfFile())!)
-                debugPrint("---当前目录已存在下载的临时文件：\(curruentLength)---")
+                XLogLine("---当前目录已存在下载的临时文件：\(curruentLength)---")
             }else{
                 curruentLength = 0
                 fileManager.createFile(atPath: self.videoTempPath, contents: nil, attributes: nil)
@@ -94,12 +94,12 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
         let url = URL.init(string: videoUrl)
         var request = URLRequest.init(url: url!)
         
-        debugPrint("curruentLength:\(self.curruentLength)")
+        XLogLine("curruentLength:\(self.curruentLength)")
         
         //指定头信息  当前已下载的进度
         request.setValue("bytes=\(Int(self.curruentLength))-", forHTTPHeaderField: "Range")
         
-        debugPrint(request.allHTTPHeaderFields!)
+        XLogLine(request.allHTTPHeaderFields!)
         
         //创建请求
         dataTask = self.session.dataTask(with: request)
@@ -114,10 +114,10 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
         let http = response as? HTTPURLResponse
         let dic:Dictionary = (http?.allHeaderFields)!
         
-        debugPrint(dic)
+        XLogLine(dic)
         
         guard let content:String = dic["Content-Range"] as? String else {
-            debugPrint("---urlSession出错---")
+            XLogLine("---urlSession出错---")
             return
         }
 
@@ -138,7 +138,7 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
         //得到请求文件的数据大小
         totalLength = UInt64(response.expectedContentLength) + UInt64(curruentLength)
         
-        debugPrint("请求文件的数据大小:\(String(describing: totalLength))")
+        XLogLine("请求文件的数据大小:\(String(describing: totalLength))")
         
         self.delegate?.didStartReceive(self, Int(videoLength!))
         
@@ -165,15 +165,15 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
             let tempPathURL = URL.init(fileURLWithPath: self.videoTempPath)
             let cachefileURL = URL.init(fileURLWithPath: self.videoCachePath)
             
-            debugPrint("videoCachePath === \(self.videoTempPath)")
+            XLogLine("videoCachePath === \(self.videoTempPath)")
             
             
             if self.fileManager.fileExists(atPath: self.videoCachePath) == false {
-                debugPrint("createDirectoryCachefileURL === \(self.videoCachePath)")
+                XLogLine("createDirectoryCachefileURL === \(self.videoCachePath)")
                 do {
                     try self.fileManager.createDirectory(atPath: self.videoCachePath, withIntermediateDirectories: true, attributes: nil)
                 } catch {
-                    debugPrint("createDirectory fail:\(error)")
+                    XLogLine("createDirectory fail:\(error)")
                 }
             }
             
@@ -181,14 +181,14 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
                 do {
                     try self.fileManager.removeItem(at: cachefileURL)
                 } catch {
-                    debugPrint("removeItem fail:\(error)")
+                    XLogLine("removeItem fail:\(error)")
                 }
             }
             
             do {
                 try self.fileManager.moveItem(at: tempPathURL, to: cachefileURL)
             } catch {
-                 debugPrint("moveItem fail:\(error)")
+                 XLogLine("moveItem fail:\(error)")
             }
             
             self.delegate?.didFinishLoading(self, self.videoCachePath)
@@ -201,7 +201,7 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
     
     //开始/继续
     func start() -> Void {
-        debugPrint("---开始---")
+        XLogLine("---开始---")
         if self.dataTask == nil {
             self.sendHttpRequst()
         }else{
@@ -210,12 +210,12 @@ class DownloadManager:NSObject,URLSessionDataDelegate {
     }
     
     func suspend() -> Void {
-        debugPrint("---暂停---")
+        XLogLine("---暂停---")
         self.dataTask?.suspend()
     }
     
     func cancel() -> Void {
-        debugPrint("---取消---")
+        XLogLine("---取消---")
         self.dataTask?.cancel()
         self.dataTask = nil
     }

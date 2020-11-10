@@ -10,7 +10,7 @@ import UIKit
 
 class CategoriesNetManager: BaseNetWorking {
 
-    class func sortQueryRequest(params:[String:Any],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
+    class func sortQueryRequest(params:[String:String],completionHandler:@escaping (([String:Any]?,Error?)->())) -> Void {
         
         self.post(url: "\(URI_ROOT)/video/sortQuery", params: params) { (dict, error) in
             completionHandler(dict,error)

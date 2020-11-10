@@ -23,7 +23,7 @@ extension String{
     static func tempFilePath(urlString url:String) -> String {
         
         guard let name = url.components(separatedBy: "/").last else {
-            debugPrint("tempFilePath 出错!\(url)")
+            XLogLine("tempFilePath 出错!\(url)")
             return ""
         }
         
@@ -36,7 +36,7 @@ extension String{
         let cachePaths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         
         guard let cachePath = cachePaths.first else {
-            debugPrint("cacheFilePath 出错!\(name)")
+            XLogLine("cacheFilePath 出错!\(name)")
             return ""
         }
         
@@ -55,7 +55,7 @@ extension String{
     static func fileName(UrlString url:String) -> String {
         
         guard let name = url.components(separatedBy: "/").last else {
-            debugPrint("fileName 出错!\(url)")
+            XLogLine("fileName 出错!\(url)")
             return ""
         }
         

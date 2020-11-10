@@ -166,8 +166,8 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
     
     private func addObserver() -> Void {
         
-        self.timeObserve = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: DispatchQueue.main, using: { [weak self](time) in
-//            debugPrint("---addObserver---")
+        self.timeObserve = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMake(value: 1, timescale: 1), queue: DispatchQueue.main, using: { [weak self](time) in
+//            XLogLine("---addObserver---")
             let current = CMTimeGetSeconds(time);
             let total = CMTimeGetSeconds((self?.currentPlayerItem?.duration)!);
             let progress = current / total;
@@ -209,10 +209,10 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
         self.isPlaying = false;
         self.isCanToGetLocalTime = true;
         self.loadedTimeRangeArr.removeAll()
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name:  UIApplication.didEnterBackgroundNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidPlayToEnd(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
@@ -225,7 +225,7 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
     }
     
     func didFailLoading(_ manager: DownloadManager, _ errorCode: Error) {
-        debugPrint("下载出错error:\(errorCode)")
+        XLogLine("下载出错error:\(errorCode)")
     }
     
     func didFileExisted(_ manager: DownloadManager, _ filePath: String) {
@@ -235,7 +235,7 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
     
     func didReceiveManager(_ manager: DownloadManager, _ progress: CGFloat) {
         
-        debugPrint("下载进度：\(progress)")
+        XLogLine("下载进度：\(progress)")
     }
     
     func didStartReceive(_ manager: DownloadManager, _ videoLength: Int) {
@@ -243,13 +243,13 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
     }
     
     func didFinishLoading(_ manager: DownloadManager, _ filePath: String) {
-        debugPrint("---下载完成---")
+        XLogLine("---下载完成---")
     }
     
     // MARK: - NSNotification
     
     @objc func playerItemDidPlayToEnd(_ notification:Notification) -> Void {
-        debugPrint("----播放结束---")
+        XLogLine("----播放结束---")
         self.player?.seek(to: CMTime.init(value: 0, timescale: 1), completionHandler: { [weak self](b) in
             self?.player?.play()
         })
@@ -280,7 +280,7 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
         }
         self.isCanToGetLocalTime = true
         
-        self.player?.seek(to: CMTimeMake(Int64(time), 1), completionHandler: {[weak self] (finished) in
+        self.player?.seek(to: CMTimeMake(value: Int64(time), timescale: 1), completionHandler: {[weak self] (finished) in
             self?.play()
         })
         
@@ -341,21 +341,21 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
         let playerItem = object as? AVPlayerItem
         
         if keyPath == "status" {
-            let status:AVPlayerItemStatus = (playerItem?.status)!
+            let status:AVPlayerItem.Status = (playerItem?.status)!
 
             switch status {
                 case .readyToPlay:
-                    debugPrint("======== 准备播放")
+                    XLogLine("======== 准备播放")
                     self.player?.isMuted = self.mute!
                     self.play()
                     self.handleShowViewSublayers()
                 case .failed:
-                    debugPrint("======== 播放失败")
+                    XLogLine("======== 播放失败")
                     self.showFailView(false)
                     self.videoPlayControl.videoPlayerDidFailedPlay()
                     self.dealWithDidPlayFailed()
                 case .unknown:
-                    debugPrint("======== 播放unknown")
+                    XLogLine("======== 播放unknown")
                     self.showFailView(false)
                     self.videoPlayControl.videoPlayerDidFailedPlay()
                     self.dealWithDidPlayFailed()
@@ -367,7 +367,7 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
             
             let progress = current / totalDuration
             
-//            debugPrint("============== 缓冲进度 - \(progress)")
+//            XLogLine("============== 缓冲进度 - \(progress)")
             self.videoPlayControl.progress = CGFloat(progress)
             self.videoPlayControl.totalTime = CGFloat(totalDuration)
             self.duration = CGFloat(totalDuration)
@@ -382,9 +382,9 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
             self.lastBufferValue = self.currentBufferValue
             self.videoPlayControl.videoPlayerDidLoading()
             
-            debugPrint("======== playbackBufferEmpty")
+            XLogLine("======== playbackBufferEmpty")
         }else{
-            debugPrint("======== playbackFail")
+            XLogLine("======== playbackFail")
         }
         
         
@@ -418,20 +418,20 @@ class VideoPlayer:NSObject,DownloadManagerDelegate {
         let fileManager = FileManager.default
         
          if fileManager.fileExists(atPath: videoCachePath) {
-            debugPrint("---删除缓存目录下已存在下载文件：\(videoCachePath)---")
+            XLogLine("---删除缓存目录下已存在下载文件：\(videoCachePath)---")
             do {
                 try fileManager.removeItem(atPath: videoCachePath)
             } catch {
-                debugPrint("videoCachePath 删除失败！")
+                XLogLine("videoCachePath 删除失败！")
             }
          }
         
         if fileManager.fileExists(atPath: videoTempPath) {
-            debugPrint("---删除当前目录已存在下载的临时文件：\(videoTempPath)---")
+            XLogLine("---删除当前目录已存在下载的临时文件：\(videoTempPath)---")
             do {
                 try fileManager.removeItem(atPath: videoTempPath)
             } catch {
-                debugPrint("videoTempPath 删除失败！")
+                XLogLine("videoTempPath 删除失败！")
             }
         }
     }

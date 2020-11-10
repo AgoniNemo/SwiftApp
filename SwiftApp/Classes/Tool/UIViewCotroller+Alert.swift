@@ -20,19 +20,6 @@ class Alert {
     
     static let shareInstance = Alert()
     
-    /**
-    var alert = { (showCloseButton:Bool?
-                        ) -> SCLAlertView in
-        debugPrint(showCloseButton!)
-        
-        let appearance = SCLAlertView.SCLAppearance(
-            showCloseButton: false
-        )
-        let alert = SCLAlertView(appearance: appearance)
-        
-        return alert
-    }*/
-    
     var result:SCLAlertViewResponder?;
     
     
@@ -49,12 +36,16 @@ class Alert {
     
     func show(text:String,duration:TimeInterval? = 1.5) -> Void {
         self.hidden()
+        
+        let time = SCLAlertView.SCLTimeoutConfiguration.init(timeoutValue: 1.5) {}
+        
         self.alert(showCircularIcon:false).showTitle(
             "",
             subTitle: text,
             style: .info,
-            duration: duration!
+            timeout:time
         )
+        
     }
     func showInfo(text:String,closure:@escaping (()->())) -> Void {
         let appearance = SCLAlertView.SCLAppearance(
@@ -68,7 +59,7 @@ class Alert {
         }
         
         alert.addButton("取消") {
-            debugPrint("---取消---")
+            XLogLine("---取消---")
         }
         alert.showNotice("提 示", subTitle: text)
     }
@@ -91,7 +82,7 @@ class Alert {
         }
         
         alert.addButton("取消") {
-            debugPrint("---取消---")
+            XLogLine("---取消---")
         }
         alert.showEdit("注 册", subTitle: "请填写申请信息！")
     }
@@ -111,7 +102,7 @@ class Alert {
         }
         
         alert.addButton("取消") {
-            debugPrint("---取消---")
+            XLogLine("---取消---")
         }
         alert.showEdit("", subTitle: "请输入回复内容")
     }

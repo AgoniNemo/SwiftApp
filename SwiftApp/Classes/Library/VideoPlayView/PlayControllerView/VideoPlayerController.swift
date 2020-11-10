@@ -122,7 +122,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
         
     }
     
-    func tapGestureTouch(_ tapGesture:UITapGestureRecognizer) -> Void {
+    @objc func tapGestureTouch(_ tapGesture:UITapGestureRecognizer) -> Void {
         
         self.hiddenTopViewAndBottomView()
         
@@ -151,7 +151,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
         
     }
     
-    func panGestureTouch(_ panGestureTouch:UIPanGestureRecognizer) -> Void {
+    @objc func panGestureTouch(_ panGestureTouch:UIPanGestureRecognizer) -> Void {
         let touPoint = panGestureTouch.translation(in: self)
         var changeXorY = 0;    //0:X:进度   1:Y：音量
         
@@ -168,7 +168,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
             
             if (_isStartPan) {
                 
-                if (fabs(change_X) > fabs(change_Y)) {
+                if (fabs(change_X) > abs(change_Y)) {
                     changeXorY = 0;
                 }else{
                     changeXorY = 1;
@@ -220,20 +220,20 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
         }
     }
     
-    func backButtonClick(_ btn:UIButton) -> Void {
+    @objc func backButtonClick(_ btn:UIButton) -> Void {
         
         if (self.backButtonClick_block != nil) {
             self.backButtonClick_block!()
         }
     }
     
-    func fullScreenButtonClick(_ btn:UIButton) -> Void {
+    @objc func fullScreenButtonClick(_ btn:UIButton) -> Void {
         if (self.fullScreenButtonClick_block != nil) {
             self.fullScreenButtonClick_block!()
         }
     }
 
-    func playButtonClick(_ btn:UIButton) -> Void {
+    @objc func playButtonClick(_ btn:UIButton) -> Void {
         let b:Bool = !btn.isSelected;
         btn.isSelected = b
         
@@ -243,12 +243,12 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
     }
     
     /// MARK:拖动中
-    func sliderValueChange(_ slider:Slider) -> Void {
+    @objc func sliderValueChange(_ slider:Slider) -> Void {
         _sliderIsTouching = true
         self.currentLabel.text = self.timeFormatted(totalSeconds: Int(slider.value! * self.totalTime!))
     }
     /// MARK:拖动结束
-    func sliderTouchEnd(_ slider:Slider) -> Void {
+    @objc func sliderTouchEnd(_ slider:Slider) -> Void {
         
         if (self.sliderTouchEnd_block != nil) {
             self.sliderTouchEnd_block!(slider.value! * self.totalTime!)
@@ -258,21 +258,21 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
     }
 
     func videoPlayerDidLoading() -> Void {
-        debugPrint("正在播放")
+        XLogLine("正在播放")
         self.activityView.startAnimating()
     }
     
     func videoPlayerDidBeginPlay() -> Void {
-        debugPrint("播放开始")
+        XLogLine("播放开始")
         self.activityView.stopAnimating()
     }
     
     func videoPlayerDidEndPlay() -> Void {
-        debugPrint("播放结束")
+        XLogLine("播放结束")
     }
     
     func videoPlayerDidFailedPlay() -> Void {
-        debugPrint("播放失败")
+        XLogLine("播放失败")
         self.activityView.stopAnimating()
     }
     
@@ -410,7 +410,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
     /// MARK:返回
     private lazy var backButton: UIButton = {
         
-        let b = UIButton.init(type: UIButtonType.custom)
+        let b = UIButton.init(type: UIButton.ButtonType.custom)
         b.setImage(#imageLiteral(resourceName: "back.png"), for: .normal)
         b.addTarget(self, action: #selector(backButtonClick(_:)), for: .touchUpInside)
         self.topView.addSubview(b)
@@ -441,7 +441,7 @@ class VideoPlayerController: UIView,UIGestureRecognizerDelegate {
     
     /// MARK:菊花
     private lazy var activityView: UIActivityIndicatorView = {
-        let a = UIActivityIndicatorView.init(activityIndicatorStyle: .white)
+        let a = UIActivityIndicatorView.init(style: .white)
         a.hidesWhenStopped = true
         self.fullScreenView.addSubview(a)
         

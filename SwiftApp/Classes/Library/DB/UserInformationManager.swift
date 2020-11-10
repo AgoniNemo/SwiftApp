@@ -22,7 +22,7 @@ class UserInformationManager: RootDBManager {
         let b = conver.creatTabelWithKeys(keys: userMagerArray, tableName: conver.tableName)
         
         if b == false {
-            debugPrint("创建数据表失败!");
+            XLogLine("创建数据表失败!");
         }
         
         return conver;
